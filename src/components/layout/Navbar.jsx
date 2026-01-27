@@ -6,10 +6,13 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
     { name: "Services +", href: "#services" },
-    { name: "Projects", href: "#projects" },
-    { name: "Blogs +", href: "#blogs" },
+    { name: "Know your sign ", href: "/know your sign " },
+    { name: "Apparel", href: "/apparel" },
+    { name: "Promotional products", href: "/promotional products" },
+    { name: "Our work", href: "/our work" },
+    { name: "Contact us", href: "/contact us" },
+
   ];
 
   useEffect(() => {
@@ -42,12 +45,12 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <div className="flex flex-col">
-                <img src="/images/Hero/Logo.png" className="w-40" />
+                <img src="/images/Hero/Logo.png" className=" w-30 xl:w-40" />
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
+            <div className="hidden xl:flex items-center xl:space-x-8 lg:space-x-3">
               {navItems.map((item) => (
                 <a
                   key={item.name}
@@ -63,9 +66,8 @@ export default function Navbar() {
             {/* Button */}
             <div className="flex justify-center items-center">
               <button
-                className="hidden lg:flex group items-center gap-3 px-6 py-3
-    border border-[var(--color-muted)] rounded-full 
-    text-[var(--color-gradient)] "
+                className="hidden xl:flex group items-center gap-3 px-6 py-3 
+                border border-[var(--color-muted)] rounded-full text-[var(--color-gradient)] "
               >
                 <span className="text-sm">Get In Touch</span>
 
@@ -76,7 +78,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="lg:hidden">
+            <div className="xl:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white hover:text-yellow-400 transition-colors relative z-50"
@@ -91,7 +93,7 @@ export default function Navbar() {
       {/* Mobile Navigation - Full Screen Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-gradient-to-r from-black via-black to-[#816025] z-40 
-        lg:hidden overflow-hidden">
+        xl:hidden overflow-hidden">
           <div className="container mt-15 min-h-screen">
             {navItems.map((item) => (
               <a

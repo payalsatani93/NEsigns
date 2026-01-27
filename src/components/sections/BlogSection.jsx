@@ -2,7 +2,7 @@ import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-export default function BlogNewsSection() {
+export default function BlogSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
 

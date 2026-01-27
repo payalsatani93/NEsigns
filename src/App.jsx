@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Home from "./pages/homePages/Home";
 import About from "./pages/aboutPages/About";
+import Blog from "./pages/blogPages/Blog";
 
 gsap.registerPlugin(ScrollTrigger);
 export default function App() {
@@ -53,7 +54,9 @@ export default function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/know your sign" element={<About />} />
+            <Route path="/blogs" element={<Blog />} />
+
           </Routes>
         </>
       )}
