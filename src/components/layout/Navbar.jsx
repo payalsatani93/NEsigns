@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Menu, X, ArrowRight, ChevronRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // to locate current page
   const location = useLocation();
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => location.pathname.startsWith(path);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -17,18 +17,18 @@ export default function Navbar() {
       submenu: [
         { name: "Printing Products", href: "/services/printing" },
         {
-          name: "Signage",
+          name: "Signage ",
           href: "/services/signage",
           submenu: [
-            { name: "Exterior Sign", href: "/services/signage/exterior" },
-            { name: "Interior Sign", href: "/services/signage/interior" },
+            { name: "Exterior Sign", href: "/categories/exterior-sign" },
+            { name: "Interior Sign", href: "/categories/interior-sign" },
             {
               name: "LED / Digital Board",
-              href: "/services/signage/led-board",
+              href: "/categories/led-digital-board",
             },
-            { name: "LED Neon Sign", href: "/services/signage/neon" },
-            { name: "Window Graphics", href: "/services/signage/window" },
-            { name: "Vehicle Graphics", href: "/services/signage/vehicle" },
+            { name: "LED Neon Sign", href: "/categories/led-neon-sign" },
+            { name: "Window Graphics", href: "/categories/window-graphics" },
+            { name: "Vehicle Graphics", href: "/categories/vehicle-graphics" },
           ],
         },
         { name: "Direct Mailing", href: "/services/direct-mailing" },
@@ -72,49 +72,56 @@ export default function Navbar() {
             <div className="hidden xl:flex items-center space-x-8">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group py-6">
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-                      ${isActive(item.href) ? "text-[var(--color-gradient)]" : "text-white hover:text-[var(--color-gradient)]"}`}
+    ${isActive(item.href) ? "text-[var(--color-gradient)]" : "text-white hover:text-[var(--color-gradient)]"}`}
                   >
                     {item.name}
-                    {isActive(item.href) && (
-                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[var(--color-gradient)] rounded-full"></span>
-                    )}
-                  </a>
+                  </Link>
 
                   {/* First level submenu */}
                   {item.submenu && (
                     <div className="absolute left-0 top-full mt-0 w-56 bg-white shadow-xl border border-gray-200 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                       {item.submenu.map((sub, index) => (
                         <div key={sub.name} className="relative group/sub">
-                          <a
-                            href={sub.href}
-                            className={`relative flex justify-between items-center px-4 py-3 cursor-pointer transition duration-200
-                              ${isActive(sub.href) ? "bg-[var(--color-gradient)] text-black" : "text-black hover:bg-[var(--color-gradient)]"}
-                              ${index === 0 ? "rounded-t-xl" : ""}
-                              ${index === item.submenu.length - 1 ? "rounded-b-xl" : ""}
-                            `}
-                          >
-                            {sub.name}
-                            {sub.submenu && <span className="text-xs">▶</span>}
-                          </a>
+                          <Link
+  to={sub.href}
+  className={`relative flex justify-between items-center px-4 py-3 transition duration-200
+    ${isActive(sub.href)
+      ? "bg-[var(--color-gradient)] text-black"
+      : "text-black hover:text-[var(--color-gradient)]"}
+    ${index === 0 ? "rounded-t-xl" : ""}
+    ${index === item.submenu.length - 1 ? "rounded-b-xl" : ""}
+  `}
+>
+  <span>{sub.name}</span>
+
+  {/* Chevron only if second-level submenu exists */}
+  {sub.submenu && (
+    <ChevronRight
+      size={16}
+      className="ml-2 text-gray-500 group-hover/sub:text-black transition-transform duration-200 group-hover/sub:translate-x-0.5"
+    />
+  )}
+</Link>
+
 
                           {/* Second level submenu */}
                           {sub.submenu && (
                             <div className="absolute left-full top-0 ml-1 w-64 bg-white shadow-xl border border-gray-200 rounded-xl opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                               {sub.submenu.map((child, childIndex) => (
-                                <a
-                                  key={child.name}
-                                  href={child.href}
-                                  className={`relative block px-4 py-3 cursor-pointer transition duration-200
-                                    ${isActive(child.href) ? "bg-[var(--color-gradient)] text-black" : "text-black hover:bg-[var(--color-gradient)]"}
-                                    ${childIndex === 0 ? "rounded-t-xl" : ""}
-                                    ${childIndex === sub.submenu.length - 1 ? "rounded-b-xl" : ""}
-                                  `}
-                                >
-                                  {child.name}
-                                </a>
+                                <Link
+  to={child.href}
+  className={`block px-4 py-3 transition duration-200
+    ${isActive(child.href)
+      ? "bg-[var(--color-gradient)] text-black"
+      : "text-black hover:text-[var(--color-gradient)]"}
+  `}
+>
+  {child.name}
+</Link>
+
                               ))}
                             </div>
                           )}
@@ -155,14 +162,13 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-black z-40 xl:hidden pt-35 px-6">
           <div className="flex flex-col space-y-6">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white text-xl font-medium border-b border-gray-800 pb-2"
+              <Link
+                to={item.href}
                 onClick={() => setIsMenuOpen(false)}
+                className="text-white text-xl font-medium border-b border-gray-800 pb-2"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

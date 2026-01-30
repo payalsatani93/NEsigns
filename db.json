@@ -1,0 +1,88 @@
+{
+  "SignageCategories": [
+    {
+      "id": 1,
+      "slug": "exterior-sign",
+      "title": "Exterior Signage for Your Business",
+      "description": "Durable, high-visibility signs designed to attract and guide customers.",
+      "subServices": [
+        { "id": 101, "title": "Building Signs", "desc": "Signs mounted directly on buildings...", "image": "/images/serviceSignageCatagory/01.png", "size": "large" },
+        { "id": 102, "title": "Freestanding Signs", "desc": "Standalone signs designed for visibility...", "image": "/images/serviceSignageCatagory/02.png", "size": "wide" },
+        { "id": 103, "title": "Directional Signs", "desc": "Guiding customers...", "image": "/images/serviceSignageCatagory/03.png", "size": "small" },
+        { "id": 104, "title": "Temporary Signs", "desc": "Flexible signage...", "image": "/images/serviceSignageCatagory/04.png", "size": "tall" },
+        { "id": 105, "ctaType": "knowMore"}
+      ]
+    },
+
+    {
+      "id": 2,
+      "slug": "interior-sign",
+      "title": "Interior Signage for Your Business",
+      "description": "Clean, modern interior signage that enhances customer experience.",
+      "subServices": [
+        { "id": 201, "title": "Lobby Signs", "desc": "Professional signage for reception areas.", "image": "/images/serviceSignageCatagory/05.png", "size": "large" },
+        { "id": 202, "title": "Wayfinding Signs", "desc": "Directional signage for indoor navigation.", "image": "/images/serviceSignageCatagory/06.png", "size": "wide" },
+        { "id": 203, "title": "Wall Graphics", "desc": "Brand-focused wall graphics.", "image": "/images/serviceSignageCatagory/07.png", "size": "small" },
+        { "id": 204, "title": "Office Door Signs", "desc": "Clean labeling for offices.", "image": "/images/serviceSignageCatagory/08.png", "size": "tall" },
+        { "id": 205, "ctaType": "knowMore"}
+      ]
+    },
+
+    {
+      "id": 3,
+      "slug": "led-digital-board",
+      "title": "LED / Digital Board",
+      "description": "Dynamic digital boards for promotions, menus, and announcements.",
+      "subServices": [
+        { "id": 301, "title": "Indoor LED Screens", "desc": "High-resolution digital displays.", "image": "/images/serviceSignageCatagory/09.png", "size": "large" },
+        { "id": 302, "title": "Outdoor LED Boards", "desc": "Weather-resistant LED signage.", "image": "/images/serviceSignageCatagory/10.png", "size": "wide" },
+        { "id": 303, "title": "Menu Boards", "desc": "Digital menus for restaurants.", "image": "/images/serviceSignageCatagory/11.png", "size": "small" },
+        { "id": 304, "title": "Advertising Displays", "desc": "Dynamic promotional displays.", "image": "/images/serviceSignageCatagory/12.png", "size": "tall" },
+        { "id": 305, "ctaType": "contact"}
+
+      ]
+    },
+
+    {
+      "id": 4,
+      "slug": "led-neon-sign",
+      "title": "LED Neon Sign",
+      "description": "Stylish neon signs to make your brand stand out day and night.",
+      "subServices": [
+        { "id": 401, "title": "Logo Neon Signs", "desc": "Custom brand logo neon signs.", "image": "/images/serviceSignageCatagory/13.png", "size": "large" },
+        { "id": 402, "title": "Open Signs", "desc": "Classic neon open signage.", "image": "/images/serviceSignageCatagory/14.png", "size": "wide" },
+        { "id": 403, "title": "Decorative Neon", "desc": "Creative decorative neon signs.", "image": "/images/serviceSignageCatagory/15.png", "size": "small" },
+        { "id": 404, "title": "Event Neon Signs", "desc": "Neon signs for events and promotions.", "image": "/images/serviceSignageCatagory/16.png", "size": "tall" },
+        { "id": 405, "ctaType": "contact"}
+      ]
+    },
+
+    {
+      "id": 5,
+      "slug": "vehicle-graphics",
+      "title": "Vehicle Graphics",
+      "description": "Turn your vehicle into a moving billboard with custom graphics.",
+      "subServices": [
+        { "id": 501, "title": "Car Wraps", "desc": "Full and partial vehicle wraps.", "image": "/images/serviceSignageCatagory/17.png", "size": "large" },
+        { "id": 502, "title": "Van Graphics", "desc": "Branding for commercial vans.", "image": "/images/serviceSignageCatagory/18.png", "size": "wide" },
+        { "id": 503, "title": "Fleet Branding", "desc": "Consistent graphics for fleets.", "image": "/images/serviceSignageCatagory/19.png", "size": "small" },
+        { "id": 504, "title": "Bike Graphics", "desc": "Lightweight graphics for bikes.", "image": "/images/serviceSignageCatagory/20.png", "size": "tall" },
+        { "id": 505, "ctaType": "contact"}
+      ]
+    },
+
+    {
+      "id": 6,
+      "slug": "window-graphics",
+      "title": "Window Graphics",
+      "description": "Eye-catching window designs that communicate and convert.",
+      "subServices": [
+        { "id": 601, "title": "Storefront Graphics", "desc": "Attractive storefront window designs.", "image": "/images/serviceSignageCatagory/21.png", "size": "large" },
+        { "id": 602, "title": "Privacy Films", "desc": "Frosted and privacy window films.", "image": "/images/serviceSignageCatagory/22.png", "size": "wide" },
+        { "id": 603, "title": "Promotional Stickers", "desc": "Short-term promotional window stickers.", "image": "/images/serviceSignageCatagory/23.png", "size": "small" },
+        { "id": 604, "title": "Office Windows", "desc": "Professional office window branding.", "image": "/images/serviceSignageCatagory/24.png", "size": "tall" },
+        { "id": 605, "ctaType": "contact"}
+      ]
+    }
+  ]
+}

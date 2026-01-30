@@ -1,10 +1,12 @@
-import React from 'react'
-import SignageMainSection from '../../components/sections/Signage/SignageMainSection'
+import SignageMainSection from "../../components/sections/Signage/SignageMainSection";
+import SignageServices from "../../components/sections/Signage/signageServices";
 
 export default function Signages() {
   return (
     <>
-      <SignageMainSection/>
+      <SignageMainSection />
+      <SignageServices/>
+    
     </>
-  )
+  );
 }

@@ -1,14 +1,9 @@
-import React from 'react'
-import BlogHero from '../../components/sections/blog/BlogHero'
-import BlogNewsSection from '../../components/sections/home/BlogSection'
-import BlogSection from '../../components/sections/home/BlogSection'
-import Footer from '../../components/layout/Footer'
+import BlogHero from "../../components/sections/blog/BlogHero";
 
 export default function Blog() {
   return (
     <>
-      <BlogHero/>
-      <Footer/>
+      <BlogHero />
     </>
-  )
+  );
 }

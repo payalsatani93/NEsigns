@@ -1,9 +1,6 @@
-import React from 'react'
 import './home.css';
 import Hero from '../../components/sections/home/Hero'
-import Footer from '../../components/layout/Footer'
 import BrandStandOut from '../../components/sections/home/BrandStandOut'
-import OurWork from '../../components/sections/home/OurWorkExperience'
 import ServicesSection from '../../components/sections/home/ServicesSection'
 import PortfolioSection from '../../components/sections/home/PortfolioSection'
 import AboutCompany from '../../components/sections/home/AboutCompany'
@@ -26,7 +23,6 @@ export default function Home() {
       <PlayVideo/>
       <TestimonialSlider/>
       <BlogSection/>
-      <Footer/>
     </>
   )
 }
