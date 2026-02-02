@@ -7,12 +7,37 @@ export default function Navbar() {
 
   // to locate current page
   const location = useLocation();
-  const isActive = (path) => location.pathname.startsWith(path);
+
+
+  const isActive = (path, item) => {
+  // Exact match for Home
+  if (path === "/") {
+    return location.pathname === "/";
+  }
+
+  // If item has submenu, check all submenu paths
+  if (item?.submenu) {
+    return (
+      location.pathname.startsWith(path) ||
+      item.submenu.some(
+        (sub) =>
+          location.pathname.startsWith(sub.href) ||
+          sub.submenu?.some((child) =>
+            location.pathname.startsWith(child.href)
+          )
+      )
+    );
+  }
+
+  // Normal match
+  return location.pathname.startsWith(path);
+};
+
 
   const navItems = [
     { name: "Home", href: "/" },
     {
-      name: "Services",
+      name: "Services +",
       href: "/services",
       submenu: [
         { name: "Printing Products", href: "/services/printing" },
@@ -73,10 +98,16 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <div key={item.name} className="relative group py-6">
                   <Link
-                    to={item.href}
-                    className={`relative text-sm font-medium tracking-wide transition-colors duration-300
-    ${isActive(item.href) ? "text-[var(--color-gradient)]" : "text-white hover:text-[var(--color-gradient)]"}`}
-                  >
+  to={item.href}
+  className={`relative text-sm font-medium tracking-wide transition-colors duration-300
+    ${
+      isActive(item.href, item)
+        ? "text-[var(--color-gradient)]"
+        : "text-white hover:text-[var(--color-gradient)]"
+    }
+  `}
+>
+
                     {item.name}
                   </Link>
 
@@ -86,42 +117,44 @@ export default function Navbar() {
                       {item.submenu.map((sub, index) => (
                         <div key={sub.name} className="relative group/sub">
                           <Link
-  to={sub.href}
-  className={`relative flex justify-between items-center px-4 py-3 transition duration-200
-    ${isActive(sub.href)
-      ? "bg-[var(--color-gradient)] text-black"
-      : "text-black hover:text-[var(--color-gradient)]"}
+                            to={sub.href}
+                            className={`relative flex justify-between items-center px-4 py-3 transition duration-200
+    ${
+      isActive(sub.href)
+        ? "bg-[var(--color-gradient)] overflow-hidden rounded-xl text-black"
+        : "text-black hover:text-[var(--color-gradient)]"
+    }
     ${index === 0 ? "rounded-t-xl" : ""}
     ${index === item.submenu.length - 1 ? "rounded-b-xl" : ""}
   `}
->
-  <span>{sub.name}</span>
+                          >
+                            <span>{sub.name}</span>
 
-  {/* Chevron only if second-level submenu exists */}
-  {sub.submenu && (
-    <ChevronRight
-      size={16}
-      className="ml-2 text-gray-500 group-hover/sub:text-black transition-transform duration-200 group-hover/sub:translate-x-0.5"
-    />
-  )}
-</Link>
-
+                            {/* Chevron only if second-level submenu exists */}
+                            {sub.submenu && (
+                              <ChevronRight
+                                size={16}
+                                className="ml-2 text-gray-500 group-hover/sub:text-black transition-transform duration-200 group-hover/sub:translate-x-0.5"
+                              />
+                            )}
+                          </Link>
 
                           {/* Second level submenu */}
                           {sub.submenu && (
                             <div className="absolute left-full top-0 ml-1 w-64 bg-white shadow-xl border border-gray-200 rounded-xl opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
                               {sub.submenu.map((child, childIndex) => (
                                 <Link
-  to={child.href}
-  className={`block px-4 py-3 transition duration-200
-    ${isActive(child.href)
-      ? "bg-[var(--color-gradient)] text-black"
-      : "text-black hover:text-[var(--color-gradient)]"}
+                                  to={child.href}
+                                  className={`block px-4 py-3 transition duration-200
+    ${
+      isActive(child.href)
+        ? "bg-[var(--color-gradient)] overflow-hidden rounded-xl text-black"
+        : "text-black hover:text-[var(--color-gradient)]"
+    }
   `}
->
-  {child.name}
-</Link>
-
+                                >
+                                  {child.name}
+                                </Link>
                               ))}
                             </div>
                           )}
