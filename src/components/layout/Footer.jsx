@@ -1,28 +1,32 @@
-import React from 'react';
-import { Mail, ArrowUpRight, Facebook, Linkedin } from 'lucide-react';
+import React from "react";
+import { Mail, Facebook, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const quickLinks = [
-    { name: 'HOME', href: '#home' },
-    { name: 'PORTFOLIO', href: '#portfolio' },
-    { name: 'WORKS', href: '#works' },
-    { name: 'POPULAR SERVICES', href: '#services' }
+    { name: "HOME", href: "/" },
+    { name: "Services", href: "/services" },
+    { name: "Apparel", href: "/apparel" },
+    { name: "Promotional products", href: "/promotional_products" },
+    { name: "Our work", href: "/our_work" },
+    { name: "Contact us", href: "/contactUs" },
+  ];
+  const Services = [
+    
+    
+    { name: "Signage", href: "/services/signage" },
+    { name: "Printing Products", href: "/services/printing" },
+    { name: "Direct Mailing", href: "/services/direct-mailing" },
+    { name: "Web Designing", href: "/services/web-design" },
+    { name: "SEO", href: "/services/seo" },
   ];
 
-  const signageServices = [
-    'LED Channel Letters',
-    'Monument Signs',
-    'LED Neons',
-    'Wall Graphics',
-    'Light Boxes'
-  ];
-
-  const printingServices = [
-    'Carry-Out-Menus',
-    'Yard Signs',
-    'Door Hangers',
-    'Postcards',
-    'Canvas'
+  const Signage = [
+    { name: "Exterior Sign", href: "/categories/exterior-sign" },
+    { name: "Interior Sign", href: "/categories/interior-sign" },
+    { name: "LED / Digital Board", href: "/categories/led-digital-board" },
+    { name: "LED Neon Sign", href: "/categories/led-neon-sign" },
+    { name: "Window & Wall Graphics", href: "/categories/window-graphics" },
   ];
 
   return (
@@ -32,7 +36,11 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 py-4 sm:py-6">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <img src="/images/Hero/Logo.png" alt="NE Signs Logo" className="h-10 sm:h-6 md:h-10" />
+            <img
+              src="/images/Hero/Logo.png"
+              alt="NE Signs Logo"
+              className="h-10 sm:h-6 md:h-10"
+            />
           </div>
 
           {/* Email */}
@@ -59,7 +67,11 @@ export default function Footer() {
               href="#"
               className="flex items-center gap-1 sm:gap-2 text-gray-300 hover:text-yellow-400 transition-colors duration-300"
             >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z" />
               </svg>
               <span className="text-sm md:display-block hidden">pinterest</span>
@@ -84,18 +96,26 @@ export default function Footer() {
             {/* Vertical Line - only visible on large screens */}
             <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-px bg-gray-800 ml-5"></div>
 
-            <div className=''>
-              <h3 className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2">LET'S WORK</h3>
-              <p className="text-lg sm:text-xl md:text-2xl tracking-widest text-gray-400 mb-4 sm:mb-6">TOGETHER</p>
+            <div className="">
+              <h3 className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2">
+                LET'S WORK
+              </h3>
+              <p className="text-lg sm:text-xl md:text-2xl tracking-widest text-gray-400 mb-4 sm:mb-6">
+                TOGETHER
+              </p>
 
               <a
                 href="mailto:nesignsinc@gmail.com"
                 className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-3 lg:px-5 py-2 sm:py-3 border border-gray-600 rounded-full "
               >
-                <span className="text-xs sm:text-sm text-gray-300">nesignsinc@gmail.com</span>
-                <img 
-                  className='arrow-bounce h-2 w-2'
-                  src="/portfolio/ArrowUpRight.png" alt="ArrowUpRight.png" />
+                <span className="text-xs sm:text-sm text-gray-300">
+                  nesignsinc@gmail.com
+                </span>
+                <img
+                  className="arrow-bounce h-2 w-2"
+                  src="/portfolio/ArrowUpRight.png"
+                  alt="ArrowUpRight.png"
+                />
               </a>
             </div>
           </div>
@@ -118,34 +138,38 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Signage Services */}
+            {/* Printing Services */}
             <div>
-              <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Signage Services</h4>
-              <ul className="space-y-2">
-                {signageServices.map((service) => (
-                  <li key={service}>
+              <Link to="/services" className="text-white font-semibold mb-3  text-sm sm:text-base">
+               Services
+              </Link>
+              <ul className="space-y-2 top-10">
+                {Services.map((link) => (
+                  <li key={link.name}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-xs sm:text-sm"
                     >
-                      {service}
+                      {link.name}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Printing Services */}
+            {/* Signage Services */}
             <div>
-              <h4 className="text-white font-semibold mb-3  text-sm sm:text-base">Printing Services</h4>
-              <ul className="space-y-2">
-                {printingServices.map((service) => (
-                  <li key={service}>
+              <Link to="/services/signage" className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+                Signage
+              </Link>
+              <ul className="space-y-2 top-10">
+                {Signage.map((link) => (
+                  <li key={link.name}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 text-xs sm:text-sm"
                     >
-                      {service}
+                      {link.name}
                     </a>
                   </li>
                 ))}
@@ -163,14 +187,19 @@ export default function Footer() {
                 bg-[var(--color-gradient)]
                 rounded-full animate-bounce-slow hover:scale-105 transition-transform duration-300"
             >
-              <span className="text-black font-bold text-sm md:text-lg lg:text-sm xl:text-lg">Message</span>
-              <span className="text-black font-bold text-sm md:text-lg lg:text-sm xl:text-lg">Us</span>
-              <img 
+              <span className="text-black font-bold text-sm md:text-lg lg:text-sm xl:text-lg">
+                Message
+              </span>
+              <span className="text-black font-bold text-sm md:text-lg lg:text-sm xl:text-lg">
+                Us
+              </span>
+              <img
                 className="mt-2 h-3 w-3"
-                src="/images/BlackArrow.png" alt="" />
+                src="/images/BlackArrow.png"
+                alt=""
+              />
             </a>
           </div>
-
         </div>
 
         {/* Horizontal Line */}
@@ -181,7 +210,8 @@ export default function Footer() {
           <div className="lg:col-span-3"></div>
           <div className="lg:col-span-7 text-center lg:text-left">
             <p className="text-gray-400 text-xs sm:text-sm">
-              ©2024 <span className="text-yellow-400">NE SIGNS</span> All Rights Reserved
+              ©2024 <span className="text-yellow-400">NE SIGNS</span> All Rights
+              Reserved
             </p>
           </div>
         </div>

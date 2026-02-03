@@ -8,60 +8,49 @@ export default function Navbar() {
   // to locate current page
   const location = useLocation();
 
-
   const isActive = (path, item) => {
-  // Exact match for Home
-  if (path === "/") {
-    return location.pathname === "/";
-  }
+    // Exact match for Home
+    if (path === "/") {
+      return location.pathname === "/";
+    }
 
-  // If item has submenu, check all submenu paths
-  if (item?.submenu) {
-    return (
-      location.pathname.startsWith(path) ||
-      item.submenu.some(
-        (sub) =>
-          location.pathname.startsWith(sub.href) ||
-          sub.submenu?.some((child) =>
-            location.pathname.startsWith(child.href)
-          )
-      )
-    );
-  }
+    // If item has submenu, check all submenu paths
+    if (item?.submenu) {
+      return (
+        location.pathname.startsWith(path) ||
+        item.submenu.some(
+          (sub) =>
+            location.pathname.startsWith(sub.href) ||
+            sub.submenu?.some((child) =>
+              location.pathname.startsWith(child.href),
+            ),
+        )
+      );
+    }
 
-  // Normal match
-  return location.pathname.startsWith(path);
-};
-
+    // Normal match
+    return location.pathname.startsWith(path);
+  };
 
   const navItems = [
     { name: "Home", href: "/" },
-    {
-      name: "Services +",
-      href: "/services",
+    { name: "Services +", href: "/services",
       submenu: [
-        { name: "Printing Products", href: "/services/printing" },
-        {
-          name: "Signage ",
-          href: "/services/signage",
+        { name: "Signage ", href: "/services/signage",
           submenu: [
             { name: "Exterior Sign", href: "/categories/exterior-sign" },
             { name: "Interior Sign", href: "/categories/interior-sign" },
-            {
-              name: "LED / Digital Board",
-              href: "/categories/led-digital-board",
-            },
+            { name: "LED / Digital Board", href: "/categories/led-digital-board",            },
             { name: "LED Neon Sign", href: "/categories/led-neon-sign" },
-            { name: "Window Graphics", href: "/categories/window-graphics" },
-            { name: "Vehicle Graphics", href: "/categories/vehicle-graphics" },
+            { name: "Window & Wall Graphics", href: "/categories/window-graphics" },
           ],
         },
+        { name: "Printing Products", href: "/services/printing" },
         { name: "Direct Mailing", href: "/services/direct-mailing" },
         { name: "Web Designing", href: "/services/web-design" },
         { name: "SEO", href: "/services/seo" },
       ],
     },
-    { name: "Know your sign", href: "/know_your_sign" },
     { name: "Apparel", href: "/apparel" },
     { name: "Promotional products", href: "/promotional_products" },
     { name: "Our work", href: "/our_work" },
@@ -98,16 +87,15 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <div key={item.name} className="relative group py-6">
                   <Link
-  to={item.href}
-  className={`relative text-sm font-medium tracking-wide transition-colors duration-300
+                    to={item.href}
+                    className={`relative text-sm font-medium tracking-wide transition-colors duration-300
     ${
       isActive(item.href, item)
         ? "text-[var(--color-gradient)]"
         : "text-white hover:text-[var(--color-gradient)]"
     }
   `}
->
-
+                  >
                     {item.name}
                   </Link>
 
@@ -141,7 +129,9 @@ export default function Navbar() {
 
                           {/* Second level submenu */}
                           {sub.submenu && (
-                            <div className="absolute left-full top-0 ml-1 w-64 bg-white shadow-xl border border-gray-200 rounded-xl opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-300">
+                            <div className="absolute left-full top-5 ml-1 w-64 bg-white shadow-xl border border-gray-200 
+                            rounded-xl opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible 
+                            transition-all duration-300">
                               {sub.submenu.map((child, childIndex) => (
                                 <Link
                                   to={child.href}

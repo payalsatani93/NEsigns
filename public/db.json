@@ -59,29 +59,15 @@
 
     {
       "id": 5,
-      "slug": "vehicle-graphics",
-      "title": "Vehicle Graphics",
-      "description": "Turn your vehicle into a moving billboard with custom graphics.",
-      "subServices": [
-        { "id": 501, "title": "Truck Graphics", "desc": "Full and partial vehicle wraps.", "image": "/images/serviceSignageCatagory/17.png", "size": "large" },
-        { "id": 502, "title": "Van Graphics", "desc": "Branding for commercial vans.", "image": "/images/serviceSignageCatagory/18.png", "size": "wide" },
-        { "id": 503, "title": "Car Graphics", "desc": "Consistent graphics for Car Graphics.", "image": "/images/serviceSignageCatagory/19.png", "size": "small" },
-        { "id": 504, "title": "Corporate Vehicle Branding", "desc": "Lightweight graphics for Corporate Vehicle.", "image": "/images/serviceSignageCatagory/20.png", "size": "tall" },
-        { "id": 505, "ctaType": "contact"}
-      ]
-    },
-
-    {
-      "id": 6,
       "slug": "window-graphics",
       "title": "Window Graphics",
       "description": "Eye-catching window designs that communicate and convert.",
       "subServices": [
-        { "id": 601, "title": "Office Window Graphics", "desc": "Attractive storefront window designs.", "image": "/images/serviceSignageCatagory/21.png", "size": "large" },
-        { "id": 602, "title": "Minimal Window Graphics", "desc": "Frosted and privacy window films.", "image": "/images/serviceSignageCatagory/22.png", "size": "wide" },
-        { "id": 603, "title": "Clear Window Graphics", "desc": "Short-term promotional window stickers.", "image": "/images/serviceSignageCatagory/24.png", "size": "small" },
-        { "id": 604, "title": "Restaurant & Café Window Graphics", "desc": " Restaurant & Café window branding.", "image": "/images/serviceSignageCatagory/23.png", "size": "tall" },
-        { "id": 605, "ctaType": "contact"}
+        { "id": 501, "title": "Office Window Graphics", "desc": "Attractive storefront window designs.", "image": "/images/serviceSignageCatagory/21.png", "size": "large" },
+        { "id": 502, "title": "Minimal Window Graphics", "desc": "Frosted and privacy window films.", "image": "/images/serviceSignageCatagory/22.png", "size": "wide" },
+        { "id": 503, "title": "Clear Window Graphics", "desc": "Short-term promotional window stickers.", "image": "/images/serviceSignageCatagory/24.png", "size": "small" },
+        { "id": 504, "title": "Restaurant & Café Window Graphics", "desc": " Restaurant & Café window branding.", "image": "/images/serviceSignageCatagory/23.png", "size": "tall" },
+        { "id": 505, "ctaType": "contact"}
       ]
     }
   ]

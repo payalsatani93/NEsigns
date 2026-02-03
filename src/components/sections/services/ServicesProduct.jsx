@@ -43,7 +43,7 @@ const signageServices = [
   { title: "LED/Digital Board", icon: Bell, path: "/led-digital-board" },
   { title: "LED Neon Sign", icon: Sun, path: "/led-neon-sign" },
   { title: "Vehicle Graphics", icon: Car, path: "/vehicle-graphics" },
-  { title: "Window Graphics", icon: LayoutGrid, path: "/window-graphics" },
+  { title: "Window & Wall Graphics", icon: LayoutGrid, path: "/window-wall-graphics" },
 ];
 
 const mailingServices = [

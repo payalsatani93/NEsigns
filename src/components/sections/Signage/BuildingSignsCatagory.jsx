@@ -6,7 +6,7 @@ import {
   Type,
   Home,
   Grid3x3,
-  RectangleHorizontal,
+  Bandage,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -19,11 +19,10 @@ const TABS = [
   {
     label: "Metal & Plastic Signs",
     key: "metal-plastic",
-    icon: RectangleHorizontal,
+    icon: Bandage,
   },
 ];
 
-// Sub-categories for Channel Letters
 const CHANNEL_LETTER_TYPES = [
   { label: "Front-Lit", key: "front-lit" },
   { label: "Back-Lit", key: "back-lit" },
@@ -37,44 +36,47 @@ const CHANNEL_DATA = {
       title: "Front-Lit Channel Letters",
       subtitle: "Bright, face-illuminated letters for maximum visibility",
       images: [
-        "/images/SignageCatagory/ChannelLatter-01.png",
-        "/images/SignageCatagory/ChannelLatter-02.png",
-        "/images/SignageCatagory/ChannelLatter-03.png",
-        "/images/SignageCatagory/ChannelLatter-04.png",
+        "/images/SignageCatagory/ChannelLatter_01.png",
+        "/images/SignageCatagory/ChannelLatter_02.png",
+        "/images/SignageCatagory/ChannelLatter_03.png",
+        "/images/SignageCatagory/ChannelLatter_04.png",
       ],
     },
     "back-lit": {
       title: "Back-Lit Channel Letters",
       subtitle: "Elegant halo-effect illumination for sophisticated branding",
       images: [
-        "/images/SignageCatagory/ChannelLatter-05.png",
-        "/images/SignageCatagory/ChannelLatter-06.png",
-        "/images/SignageCatagory/ChannelLatter-07.png",
+        "/images/SignageCatagory/ChannelLatter_05.png",
+        "/images/SignageCatagory/ChannelLatter_06.png",
+        "/images/SignageCatagory/ChannelLatter_07.png",
+        "/images/SignageCatagory/ChannelLatter_08.png",
       ],
     },
     "combination-lit": {
       title: "Combination-Lit Channel Letters",
       subtitle: "Front and back illumination for stunning visual impact",
       images: [
-        "/images/SignageCatagory/ChannelLatter-01.png",
-        "/images/SignageCatagory/ChannelLatter-03.png",
-        "/images/SignageCatagory/ChannelLatter-05.png",
+        "/images/SignageCatagory/ChannelLatter_09.png",
+        "/images/SignageCatagory/ChannelLatter_10.png",
+        "/images/SignageCatagory/ChannelLatter_11.png",
+        "/images/SignageCatagory/ChannelLatter_12.png",
       ],
     },
     "open-face": {
       title: "Open-Face Channel Letters",
       subtitle: "Exposed neon or LED for vibrant, retro-style signage",
       images: [
-        "/images/SignageCatagory/ChannelLatter-02.png",
-        "/images/SignageCatagory/ChannelLatter-04.png",
-        "/images/SignageCatagory/ChannelLatter-06.png",
+        "/images/SignageCatagory/ChannelLatter_13.png",
+        "/images/SignageCatagory/ChannelLatter_14.png",
+        "/images/SignageCatagory/ChannelLatter_15.png",
+        "/images/SignageCatagory/ChannelLatter_16.png",
       ],
     },
   },
 
   "box-signs": {
-    title: "Box Signs for Storefronts",
-    subtitle: "Illuminated box signs for clear brand visibility",
+    title: "Box Signs for Business Branding",
+    subtitle: "Custom channel letters designed to reflect your brand identity",
     images: [
       "/images/SignageCatagory/BoxSigns-01.png",
       "/images/SignageCatagory/BoxSigns-04.png",
@@ -87,8 +89,8 @@ const CHANNEL_DATA = {
   },
 
   "2d-3d-signs": {
-    title: "2D & 3D Signs",
-    subtitle: "Modern dimensional signage solutions",
+    title: "Custom 2D & 3D Signage for Your Brand",
+    subtitle: "High-quality 2D & 3D signs designed for maximum visibility",
     images: [
       "/images/SignageCatagory/Custum2D_3D_02.png",
       "/images/SignageCatagory/Custum2D_3D_03.png",
@@ -100,9 +102,9 @@ const CHANNEL_DATA = {
   },
 
   "canopy-signs": {
-    title: "Canopy Signs",
-    subtitle: "Stylish overhead signage for storefronts",
-     images: [
+    title: "Canopy Signs That Elevate Your Brand",
+    subtitle: "SCustom canopy signs that combine function with brand appeal",
+    images: [
       "/images/SignageCatagory/CanopySigns_01.png",
       "/images/SignageCatagory/CanopySigns_02.png",
       "/images/SignageCatagory/CanopySigns_03.png",
@@ -114,8 +116,8 @@ const CHANNEL_DATA = {
   },
 
   "blade-signs": {
-    title: "Blade Signs",
-    subtitle: "Eye-catching projecting signs for maximum visibility",
+    title: "Professional Blade Signage Designs",
+    subtitle: "Stylish, clear designs that attract and engage customers",
     images: [
       "/images/SignageCatagory/BladeSigns_01.png",
       "/images/SignageCatagory/BladeSigns_02.png",
@@ -146,88 +148,74 @@ export default function BuildingSignsCatagory() {
   const [activeTab, setActiveTab] = useState("channel-letters");
   const [channelLetterType, setChannelLetterType] = useState("front-lit");
 
-  // Get content based on active tab
-  const getContent = () => {
-    if (activeTab === "channel-letters") {
-      return CHANNEL_DATA["channel-letters"][channelLetterType];
-    }
-    return CHANNEL_DATA[activeTab];
-  };
+  const content =
+    activeTab === "channel-letters"
+      ? CHANNEL_DATA["channel-letters"][channelLetterType]
+      : CHANNEL_DATA[activeTab];
 
-  const content = getContent();
-
-  // Distribute images into columns: tries to balance them across 3 columns
-  const getImageColumns = () => {
+  // Masonry logic for non-channel tabs
+  const getColumns = () => {
     const images = content.images;
-    const totalImages = images.length;
-
-    // For 7 images: [0,1], [2,3,4], [5,6]
-    // For other counts, distribute evenly
-    if (totalImages === 7) {
+    if (images.length === 7) {
       return {
-        column1: images.slice(0, 2),
-        column2: images.slice(2, 5),
-        column3: images.slice(5, 7),
+        c1: images.slice(0, 2),
+        c2: images.slice(2, 5),
+        c3: images.slice(5),
       };
     }
-
-    // General distribution
-    const itemsPerColumn = Math.ceil(totalImages / 3);
+    const perCol = Math.ceil(images.length / 3);
     return {
-      column1: images.slice(0, itemsPerColumn),
-      column2: images.slice(itemsPerColumn, itemsPerColumn * 2),
-      column3: images.slice(itemsPerColumn * 2),
+      c1: images.slice(0, perCol),
+      c2: images.slice(perCol, perCol * 2),
+      c3: images.slice(perCol * 2),
     };
   };
 
-  const columns = getImageColumns();
+  const columns = getColumns();
 
   return (
-    <div className="">
+    <div>
       <header className="px-4">
-        <Link
-          to="/services/signage"
-          className="inline-flex items-center text-neutral-400 hover:text-white transition"
-        >
+        <Link to="/categories/exterior-sign" className="text-neutral-400 hover:text-white">
           <ArrowLeft className="w-8 h-8" />
         </Link>
       </header>
-      <div className="container ">
-        {/* Main Category Tabs */}
-        <div className="flex flex-wrap gap-4 mb-8 ">
+
+      <div className="container">
+        {/* Tabs */}
+        <div className="flex flex-wrap gap-4 mb-8">
           {TABS.map((tab) => {
             const Icon = tab.icon;
             return (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`group relative px-6 py-3 rounded-full text-sm font-medium bg-[var(--color-graybg)]
-                  transition-all duration-300 flex items-center gap-2
+                className={`px-6 py-3 rounded-full flex items-center gap-2 text-sm transition
                   ${
                     activeTab === tab.key
-                      ? "text-white shadow-[0px_4px_4px_0px_#F79C29]"
-                      : "text-neutral-300 shadow-[0px_4px_4px_0px_#FFFFFF] hover:text-white"
+                      ? "text-white shadow-[0_4px_4px_#F79C29]"
+                      : "text-neutral-300 shadow-[0_4px_4px_#fff]"
                   }`}
               >
                 <Icon className="w-4 h-4" />
-                <span>{tab.label}</span>
+                {tab.label}
               </button>
             );
           })}
         </div>
 
-        {/* Channel Letters Sub-Category Tabs */}
+        {/* Channel sub-tabs */}
         {activeTab === "channel-letters" && (
-          <div className="flex flex-wrap gap-3 mb-12 pl-4">
+          <div className="flex flex-wrap gap-3 mb-10">
             {CHANNEL_LETTER_TYPES.map((type) => (
               <button
                 key={type.key}
                 onClick={() => setChannelLetterType(type.key)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
+                className={`px-5 py-2.5 rounded-full text-sm
                   ${
                     channelLetterType === type.key
                       ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black"
-                      : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white"
+                      : "bg-neutral-800 text-neutral-300"
                   }`}
               >
                 {type.label}
@@ -237,76 +225,59 @@ export default function BuildingSignsCatagory() {
         )}
 
         {/* Heading + CTA */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 py-10">
-          {/* Left content */}
+        <div className="flex flex-col md:flex-row justify-between md:items-end items-center gap-4 sm:py-10 py-5">
           <div>
-            <h1 className="text-4xl md:text-5xl font-semibold mb-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 ">
               {content.title}
             </h1>
-            <p className="text-gray-400 max-w-xl">{content.subtitle}</p>
+            <p className="text-gray-400 max-w-xl md:text-md text-sm">{content.subtitle}</p>
           </div>
 
-          {/* Right CTA */}
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black
-                 hover:from-amber-400 hover:to-orange-400 active:scale-95 transition-all duration-300"
+            className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm
+            text-black flex items-center gap-3"
           >
             Contact Us
             <ArrowLeft className="rotate-180 w-5 h-5" />
           </Link>
         </div>
 
-        {/* Masonry Grid - 3 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Column 1 */}
-          <div className="flex flex-col gap-6">
-            {columns.column1.map((img, index) => (
-              <div
-                key={`col1-${index}`}
-                className="rounded-2xl overflow-hidden bg-neutral-900"
-              >
+        {/* ✅ Images */}
+        {activeTab === "channel-letters" ? (
+          /* Channel Letters: 3 per row */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {content.images.map((img, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden bg-neutral-900">
                 <img
                   src={img}
                   alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition duration-500"
+                  className="w-full h-full object-cover hover:scale-105 transition"
                 />
               </div>
             ))}
           </div>
-
-          {/* Column 2 */}
-          <div className="flex flex-col gap-6">
-            {columns.column2.map((img, index) => (
-              <div
-                key={`col2-${index}`}
-                className="rounded-2xl overflow-hidden bg-neutral-900"
-              >
-                <img
-                  src={img}
-                  alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                />
+        ) : (
+          /* Other tabs: masonry */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[columns.c1, columns.c2, columns.c3].map((col, idx) => (
+              <div key={idx} className="flex flex-col gap-6">
+                {col.map((img, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl overflow-hidden bg-neutral-900"
+                  >
+                    <img
+                      src={img}
+                      alt=""
+                      className="w-full h-full object-cover hover:scale-105 transition"
+                    />
+                  </div>
+                ))}
               </div>
             ))}
           </div>
-
-          {/* Column 3 */}
-          <div className="flex flex-col gap-6">
-            {columns.column3.map((img, index) => (
-              <div
-                key={`col3-${index}`}
-                className="rounded-2xl overflow-hidden bg-neutral-900"
-              >
-                <img
-                  src={img}
-                  alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

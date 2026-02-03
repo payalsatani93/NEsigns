@@ -7,26 +7,27 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Home from "./pages/homePages/Home";
 import Blog from "./pages/blogPages/Blog";
-import KnowYourSign from "./pages/knowyoursignPages/KnowYourSign";
 import Services from "./pages/servicesPages/Services";
 import OurWork from "./pages/ourworkPages/OurWork";
 import Signages from "./pages/servicesPages/Signages";
 import Footer from "./components/layout/Footer";
 import SignageCategories from "./components/sections/Signage/SignageCategories";
 import BuildingSignsCatagory from "./components/sections/Signage/BuildingSignsCatagory";
+import FreestandingSignsCategory from "./components/sections/Signage/FreestandingSignsCategory";
+import ScrollToTop from "./components/ScrollToTop";
+import TemporarySigns from "./components/sections/Signage/TemporarySigns";
 
 
 gsap.registerPlugin(ScrollTrigger);
+
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Loader
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ ONLY SAFE LENIS SETUP (NO LAG)
   useEffect(() => {
     if (loading) return;
 
@@ -34,7 +35,6 @@ export default function App() {
       duration: 0.5,
       easing: () => 1,
       smooth: true,
-      smoothScroll: true,
       smoothTouch: false,
     });
 
@@ -53,6 +53,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+     <ScrollToTop />
       {loading && <Loader />}
 
       {!loading && (
@@ -61,17 +62,29 @@ export default function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/know_your_sign" element={<KnowYourSign />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/signage" element={<Signages />} />
+
             <Route path="/categories/:slug" element={<SignageCategories />} />
             <Route
               path="/categories/:slug/building-signs"
               element={<BuildingSignsCatagory />}
             />
+
+            {/* ✅ SINGLE FREESTANDING PAGE */}
+            <Route
+              path="/categories/:slug/freestanding-signs"
+              element={<FreestandingSignsCategory />}
+            />
+             <Route
+              path="/categories/:slug/temporary-signs"
+              element={<TemporarySigns />}
+            />
+
             <Route path="/our_work" element={<OurWork />} />
             <Route path="/blogs" element={<Blog />} />
           </Routes>
+
           <Footer />
         </>
       )}
