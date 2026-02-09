@@ -1,6 +1,7 @@
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function BlogSection() {
   const sectionRef = useRef(null);
@@ -265,17 +266,21 @@ export default function BlogSection() {
                     variants={imageVariants}
                   />
 
-                  {/* Arrow Button */}
-                  <div className="flex justify-end relative">
-                    <motion.div
-                      className="absolute z-50 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center"
-                      variants={arrowButtonVariants}
-                    >
-                      <motion.div variants={arrowIconVariants}>
-                        <ArrowRight className="text-white w-6 h-6" />
-                      </motion.div>
-                    </motion.div>
-                  </div>
+                 {/* Arrow Button */}
+<div className="flex justify-end relative">
+  <Link to="/blogs" className="absolute z-50">
+    <motion.div
+      className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center cursor-pointer"
+      variants={arrowButtonVariants}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.div variants={arrowIconVariants}>
+        <ArrowRight className="text-white w-6 h-6" />
+      </motion.div>
+    </motion.div>
+  </Link>
+</div>
                 </div>
               </motion.div>
             </motion.div>

@@ -76,7 +76,7 @@
 @keyframes wave-expand {
   0% {
     transform: scale(0.6);
-    opacity: 100;
+    opacity: 10;
   }
 
   70% {

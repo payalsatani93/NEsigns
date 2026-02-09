@@ -2,18 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 
 export default function SEOHeroSection() {
-
-  const services = [
-    { id: 1, title: "Keyword", subtitle: "Research" },
-    { id: 2, title: "Technical SEO", subtitle: "" },
-    { id: 3, title: "Local SEO", subtitle: "" },
-    { id: 4, title: "Website SEO Audit", subtitle: "" },
-    { id: 5, title: "E-commerce SEO", subtitle: "" },
-    { id: 6, title: "On-Page SEO", subtitle: "" },
-    { id: 7, title: "Off-Page SEO", subtitle: "" },
-    { id: 8, title: "Content SEO", subtitle: "" },
-    { id: 9, title: "SaaS SEO", subtitle: "" },
+  const items = [
+    { title: "Keyword Research", row: 1 },
+    { title: "On-Page SEO", row: 2 },
+    { title: "Technical SEO", row: 1 },
+    { title: "Off-Page SEO", row: 2 },
+    { title: "Local SEO", row: 1 },
+    { title: "Content SEO", row: 2 },
+    { title: "Website SEO Audit", row: 1 },
+    { title: "SaaS SEO", row: 2 },
+    { title: "E-commerce SEO", row: 1 },
   ];
+
   return (
     <>
       <section className="relative overflow-hidden py-10">
@@ -27,7 +27,7 @@ export default function SEOHeroSection() {
               className="max-w-6xl space-y-8"
             >
               {/* Badge */}
-              <div className="inline-flex  gap-2 ">
+              <div className="inline-flex  gap-2 border border-white/30 p-2 rounded-full">
                 <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-0.5 rounded">
                   NEW
                 </span>
@@ -50,17 +50,39 @@ export default function SEOHeroSection() {
                 technology meets user-friendly SEO tools.
               </p>
 
-              {/* Email */}
-              <div className="flex gap-0 max-w-md">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-5 py-2 rounded-lg border border-white/30 text-white placeholder-gray-500 focus:outline-none focus:border-neutral-700"
-                />
-                <button className="px-6 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition text-sm">
-                  Join waitlist
-                </button>
-              </div>
+             {/* Email */}
+<div className="relative max-w-md w-full">
+  <input
+    type="email"
+    placeholder="Your email"
+    className="
+      w-full px-5  py-4
+      rounded-lg
+      border border-white/30
+      bg-transparent
+      text-white
+      placeholder-gray-500
+      text-sm
+      focus:outline-none
+      focus:border-neutral-700
+    "
+  />
+
+  <button
+    className="
+      absolute right-1 top-1/2 -translate-y-1/2
+      px-4 py-3
+      rounded-md
+      bg-white text-black
+      text-sm font-medium
+      hover:bg-[var(--color-gradient)]
+      transition
+    "
+  >
+    Join waitlist
+  </button>
+</div>
+
             </motion.div>
 
             {/* RIGHT IMAGE */}
@@ -75,119 +97,226 @@ export default function SEOHeroSection() {
         </div>
       </section>
 
-      <section>
-        <div className=" py-10 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
-          {services.map((service, index) => (
-            <React.Fragment key={service.id}>
-              {/* Service Card */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative flex items-center justify-center"
-              >
-                {/* Animated Dashed Border */}
-                <div className="relative w-48 h-48 border boder-white flex items-center justify-center">
-                  {/* Rotating dashed border container */}
+      <section className=" py-24 overflow-hidden">
+        <div className="px-6">
+          <div className="relative containers">
+            <div className="flex flex-wrap items-start justify-center gap-6 md:gap-10">
+              {items.map((item, i) => (
+                <div
+                  key={i}
+                  className={`relative flex-shrink-0 ${
+                    item.row === 2 ? "mt-28 md:mt-36" : "mt-0"
+                  }`}
+                >
                   <motion.div
-                    className="absolute inset-0"
-                    animate={{
-                      rotate: 360,
-                    }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.08 }}
+                    viewport={{ once: true }}
                   >
-                    <svg
-                      className="w-full h-full"
-                      viewBox="0 0 200 200"
-                      fill="none"
-                    >
-                      <rect
-                        x="50"
-                        y="50"
-                        width="100"
-                        height="100"
-                        transform="rotate(45 100 100)"
-                        stroke="white"
-                        strokeWidth="1"
-                        strokeDasharray="8 8"
-                        fill="none"
-                        opacity="0.3"
-                      />
-                    </svg>
+                    {/* Diamond Box with Running Dashed Border */}
+                    <div className="relative w-30 h-30 md:w-33 md:h-33">
+                      {/* Animated Dashed Border with Gradient */}
+                      <div className="absolute -inset-5 rotate-45">
+                        <svg
+                          className="w-full h-full"
+                          viewBox="0 0 190 190"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <defs>
+                            {/* Gradient for fading effect */}
+                            <linearGradient
+                              id={`dashGradient-${i}`}
+                              x1="0%"
+                              y1="0%"
+                              x2="100%"
+                              y2="0%"
+                            >
+                              <stop
+                                offset="0%"
+                                stopColor="white"
+                                stopOpacity="0"
+                              />
+                              <stop
+                                offset="15%"
+                                stopColor="white"
+                                stopOpacity="0.4"
+                              />
+                              <stop
+                                offset="35%"
+                                stopColor="white"
+                                stopOpacity="0.9"
+                              />
+                              <stop
+                                offset="50%"
+                                stopColor="white"
+                                stopOpacity="1"
+                              />
+                              <stop
+                                offset="65%"
+                                stopColor="white"
+                                stopOpacity="0.9"
+                              />
+                              <stop
+                                offset="85%"
+                                stopColor="white"
+                                stopOpacity="0.4"
+                              />
+                              <stop
+                                offset="100%"
+                                stopColor="white"
+                                stopOpacity="0"
+                              />
+                            </linearGradient>
+
+                            {/* Mask for the gradient */}
+                            <mask id={`dashMask-${i}`}>
+                              <rect
+                                x="1"
+                                y="1"
+                                width="188"
+                                height="188"
+                                rx="20"
+                                stroke="white"
+                                strokeWidth="2"
+                                strokeDasharray="6 6"
+                                fill="none"
+                                className="dash-running-pause"
+                              />
+                            </mask>
+                          </defs>
+
+                          {/* Base dashed border (subtle) */}
+                          <rect
+                            x="1"
+                            y="1"
+                            width="188"
+                            height="188"
+                            rx="20"
+                            stroke="white"
+                            strokeWidth="1"
+                            strokeDasharray="6 6"
+                            fill="none"
+                            strokeOpacity="0.2"
+                          />
+
+                          {/* Animated dashed border with gradient */}
+                          <rect
+                            x="1"
+                            y="1"
+                            width="188"
+                            height="188"
+                            rx="20"
+                            stroke={`url(#dashGradient-${i})`}
+                            strokeWidth="2"
+                            strokeDasharray="6 6"
+                            fill="none"
+                            mask={`url(#dashMask-${i})`}
+                            className="dash-running-pause"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* Main Diamond */}
+                      <div
+                        className="relative w-full h-full rotate-45 rounded-2xl overflow-hidden "
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)",
+                          boxShadow:
+                            "0px 25px 36px 0px rgba(0, 0, 0, 0.1), 0px 4px 40px 0px #000000 inset",
+                        }}
+                      >
+                        {/* Solid Inner Border */}
+                        <div
+                          className="absolute inset-0 rounded-2xl"
+                          style={{
+                            border: "1px solid rgba(96, 96, 96, 0.3)",
+                          }}
+                        ></div>
+
+                        {/* Content */}
+                        <div className="absolute inset-0 flex items-center justify-center -rotate-45 text-white font-medium text-center text-xs md:text-sm px-3 md:px-4">
+                          {item.title}
+                        </div>
+                      </div>
+                    </div>
                   </motion.div>
 
-                  {/* Inner diamond card */}
-                  <div className="relative w-36 h-36 bg-neutral-900 rotate-45 overflow-hidden border border-neutral-800">
-                    <div className="absolute inset-0 -rotate-45 flex flex-col items-center justify-center p-4">
-                      <h3 className="text-base font-medium text-white text-center">
-                        {service.title}
-                      </h3>
-                      {service.subtitle && (
-                        <p className="text-sm text-gray-400 text-center">
-                          {service.subtitle}
-                        </p>
+                  {/* Arrows between boxes */}
+                  {i < items.length - 1 && (
+                    <>
+                      {/* Down-right arrow (from row 1 to row 2) */}
+                      {item.row === 1 && (
+                        <div className="absolute z-10 right-[-30px] md:right-[-40px] top-[75px] md:top-[120px]">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="text-sky-400 md:w-7 md:h-7"
+                          >
+                            <path
+                              d="M7 7l10 10m0 0V7m0 10H7"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
                       )}
-                    </div>
-                  </div>
+
+                      {/* Up-right arrow (from row 2 to row 1) */}
+                      {item.row === 2 && (
+                        <div className="absolute z-10 right-[-10px] md:right-[-20px] -top-[30px] md:-top-[20px]">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="text-sky-400 md:w-7 md:h-7"
+                          >
+                            <path
+                              d="M7 17l10-10m0 0H7m10 0v10"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
-              </motion.div>
-
-              {/* Arrow between items (except after last item in each row) */}
-              {index % 5 !== 4 && index !== services.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
-                  className="hidden lg:flex items-center justify-center"
-                >
-                  <svg
-                    width="40"
-                    height="24"
-                    viewBox="0 0 40 24"
-                    fill="none"
-                    className="text-blue-500"
-                  >
-                    <motion.path
-                      d="M0 12H38M38 12L30 4M38 12L30 20"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{
-                        duration: 1.5,
-                        delay: index * 0.2,
-                        repeat: Infinity,
-                        repeatDelay: 3,
-                      }}
-                    />
-                  </svg>
-                </motion.div>
-              )}
-            </React.Fragment>
-          ))}
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/* Mobile arrows (vertical) */}
-        <style jsx>{`
-          @media (max-width: 1024px) {
-            .grid > div:nth-child(3n) {
-              margin-bottom: 2rem;
-            }
-          }
-        `}</style>
-      </div>
-    </div>
       </section>
 
+      <style jsx>{`
+        @keyframes dash-run-pause {
+          0% {
+            stroke-dashoffset: 0;
+          }
+          45% {
+            stroke-dashoffset: 120;
+          }
+          55% {
+            stroke-dashoffset: 120;
+          }
+          100% {
+            stroke-dashoffset: 240;
+          }
+        }
+
+        .dash-running-pause {
+          animation: dash-run-pause 4s ease-in-out infinite;
+        }
+      `}</style>
     </>
   );
 }

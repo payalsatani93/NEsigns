@@ -81,27 +81,27 @@ export default function WebProjectSection() {
   const projects = [
     {
       id: 1,
-      image:
-        "/images/webdesign/WebProject_1.png",
+      image: "/images/webdesign/WebProject_1.png",
       delay: 0,
+      offset: "lg:translate-y-0",
     },
     {
       id: 2,
-      image:
-        "/images/webdesign/WebProject_2.png",
+      image: "/images/webdesign/WebProject_2.png",
       delay: 0.2,
+      offset: "lg:-translate-y-12",
     },
     {
       id: 3,
-      image:
-        "/images/webdesign/WebProject_3.png",
+      image: "/images/webdesign/WebProject_3.png",
       delay: 0.4,
+      offset: "lg:translate-y-6",
     },
     {
       id: 4,
-      image:
-        "/images/webdesign/WebProject_4.png",
+      image: "/images/webdesign/WebProject_4.png",
       delay: 0.6,
+      offset: "lg:-translate-y-20",
     },
   ];
 
@@ -109,11 +109,11 @@ export default function WebProjectSection() {
     <section>
       <section
         ref={sectionRef}
-        className="relative flex items-center overflow-hidden"
+        className="relative flex items-center mt-5"
       >
         {/* RIGHT CONTOUR GRAPHIC */}
         <motion.div
-          className="absolute -right-10 sm:-right-16 xl:-right-30 wave-container"
+          className="absolute right-0 wave-container"
           variants={waveVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -121,7 +121,7 @@ export default function WebProjectSection() {
           <motion.img
             src="/images/Wave.png"
             alt=""
-            className="wave-animation w-full h-auto"
+            className="wave-animation w-100 h-auto"
             animate={{
               y: [0, -10, 0],
             }}
@@ -207,50 +207,42 @@ export default function WebProjectSection() {
           </div>
         </motion.div>
       </section>
-
       {/* Project Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-15">
-        {projects.map((project) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 mb-10 px-4">
+        {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
-              duration: 0.8,
+              duration: 0.9,
               delay: project.delay,
-              type: "spring",
-              bounce: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
-           
-            className="group cursor-pointer"
+            className={`group ${project.offset}`}
           >
+            {/* Floating Card */}
             <motion.div
               animate={{
-                y: [100, -50, 100],
+                y: [0, -12, 0],
               }}
               transition={{
-                duration: 3,
+                duration: 2 + index * 0.5,
                 repeat: Infinity,
-                repeatType: "reverse",
                 ease: "easeInOut",
-                delay: project.delay,
               }}
-              className={`${project.bgColor} rounded-3xl p-8 aspect-square flex items-center 
-              justify-center overflow-hidden`}
+              className="p-6 aspect-square flex items-center justify-center"
             >
-              <div className="relative w-full h-full">
-                <img
-                  src={project.image}
-                  alt={`Project ${project.id}`}
-                  className="w-full h-full object-contain "
-                />
-              </div>
+              <img
+                src={project.image}
+                alt={`Project ${project.id}`}
+                className="w-full h-full object-contain select-none pointer-events-none"
+              />
             </motion.div>
           </motion.div>
         ))}
       </div>
-
-     
     </section>
   );
 }

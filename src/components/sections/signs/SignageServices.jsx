@@ -90,7 +90,11 @@ export default function SignageServices() {
       {/* Cards */}
       <section className="pb-12 md:mt-20 mt-5">
         <div className="flex justify-center">
-          <div className="flex flex-wrap gap-6 justify-center w-full px-4">
+          <div
+            className="
+    flex gap-6 px-4 w-full justify-center flex-wrap
+  "
+          >
             {signageServices.map((service, index) => (
               <div
                 key={index}
@@ -101,6 +105,8 @@ export default function SignageServices() {
                   hover:w-[528px]
                   rounded-xl overflow-hidden cursor-pointer
                   transition-all duration-700 ease-in-out
+                  hover:z-50
+                  z-10
                 "
               >
                 {/* IMAGE */}
@@ -148,7 +154,10 @@ export default function SignageServices() {
                 </div>
 
                 {/* OPEN STATE */}
-                <div className="absolute bottom-6 left-0 right-0 z-30 p-6 sm:p-8 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <div
+                  className="absolute bottom-6 left-0 right-0 z-30 p-6 sm:p-8 opacity-0
+                 group-hover:opacity-100 transition-all duration-500"
+                >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="w-10 h-[1px] bg-white/60" />
                     <span className="text-white text-xs tracking-widest uppercase">

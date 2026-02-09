@@ -171,7 +171,7 @@ export default function InfiniteLogoSlider() {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 30,
                 ease: "linear",
               },
             }}
@@ -203,7 +203,7 @@ export default function InfiniteLogoSlider() {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 30,
                 ease: "linear",
               },
             }}
@@ -243,38 +243,6 @@ export default function InfiniteLogoSlider() {
             {[...logos, ...logos, ...logos].map((logo, index) => (
               <div
                 key={`row3-${index}`}
-                className="flex-shrink-0 w-16 h-16 bg-neutral-900 rounded-xl flex items-center justify-center hover:bg-neutral-800 transition-all duration-300 border border-neutral-800"
-              >
-                {logo.icon}
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Fourth Row - Moving Left to Right */}
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-neutral-950 to-transparent z-10"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-neutral-950 to-transparent z-10"></div>
-
-        <div className="flex overflow-hidden">
-          <motion.div
-            className="flex gap-4"
-            animate={{
-              x: [-1400, 0],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 28,
-                ease: "linear",
-              },
-            }}
-          >
-            {[...logos, ...logos, ...logos].map((logo, index) => (
-              <div
-                key={`row4-${index}`}
                 className="flex-shrink-0 w-16 h-16 bg-neutral-900 rounded-xl flex items-center justify-center hover:bg-neutral-800 transition-all duration-300 border border-neutral-800"
               >
                 {logo.icon}

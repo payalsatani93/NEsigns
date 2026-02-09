@@ -19,7 +19,8 @@ import TemporarySigns from "./components/sections/signs/TemporarySigns";
 import InteriorSignscatagory from "./components/sections/signs/InteriorSignscatagory";
 import WebDesigning from "./pages/webdesigningPages/WebDesigning";
 import SEO from "./pages/seoPages/SEO";
-
+import Printing from "./pages/printingPages/Printing";
+import ContactUs from "./pages/contactusPages/ContactUs";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,46 +57,41 @@ export default function App() {
 
   return (
     <BrowserRouter>
-     <ScrollToTop />
+      <ScrollToTop />
       {loading && <Loader />}
-
       {!loading && (
         <>
           <Navbar />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/signage" element={<Signages />} />
-
+            <Route path="/services/web-design" element={<WebDesigning />} />
+            <Route path="/services/seo" element={<SEO />} />
+            <Route path="/services/printing" element={<Printing />} />
+            <Route path="/our_work" element={<OurWork />} />
+            <Route path="/contactUs" element={<ContactUs />} />
+            <Route path="/blogs" element={<Blog />} />
             <Route path="/categories/:slug" element={<SignageCategories />} />
+            {/* BUILDIND-SIGNAGE PAGE AND ITS CATAGORIES */}
             <Route
               path="/categories/:slug/building-signs"
               element={<BuildingSignsCatagory />}
             />
-
-            {/* ✅ SINGLE FREESTANDING PAGE */}
             <Route
-              path="/categories/:slug/freestanding-signs"
-              element={<FreestandingSignsCategory />}
-            />
-             <Route
               path="/categories/:slug/temporary-signs"
               element={<TemporarySigns />}
             />
             <Route
               path="/categories/:slug/interior-sign"
-              element={<InteriorSignscatagory/>}
+              element={<InteriorSignscatagory />}
             />
-
-            <Route path="/services/web-design" element={<WebDesigning />} />
-            <Route path="/services/seo" element={<SEO />} />
-
-
-            <Route path="/our_work" element={<OurWork />} />
-            <Route path="/blogs" element={<Blog />} />
+            {/* SINGLE FREESTANDING PAGE */}
+            <Route
+              path="/categories/:slug/freestanding-signs"
+              element={<FreestandingSignsCategory />}
+            />
           </Routes>
-
           <Footer />
         </>
       )}

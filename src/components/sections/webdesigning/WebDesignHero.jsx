@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 
 export default function WebDesignHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-tr from-[#0b0f14] via-[#0f151b] to-[#3e5166] py-24">
+    <section className="relative overflow-hidden bg-gradient-to-tr
+     from-[#0b0f14] via-[#0f151b] to-[#3e5166] py-5 sm:py-24">
       {/* ================= DECOR ELEMENTS ================= */}
 
       {/* Top Left Star */}
@@ -15,7 +16,7 @@ export default function WebDesignHero() {
       />
 
       {/* Left Big Ball */}
-      <div className="absolute top-36 left-12">
+      <div className="absolute top-36 left-12 sm:block hidden">
         <motion.div
           className="w-16 h-16 rounded-full bg-gradient-to-br from-[#f3a049] to-[#e89035]"
           animate={{ y: [0, -60, 0] }}
@@ -39,7 +40,7 @@ export default function WebDesignHero() {
 
       {/* Triangle */}
       <motion.div
-        className="absolute bottom-28 left-12 w-0 h-0
+        className="absolute bottom-23 left-12 w-0 h-0
         border-l-[14px] border-l-transparent
         border-r-[14px] border-r-transparent
         border-b-[24px] border-b-[#f3a049]"
@@ -55,7 +56,7 @@ export default function WebDesignHero() {
       />
 
       {/* Right Ball */}
-      <div className="absolute top-[42%] right-20">
+      <div className="absolute top-[42%] right-20 sm:block hidden">
         <motion.div
           className="w-16 h-16 rounded-full bg-gradient-to-br from-[#f3a049] to-[#e89035]"
           animate={{ y: [0, -60, 0] }}
@@ -88,7 +89,7 @@ export default function WebDesignHero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-2xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight">
               Learn More About Us,
               <br />
               <span className="text-[#f1b953]">Understand Us Better</span>
@@ -105,12 +106,18 @@ export default function WebDesignHero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 2.5, delay: 0.2 }}
           >
-            <img
+            <motion.img
               src="/images/webdesign/WebDesignHero_Image.png"
               alt="Web Design Illustration"
-              className="w-full max-w-[620px] drop-shadow-2xl"
+              className="w-full"
+              animate={{ y: [0, -12, 0] }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             />
           </motion.div>
         </div>
