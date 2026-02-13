@@ -27,23 +27,23 @@ const SMART_TRANSITION = {
 
 // Perspective animation for the "going inside" effect
 const VIEW_VARIANTS = {
-  initial: { 
-    opacity: 1, 
+  initial: {
+    opacity: 1,
     scale: 0.8, // Start smaller (inside the screen)
-    z: -500 
+    z: -500,
   },
-  animate: { 
-    opacity: 1, 
-    scale: 1, 
+  animate: {
+    opacity: 1,
+    scale: 1,
     z: 0,
-    transition: SMART_TRANSITION 
+    transition: SMART_TRANSITION,
   },
-  exit: { 
-    opacity: 1, 
+  exit: {
+    opacity: 1,
     scale: 0.8, // Recede back into the screen
     z: -500,
-    transition: SMART_TRANSITION 
-  }
+    transition: SMART_TRANSITION,
+  },
 };
 
 export default function CrossScrollGallery() {
@@ -55,7 +55,38 @@ export default function CrossScrollGallery() {
   }, []);
 
   return (
-    <div className="relative w-full h-screen bg-[#0a0a0a] overflow-hidden" style={{ perspective: "1200px" }}>
+    <div
+      className="relative w-full lg:h-400 h-screen overflow-hidden"
+      style={{ perspective: "1200px" }}
+    >
+      {/* Background Patch */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
+                     top-[-20px] right-[0]
+                     bg-[var(--color-patch)]
+                     opacity-100
+                     rounded-full
+                     blur-[250px]
+                     overflow-visible
+                     pointer-events-none"
+      />
+      {/* Background Patch */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute md:w-[400px] md:h-[400px] w-100 h-100 
+                             bottom-[0] left-[0]
+                             bg-[var(--color-patch)]
+                             opacity-100
+                             rounded-full
+                             blur-[250px]
+                             overflow-visible
+                             pointer-events-none"
+      />
       <AnimatePresence mode="wait">
         <motion.div
           key={view}
@@ -116,7 +147,11 @@ function ColumnsView({ onImageClick }) {
                   style={{ rotate: 15 }}
                   className="xl:w-[240px] lg:w-[200px] md:w-[150px] w-[100px] aspect-[4/5] rounded-lg overflow-hidden shadow-2xl cursor-pointer"
                 >
-                  <img src={src} alt="" className="w-full h-full object-cover" />
+                  <img
+                    src={src}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
               ),
             )}
@@ -164,7 +199,7 @@ function RowView({ onImageClick }) {
           setTimeout(() => {
             hasDragged.current = false;
           }, 100);
-          
+
           if (distance < dragThreshold) {
             onImageClick();
           }
@@ -207,7 +242,6 @@ function RowView({ onImageClick }) {
             </motion.div>
           );
         })}
-        
       </motion.div>
     </div>
   );

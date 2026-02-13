@@ -1,13 +1,23 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDownRight, ArrowUpRight } from "lucide-react";
 
 export default function ServicesHeroSection() {
-  const services = [
-    { left: "SIGNAGE", right: "DIRECT MAILING" },
-    { left: "PRINTING", right: "WEB DESIGNING" },
-    { left: "SEO", right: "" },
-  ];
+ const services = [
+  {
+    left: { label: "SIGNAGE", link: "/services/signage" },
+    right: { label: "DIRECT MAILING", link: "/services/direct-mailing" },
+  },
+  {
+    left: { label: "PRINTING", link: "/services/printing" },
+    right: { label: "WEB DESIGNING", link: "/services/web-design" },
+  },
+  {
+    left: { label: "SEO", link: "/services/seo" },
+    right: null,
+  },
+];
+
 
   /* ================= ANIMATION VARIANTS ================= */
 
@@ -56,6 +66,15 @@ export default function ServicesHeroSection() {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
     >
+      {/* Right Golden Patch */}
+      <div
+        className="absolute w-[351px] h-[351px]
+             top-[-25px] right-[10px]
+             bg-[var(--color-patch)]
+             opacity-100
+             blur-[200px]
+             pointer-events-none"
+      />
       <div className="containers">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20">
           {/* ================= LEFT SIDE IMAGES ================= */}
@@ -132,15 +151,17 @@ export default function ServicesHeroSection() {
                 variants={fadeUp}
                 className="lg:absolute bottom-0 right-0 flex justify-center lg:justify-end mt-3"
               >
-                <button
+                <Link
+                  to="/contactUs"
                   className="group flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full 
-                hover:bg-white/5 transition-all duration-300"
+    hover:bg-white/5 transition-all duration-300"
                 >
                   <span className="text-[var(--color-gradient)] text-sm">
                     Get in Touch
                   </span>
+
                   <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+                </Link>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -169,35 +190,38 @@ export default function ServicesHeroSection() {
             </motion.h2>
 
             {/* Services List */}
-            <motion.div variants={container} className="space-y-8">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeUp}
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-                >
-                  {/* Left Service */}
-                  <div className="group">
-                    <div className="flex gap-5 text-white text-lg font-medium tracking-wide group-hover:text-[var(--color-gradient)] transition-colors duration-300">
-                      {service.left}
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                    <div className="h-px mt-4 bg-gradient-to-r from-[var(--color-gradient)] to-transparent group-hover:h-[2px] transition-all duration-300" />
-                  </div>
+           <motion.div variants={container} className="space-y-8">
+  {services.map((service, index) => (
+    <motion.div
+      key={index}
+      variants={fadeUp}
+      className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+    >
+      {/* Left Service */}
+      {service.left && (
+        <Link to={service.left.link} className="group">
+          <div className="flex gap-5 text-white text-lg font-medium tracking-wide group-hover:text-[var(--color-gradient)] transition-colors duration-300">
+            {service.left.label}
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+          </div>
+          <div className="h-px mt-4 bg-gradient-to-r from-[var(--color-gradient)] to-transparent group-hover:h-[2px] transition-all duration-300" />
+        </Link>
+      )}
 
-                  {/* Right Service */}
-                  {service.right && (
-                    <div className="group">
-                      <div className="flex gap-5 text-white text-lg font-medium tracking-wide group-hover:text-[var(--color-gradient)] transition-colors duration-300">
-                        {service.right}
-                        <ArrowUpRight className="w-4 h-4" />
-                      </div>
-                      <div className="h-px mt-4 bg-gradient-to-r from-[var(--color-gradient)] to-transparent group-hover:h-[2px] transition-all duration-300" />
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
+      {/* Right Service */}
+      {service.right && (
+        <Link to={service.right.link} className="group">
+          <div className="flex gap-5 text-white text-lg font-medium tracking-wide group-hover:text-[var(--color-gradient)] transition-colors duration-300">
+            {service.right.label}
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+          </div>
+          <div className="h-px mt-4 bg-gradient-to-r from-[var(--color-gradient)] to-transparent group-hover:h-[2px] transition-all duration-300" />
+        </Link>
+      )}
+    </motion.div>
+  ))}
+</motion.div>
+
           </motion.div>
         </div>
       </div>

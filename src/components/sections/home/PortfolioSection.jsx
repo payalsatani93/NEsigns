@@ -10,23 +10,23 @@ export default function PortfolioSection() {
   const portfolioItems = [
     {
       id: 1,
-      image: "/images/Hero/Img-1.png",
-      hoverImage: "/images/Hero/Img-4.png",
+      image: "/images/Hero/Img_6.png",
+      hoverImage: "/images/Hero/Img_7.png",
       brand: "Brand . Name",
       title: "BROCHURES PRINTING",
       size: "normal",
     },
     {
       id: 2,
-      image: "/images/Hero/Img-2.png",
-      hoverImage: "/images/Hero/Img-3.png",
+      image: "/images/Hero/Img-3.png",
+      hoverImage: "/images/Hero/Img-1.png",
       brand: "Brand . Name",
       title: "BUSINESS CARDS",
       size: "large",
     },
     {
       id: 3,
-      image: "/images/Hero/Img-3.png",
+      image: "/images/Hero/Img-2.png",
       hoverImage: "/images/Hero/Img-5.png",
       brand: "Brand . Name",
       title: "DOOR HANGERS",

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TABS = [
   { label: "Sandwich Boards", key: "sandwich_boards", icon: Landmark },
@@ -78,21 +79,51 @@ export default function TemporarySigns() {
   const images = content.images;
 
   return (
-    <section className="px-4">
+    <section className="">
+       {/* Background Patch */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
+                     top-[-20px] right-[0]
+                     bg-[var(--color-patch)]
+                     opacity-100
+                     rounded-full
+                     blur-[250px]
+                     overflow-visible
+                     pointer-events-none"
+              />
       {/* Back Arrow */}
-      <Link
-        to="/categories/exterior-sign"
-        className="inline-flex items-center text-neutral-400 hover:text-white transition"
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        <ArrowLeft size={22} />
-      </Link>
+        <Link
+          to="/categories/exterior-sign"
+          className="inline-flex items-center text-neutral-400 hover:text-white transition px-4 mt-10"
+        >
+          <ArrowLeft size={26} />
+        </Link>
+      </motion.div>
 
       <div className="container">
         {/* ================= TABS ================= */}
-        <div className="flex flex-wrap gap-4 mb-10">
-          {TABS.map(({ label, key, icon: Icon }) => (
-            <button
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap gap-4 mb-10"
+        >
+          {TABS.map(({ label, key, icon: Icon }, index) => (
+            <motion.button
               key={key}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 * index }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 setActiveTab(key);
                 window.history.replaceState(null, "", `?tab=${key}`);
@@ -107,71 +138,142 @@ export default function TemporarySigns() {
             >
               <Icon size={16} />
               <span>{label}</span>
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* ================= HERO ================= */}
-        <div className="flex flex-col lg:flex-row justify-between lg:items-end items-center gap-4 sm:py-10 py-5">
-          <div>
-            <h1 className="text-xl md:text-3xl xl:text-4xl font-semibold mb-3">
-              {content.title}
-            </h1>
-            <p className="text-gray-400 lg:max-w-xl lg:text-md text-sm">
-              {content.subtitle}
-            </p>
-          </div>
-
-          <Link
-            to="/contact"
-            className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm text-black flex items-center gap-3"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col lg:flex-row justify-between lg:items-end items-center gap-4 sm:py-10 py-5"
           >
-            Contact Us
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-xl md:text-3xl xl:text-4xl font-semibold mb-3"
+              >
+                {content.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-gray-400 lg:max-w-xl lg:text-md text-sm"
+              >
+                {content.subtitle}
+              </motion.p>
+            </div>
 
-        {/* ================= IMAGE GRID (UNCHANGED) ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch">
-          <div className="flex items-center">
-            <ImageCard src={images[0]} />
-          </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/contactUs"
+                className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm text-black flex items-center gap-3"
+              >
+                Contact Us
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
-          <div className="flex flex-col gap-6">
-            <ImageCard src={images[1]} />
-            <ImageCard src={images[2]} />
-          </div>
+        {/* ================= IMAGE GRID ================= */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center"
+            >
+              <ImageCard src={images[0]} index={0} />
+            </motion.div>
 
-          <div className="flex items-start">
-            <ImageCard src={images[3]} tall />
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="flex flex-col gap-6"
+            >
+              <ImageCard src={images[1]} index={1} />
+              <ImageCard src={images[2]} index={2} />
+            </motion.div>
 
-          <div className="flex flex-col gap-6 justify-end">
-            <ImageCard src={images[4]} />
-            <ImageCard src={images[5]} />
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-start"
+            >
+              <ImageCard src={images[3]} index={3} tall />
+            </motion.div>
 
-          <div className="flex items-center">
-            <ImageCard src={images[6]} />
-          </div>
-        </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="flex flex-col gap-6 justify-end"
+            >
+              <ImageCard src={images[4]} index={4} />
+              <ImageCard src={images[5]} index={5} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex items-center"
+            >
+              <ImageCard src={images[6]} index={6} />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
 }
 
 /* ================= IMAGE CARD ================= */
-function ImageCard({ src, tall = false }) {
+function ImageCard({ src, tall = false, index = 0 }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.05 * index,
+        ease: "easeOut",
+      }}
+      whileHover={{ scale: 1.05, y: -5 }}
       className={`rounded-2xl overflow-hidden bg-neutral-900 w-full
         ${tall ? "h-[520px]" : "h-[250px]"}`}
     >
-      <img
+      <motion.img
         src={src}
         alt=""
-        className="w-full h-full object-cover hover:scale-105 transition duration-500"
+        className="w-full h-full object-cover"
+        whileHover={{ scale: 1.1 }}
+        transition={{ duration: 0.5 }}
       />
-    </div>
+    </motion.div>
   );
 }

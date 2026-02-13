@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 /* ================= COUNTER HOOK ================= */
 function useCounter(target, start, duration = 1200) {
@@ -49,7 +49,7 @@ export default function OurWorkExperience() {
           setStartCount(false);
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.4 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -64,9 +64,9 @@ export default function OurWorkExperience() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const titleVariants = {
@@ -76,9 +76,9 @@ export default function OurWorkExperience() {
       x: 0,
       transition: {
         duration: 0.8,
-        ease: [0.43, 0.13, 0.23, 0.96]
-      }
-    }
+        ease: [0.43, 0.13, 0.23, 0.96],
+      },
+    },
   };
 
   const itemVariants = {
@@ -88,9 +88,9 @@ export default function OurWorkExperience() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
   };
 
   const imageHoverVariants = {
@@ -99,9 +99,9 @@ export default function OurWorkExperience() {
       scale: 1.05,
       transition: {
         duration: 0.4,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   const overlayVariants = {
@@ -110,9 +110,9 @@ export default function OurWorkExperience() {
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -127,7 +127,11 @@ export default function OurWorkExperience() {
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <img src="/images/OurWork/Vector_Line.png" alt="" className="w-full h-auto" />
+        <img
+          src="/images/OurWork/Vector_Line.png"
+          alt=""
+          className="w-full h-auto"
+        />
       </motion.div>
 
       <motion.div
@@ -137,10 +141,7 @@ export default function OurWorkExperience() {
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Title */}
-        <motion.div
-          className="mb-8 sm:mb-12 md:mb-16"
-          variants={titleVariants}
-        >
+        <motion.div className="mb-8 sm:mb-12 md:mb-16" variants={titleVariants}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[var(--color-primary)] font-black tracking-wider ml-0 sm:ml-8 md:ml-12 lg:ml-18">
             OUR WORK
           </h2>
@@ -177,12 +178,16 @@ export default function OurWorkExperience() {
                 <motion.h3
                   className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white leading-tight"
                   initial={{ scale: 0.5, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+                  animate={
+                    isInView
+                      ? { scale: 1, opacity: 1 }
+                      : { scale: 0.5, opacity: 0 }
+                  }
                   transition={{
                     type: "spring",
                     stiffness: 100,
                     damping: 15,
-                    delay: 0.5
+                    delay: 0.5,
                   }}
                 >
                   {yearCount}
@@ -190,12 +195,17 @@ export default function OurWorkExperience() {
                 <motion.div
                   className="flex flex-col justify-start mt-1 sm:mt-0 sm:-mt-3"
                   initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  animate={
+                    isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                  }
                   transition={{ delay: 0.7, duration: 0.8 }}
                 >
                   <p
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-bold text-white leading-tight ml-1 sm:ml-2 md:ml-3"
-                    style={{ WebkitTextStroke: '1px rgba(139, 115, 85, 0.6)', color: 'transparent' }}
+                    style={{
+                      WebkitTextStroke: "1px rgba(139, 115, 85, 0.6)",
+                      color: "transparent",
+                    }}
                   >
                     Y E A R
                   </p>
@@ -238,12 +248,16 @@ export default function OurWorkExperience() {
               <motion.h3
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[var(--color-primary)] font-bold leading-none"
                 initial={{ scale: 0.5, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.5, opacity: 0 }}
+                animate={
+                  isInView
+                    ? { scale: 1, opacity: 1 }
+                    : { scale: 0.5, opacity: 0 }
+                }
                 transition={{
                   type: "spring",
                   stiffness: 100,
                   damping: 15,
-                  delay: 0.8
+                  delay: 0.8,
                 }}
               >
                 {projectCount}+
@@ -251,7 +265,9 @@ export default function OurWorkExperience() {
               <motion.p
                 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-wide mt-2"
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
                 transition={{ delay: 1, duration: 0.6 }}
               >
                 PROJECT DONE
@@ -287,14 +303,20 @@ export default function OurWorkExperience() {
           className="mt-8 sm:mt-10 md:mt-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 1.2, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{
+            delay: 1.2,
+            duration: 0.8,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
         >
           <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed text-center md:text-left">
-            Over The Years, We've Turned Countless Ideas Into High-Quality Prints That Leave A Lasting Impression. From Small Personal Projects To Large Corporate Campaigns, Our Team Blends Creativity With Precision To Deliver Outstanding Results Every Time.
+            Over The Years, We've Turned Countless Ideas Into High-Quality
+            Prints That Leave A Lasting Impression. From Small Personal Projects
+            To Large Corporate Campaigns, Our Team Blends Creativity With
+            Precision To Deliver Outstanding Results Every Time.
           </p>
         </motion.div>
       </motion.div>
     </section>
   );
 }
-

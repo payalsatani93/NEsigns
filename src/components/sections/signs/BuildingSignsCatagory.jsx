@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   Square,
@@ -175,20 +176,49 @@ export default function BuildingSignsCatagory() {
 
   return (
     <div>
-      <header className="px-4">
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative px-10 mt-10"
+      >
         <Link to="/categories/exterior-sign" className="text-neutral-400 hover:text-white">
           <ArrowLeft className="w-8 h-8" />
         </Link>
-      </header>
+      </motion.header>
+
+      {/* Golden Background left side Patch */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute md:w-[508px] md:h-[508px] w-100 h-100 z-0
+             top-[0] right-[0]
+             bg-[var(--color-patch)]
+             opacity-100
+             rounded-full
+             blur-[250px]
+             pointer-events-none"
+      />
 
       <div className="container">
         {/* Tabs */}
-        <div className="flex flex-wrap gap-4 mb-8">
-          {TABS.map((tab) => {
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap gap-4 mb-8"
+        >
+          {TABS.map((tab, index) => {
             const Icon = tab.icon;
             return (
-              <button
+              <motion.button
                 key={tab.key}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab(tab.key)}
                 className={`px-6 py-3 rounded-full flex items-center gap-2 text-sm transition
                   ${
@@ -199,85 +229,172 @@ export default function BuildingSignsCatagory() {
               >
                 <Icon className="w-4 h-4" />
                 {tab.label}
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Channel sub-tabs */}
-        {activeTab === "channel-letters" && (
-          <div className="flex flex-wrap gap-3 mb-10">
-            {CHANNEL_LETTER_TYPES.map((type) => (
-              <button
-                key={type.key}
-                onClick={() => setChannelLetterType(type.key)}
-                className={`px-5 py-2.5 rounded-full text-sm
-                  ${
-                    channelLetterType === type.key
-                      ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black"
-                      : "bg-neutral-800 text-neutral-300"
-                  }`}
-              >
-                {type.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {activeTab === "channel-letters" && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-wrap gap-3 mb-10"
+            >
+              {CHANNEL_LETTER_TYPES.map((type, index) => (
+                <motion.button
+                  key={type.key}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.05 * index }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setChannelLetterType(type.key)}
+                  className={`px-5 py-2.5 rounded-full text-sm
+                    ${
+                      channelLetterType === type.key
+                        ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black"
+                        : "bg-neutral-800 text-neutral-300"
+                    }`}
+                >
+                  {type.label}
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Heading + CTA */}
-        <div className="flex flex-col md:flex-row justify-between md:items-end items-center gap-4 sm:py-10 py-5">
-          <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3 ">
-              {content.title}
-            </h1>
-            <p className="text-gray-400 max-w-xl md:text-md text-sm">{content.subtitle}</p>
-          </div>
-
-          <Link
-            to="/contact"
-            className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm
-            text-black flex items-center gap-3"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab + channelLetterType}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col md:flex-row justify-between md:items-end items-center gap-4 sm:py-10 py-5"
           >
-            Contact Us
-            <ArrowLeft className="rotate-180 w-5 h-5" />
-          </Link>
-        </div>
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-3"
+              >
+                {content.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-gray-400 max-w-xl md:text-md text-sm"
+              >
+                {content.subtitle}
+              </motion.p>
+            </div>
 
-        {/* ✅ Images */}
-        {activeTab === "channel-letters" ? (
-          /* Channel Letters: 3 per row */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {content.images.map((img, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden bg-neutral-900">
-                <img
-                  src={img}
-                  alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition"
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Other tabs: masonry */
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[columns.c1, columns.c2, columns.c3].map((col, idx) => (
-              <div key={idx} className="flex flex-col gap-6">
-                {col.map((img, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl overflow-hidden bg-neutral-900"
-                  >
-                    <img
-                      src={img}
-                      alt=""
-                      className="w-full h-full object-cover hover:scale-105 transition"
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/contactUs"
+                className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm
+                text-black flex items-center gap-3"
+              >
+                Contact Us
+                <ArrowLeft className="rotate-180 w-5 h-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Images */}
+        <AnimatePresence mode="wait">
+          {activeTab === "channel-letters" ? (
+            /* Channel Letters: 4 per row */
+            <motion.div
+              key={activeTab + channelLetterType}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
+            >
+              {content.images.map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.1 * i,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="rounded-2xl overflow-hidden bg-neutral-900"
+                >
+                  <motion.img
+                    src={img}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            /* Other tabs: masonry */
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            >
+              {[columns.c1, columns.c2, columns.c3].map((col, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: idx * 20 - 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * idx }}
+                  className="flex flex-col gap-6"
+                >
+                  {col.map((img, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.1 * (idx + i),
+                        ease: "easeOut",
+                      }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="rounded-2xl overflow-hidden bg-neutral-900"
+                    >
+                      <motion.img
+                        src={img}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

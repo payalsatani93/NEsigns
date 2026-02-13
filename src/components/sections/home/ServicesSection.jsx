@@ -1,12 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  MousePointer2,
-  Printer,
-  Mail,
-  Monitor,
-  Search,
-} from "lucide-react";
+import { MousePointer2, Printer, Mail, Monitor, Search } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
 /* =======================
@@ -99,7 +93,7 @@ const ServiceSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0f0f0f] text-white px-6 py-16 flex flex-col items-center justify-center overflow-hidden font-sans"
+      className="relative px-6 py-16 flex flex-col items-center justify-center"
     >
       {/* Header (unchanged visually) */}
       <div className="relative z-10 container">
@@ -162,9 +156,21 @@ const ServiceSection = () => {
                         x2="100%"
                         y2="0%"
                       >
-                        <stop offset="0%" stopColor={service.curveColor} stopOpacity="0" />
-                        <stop offset="50%" stopColor={service.curveColor} stopOpacity="0.6" />
-                        <stop offset="100%" stopColor={service.curveColor} stopOpacity="0" />
+                        <stop
+                          offset="0%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0"
+                        />
+                        <stop
+                          offset="50%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0.6"
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0"
+                        />
                       </linearGradient>
                     </defs>
                     <path
@@ -192,9 +198,21 @@ const ServiceSection = () => {
                         x2="100%"
                         y2="0%"
                       >
-                        <stop offset="0%" stopColor={service.curveColor} stopOpacity="0" />
-                        <stop offset="50%" stopColor={service.curveColor} stopOpacity="0.6" />
-                        <stop offset="100%" stopColor={service.curveColor} stopOpacity="0" />
+                        <stop
+                          offset="0%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0"
+                        />
+                        <stop
+                          offset="50%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0.6"
+                        />
+                        <stop
+                          offset="100%"
+                          stopColor={service.curveColor}
+                          stopOpacity="0"
+                        />
                       </linearGradient>
                     </defs>
                     <path
@@ -214,9 +232,7 @@ const ServiceSection = () => {
                 </div>
 
                 {/* Text */}
-                <h3 className="text-xl font-semibold mb-3">
-                  {service.title}
-                </h3>
+                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
                 <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[200px]">
                   {service.description}
                 </p>
@@ -224,6 +240,16 @@ const ServiceSection = () => {
             );
           })}
         </div>
+        {/* Right Golden Patch */}
+        <div
+          className="absolute md:w-[381px] md:h-[381px] w-100 h-100
+             bottom-[0] right-[0]
+             bg-[var(--color-patch)]
+             opacity-100
+             blur-[250px]
+             overflow-visible
+             pointer-events-none"
+        />
       </motion.div>
     </section>
   );

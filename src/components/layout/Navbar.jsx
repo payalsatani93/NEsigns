@@ -52,25 +52,48 @@ export default function Navbar() {
     {
       name: "Services +",
       href: "/services",
-     submenu: [
-  {
-    name: "Signage",
-    href: "/services/signage",
-    icon: LayoutGrid,
-    submenu: [
-      { name: "Exterior Sign", href: "/categories/exterior-sign", icon: Image },
-      { name: "Interior Sign", href: "/categories/interior-sign", icon: Layers },
-      { name: "LED Digital Board", href: "/categories/led-digital-board", icon: Monitor },
-      { name: "LED Neon Sign", href: "/categories/led-neon-sign", icon: Zap },
-      { name: "Window & Wall Graphics", href: "/categories/window-graphics", icon: Image },
-    ],
-  },
-  { name: "Printing", href: "/services/printing", icon: Printer },
-  { name: "Direct Mailing", href: "/services/direct-mailing", icon: Mail },
-  { name: "Web Designing", href: "/services/web-design", icon: Globe },
-  { name: "SEO", href: "/services/seo", icon: Search },
-],
-
+      submenu: [
+        {
+          name: "Signage",
+          href: "/services/signage",
+          icon: LayoutGrid,
+          submenu: [
+            {
+              name: "Exterior Sign",
+              href: "/categories/exterior-sign",
+              icon: Image,
+            },
+            {
+              name: "Interior Sign",
+              href: "/categories/interior-sign",
+              icon: Layers,
+            },
+            {
+              name: "LED Digital Board",
+              href: "/categories/led-digital-board",
+              icon: Monitor,
+            },
+            {
+              name: "LED Neon Sign",
+              href: "/categories/led-neon-sign",
+              icon: Zap,
+            },
+            {
+              name: "Window & Wall Graphics",
+              href: "/categories/window-graphics",
+              icon: Image,
+            },
+          ],
+        },
+        { name: "Printing", href: "/services/printing", icon: Printer },
+        {
+          name: "Direct Mailing",
+          href: "/services/direct-mailing",
+          icon: Mail,
+        },
+        { name: "Web Designing", href: "/services/web-design", icon: Globe },
+        { name: "SEO", href: "/services/seo", icon: Search },
+      ],
     },
     { name: "Apparel", href: "/apparel" },
     { name: "Promotional products", href: "/promotional_products" },
@@ -150,11 +173,12 @@ export default function Navbar() {
   }
 `}
                           >
-                           <span className="flex items-center gap-3">
-  {sub.icon && <sub.icon size={16} className="opacity-80" />}
-  {sub.name}
-</span>
-
+                            <span className="flex items-center gap-3">
+                              {sub.icon && (
+                                <sub.icon size={16} className="opacity-80" />
+                              )}
+                              {sub.name}
+                            </span>
 
                             {/* Chevron only if second-level submenu exists */}
                             {sub.submenu && (
@@ -190,10 +214,14 @@ export default function Navbar() {
 `}
                                 >
                                   <span className="flex items-center gap-3">
-  {child.icon && <child.icon size={14} className="opacity-70" />}
-  {child.name}
-</span>
-
+                                    {child.icon && (
+                                      <child.icon
+                                        size={14}
+                                        className="opacity-70"
+                                      />
+                                    )}
+                                    {child.name}
+                                  </span>
                                 </Link>
                               ))}
                             </div>
@@ -208,13 +236,14 @@ export default function Navbar() {
 
             {/* Get In Touch Button */}
             <div className="hidden xl:block">
-              <button
+              <Link
+                to="/contactUs"
                 className="flex group items-center gap-3 px-6 py-2 border border-[var(--color-gradient)] rounded-full text-white 
-              hover:[var(--color-gradient)] transition-all"
+    hover:bg-[var(--color-gradient)] transition-all duration-300"
               >
                 <span className="text-sm">Get In Touch</span>
                 <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}

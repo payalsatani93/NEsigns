@@ -10,6 +10,7 @@ import {
   SignpostBig,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, Link } from "react-router-dom";
 
 /* =======================
@@ -145,24 +146,53 @@ export default function FreestandingSignsCategory() {
 
   return (
     <div>
+       {/* Background Patch */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
+                     top-[-20px] right-[0]
+                     bg-[var(--color-patch)]
+                     opacity-100
+                     rounded-full
+                     blur-[250px]
+                     overflow-visible
+                     pointer-events-none"
+              />
       {/* Back */}
-      <header className="px-4">
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="px-4 mt-10"
+      >
         <Link
           to="/categories/exterior-sign"
           className="inline-flex items-center text-neutral-400 hover:text-white transition"
         >
           <ArrowLeft className="w-8 h-8" />
         </Link>
-      </header>
+      </motion.header>
 
       <div className="container">
         {/* ================= TABS ================= */}
-        <div className="flex flex-wrap gap-4 mb-10">
-          {TABS.map((tab) => {
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap gap-4 mb-10"
+        >
+          {TABS.map((tab, index) => {
             const Icon = tab.icon;
             return (
-              <button
+              <motion.button
                 key={tab.key}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   setActiveTab(tab.key);
                   window.history.replaceState(null, "", `?tab=${tab.key}`);
@@ -177,51 +207,97 @@ export default function FreestandingSignsCategory() {
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* ================= HEADING + CTA ================= */}
-        <div className="flex flex-col lg:flex-row justify-between lg:items-end items-center gap-4 sm:py-10 py-5">
-          <div>
-            <h1 className="text-xl md:text-3xl xl:text-4xl font-semibold mb-3">
-              {content.title}
-            </h1>
-            <p className="text-gray-400 lg:max-w-xl lg:text-md text-sm">
-              {content.subtitle}
-            </p>
-          </div>
-
-          <Link
-            to="/contact"
-            className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm text-black flex items-center gap-3"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col lg:flex-row justify-between lg:items-end items-center gap-4 sm:py-10 py-5"
           >
-            Contact Us
-            <ArrowLeft className="rotate-180 w-5 h-5" />
-          </Link>
-        </div>
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-xl md:text-3xl xl:text-4xl font-semibold mb-3"
+              >
+                {content.title}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-gray-400 lg:max-w-xl lg:text-md text-sm"
+              >
+                {content.subtitle}
+              </motion.p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/contactUs"
+                className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm text-black flex items-center gap-3"
+              >
+                Contact Us
+                <ArrowLeft className="rotate-180 w-5 h-5" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* ================= IMAGES ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {content.images.map((img, index) => {
-            const isLarge = index === 0 || index === 5;
-            return (
-              <div
-                key={index}
-                className={`rounded-2xl overflow-hidden bg-neutral-900 ${
-                  isLarge ? "md:col-span-2" : "md:col-span-1"
-                }`}
-              >
-                <img
-                  src={img}
-                  alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition duration-500"
-                />
-              </div>
-            );
-          })}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-6"
+          >
+            {content.images.map((img, index) => {
+              const isLarge = index === 0 || index === 5;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.1 * index,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className={`rounded-2xl overflow-hidden bg-neutral-900 ${
+                    isLarge ? "md:col-span-2" : "md:col-span-1"
+                  }`}
+                >
+                  <motion.img
+                    src={img}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

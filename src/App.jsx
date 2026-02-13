@@ -21,6 +21,7 @@ import WebDesigning from "./pages/webdesigningPages/WebDesigning";
 import SEO from "./pages/seoPages/SEO";
 import Printing from "./pages/printingPages/Printing";
 import ContactUs from "./pages/contactusPages/ContactUs";
+import Apparel from "./pages/apparelPages/Apparel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +70,7 @@ export default function App() {
             <Route path="/services/web-design" element={<WebDesigning />} />
             <Route path="/services/seo" element={<SEO />} />
             <Route path="/services/printing" element={<Printing />} />
+            <Route path="/apparel" element={<Apparel />} />
             <Route path="/our_work" element={<OurWork />} />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/blogs" element={<Blog />} />

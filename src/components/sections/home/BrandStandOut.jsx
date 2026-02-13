@@ -25,8 +25,19 @@ export default function BrandStandOut() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-r from-black via-black to-[#50380e] py-30 overflow-hidden"
+      className="relative py-30"
     >
+       {/* Right Golden Patch */}
+      <div
+        className="absolute md:w-[500px] md:h-[700px] w-100 h-100
+             top-[0] right-[10px]
+             bg-[var(--color-patch)]
+             opacity-100
+             rounded-full
+             blur-[300px]
+             overflow-visible
+             pointer-events-none"
+      />
       {/* Left Quote Mark */}
       <div className="absolute top-3 left-12">
         <svg width="120" height="100" viewBox="0 0 120 100" fill="none">

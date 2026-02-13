@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -234,62 +235,122 @@ const InteriorSignscatagory = () => {
   return (
     <div className="p-6">
       {/* Back */}
-      <Link
-        to="/categories/interior-sign"
-        className="inline-flex items-center text-neutral-400 hover:text-white transition"
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        <ArrowLeft size={22} />
-      </Link>
+        <Link
+          to="/categories/interior-sign"
+          className="inline-flex items-center text-neutral-400 hover:text-white transition"
+        >
+          <ArrowLeft size={22} />
+        </Link>
+      </motion.div>
 
       <div className="container">
         {/* Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-12"
+        >
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center gap-3 mb-3"
+          >
             <span className="text-[var(--color-gradient)] text-sm tracking-[0.2em] font-light">
               INTERIOR SIGNS
             </span>
             <ArrowRight className="text-[var(--color-gradient)]" size={22} />
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold"
+          >
             <span className="text-[var(--color-gradient)]">High-Quality</span>{" "}
             Interior Signs You Can Trust
-          </h1>
-        </div>
+          </motion.h1>
+        </motion.div>
 
         {/* Category Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-          {categories.map((category) => (
-            <button
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
+        >
+          {categories.map((category, index) => (
+            <motion.button
               key={category.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.6 + index * 0.05,
+                ease: "easeOut",
+              }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setActiveCategory(category.id)}
-              className={`flex items-center bg-[#2a2a2a] rounded-xl overflow-hidden border-2 transition-all duration-300 hover:border-[#d4a574] hover:-translate-y-1 ${
+              className={`flex items-center bg-[#2a2a2a] rounded-xl overflow-hidden border-2 transition-all duration-300 hover:border-[#d4a574] ${
                 safeCategory === category.id
                   ? "border-[var(--color-gradient)]"
                   : "border-[#3a3a3a]"
               }`}
             >
-              <img
+              <motion.img
                 src={category.image}
                 alt={category.name}
                 className="w-32 h-20 object-cover"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
               />
               <span className="px-5 py-4 font-semibold">{category.name}</span>
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Gallery */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
-          {galleryImages[safeCategory].map((image, index) => (
-            <div
-              key={index}
-              className="aspect-square rounded-xl overflow-hidden hover:scale-105 transition"
-            >
-              <img src={image} alt="" className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={safeCategory}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5"
+          >
+            {galleryImages[safeCategory].map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.05,
+                  ease: "easeOut",
+                }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="aspect-square rounded-xl overflow-hidden"
+              >
+                <motion.img
+                  src={image}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );

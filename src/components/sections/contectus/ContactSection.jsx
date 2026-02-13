@@ -71,6 +71,20 @@ const ContactSection = () => {
 
   return (
     <div className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 lg:px-8">
+       {/* Background Patch */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
+                           top-[-20px] right-[0]
+                           bg-[var(--color-patch)]
+                           opacity-100
+                           rounded-full
+                           blur-[250px]
+                           overflow-visible
+                           pointer-events-none"
+            />
       <div className="containers">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-start lg:items-center">
           {/* Left Section - 2 columns */}

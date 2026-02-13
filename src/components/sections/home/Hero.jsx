@@ -106,8 +106,19 @@ export default function Hero() {
       initial="hidden"
       animate={animate ? "visible" : "hidden"}
       variants={containerVariants}
-      className="relative bg-gradient-to-tr from-black via-black to-[#75561f] overflow-hidden px-4 sm:py-10 py-5"
+      className="relative overflow-hidden px-4 sm:py-10 py-5"
     >
+      {/* Top Right Small Patch */}
+<div
+  className="absolute md:w-[400px] md:h-[400px] w-100 h-100
+             top-[0] right-[-10px]
+             bg-[var(--color-patch)]
+             opacity-100
+             rounded-full
+             blur-[190px]
+             pointer-events-none"
+/>
+
       {/* Left Star Decoration */}
       <motion.div 
         variants={fadeRight}

@@ -96,11 +96,22 @@ export default function AboutCompany() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex items-center overflow-hidden bg-gradient-to-bl from-black via-[#0b0b0b] to-[#2a1a00]"
+      className="relative flex items-center"
     >
+       {/* Golden Background left side  Patch */}
+<div
+  className="absolute md:w-[508px] md:h-[508px] w-100 h-100
+             top-[0] left-[0]
+             bg-[var(--color-patch)]
+             opacity-100
+             blur-[300px]
+             overflow-visible
+             pointer-events-none"
+/>
       {/* LEFT DECORATIVE LINE */}
       <motion.div
-        className="absolute left-4 sm:left-8 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 w-8 sm:w-12 md:w-16 xl:w-auto opacity-50 md:opacity-100"
+        className="absolute left-4 sm:left-8 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 
+        w-8 sm:w-12 md:w-16 xl:w-auto opacity-50 md:opacity-100"
         variants={decorLineVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -110,7 +121,8 @@ export default function AboutCompany() {
 
       {/* RIGHT CONTOUR GRAPHIC */}
       <motion.div
-        className="absolute -right-10 sm:-right-16 md:-right-20 wave-container opacity-30 sm:opacity-50 md:opacity-100"
+        className="absolute right-0 wave-container 
+        opacity-50"
         variants={waveVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -118,7 +130,7 @@ export default function AboutCompany() {
         <motion.img
           src="/images/Wave.png"
           alt=""
-          className="wave-animation w-full h-auto"
+          className="wave-animation w-100 h-100 overflow-visible"
           animate={{
             y: [0, -10, 0],
           }}
