@@ -98,6 +98,7 @@ export default function Navbar() {
     { name: "Apparel", href: "/apparel" },
     { name: "Promotional products", href: "/promotional_products" },
     { name: "Our work", href: "/our_work" },
+    { name: "Know your sign", href: "/know_your_sign" },
     { name: "Contact us", href: "/contactUs" },
   ];
 

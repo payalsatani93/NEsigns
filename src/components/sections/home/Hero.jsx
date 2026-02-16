@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const [animate, setAnimate] = useState(false);
@@ -14,7 +14,7 @@ export default function Hero() {
           setAnimate(false);
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.4 },
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -29,75 +29,75 @@ export default function Hero() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const slideInRight = {
     hidden: { x: -100, opacity: 0 },
-    visible: { 
-      x: 0, 
+    visible: {
+      x: 0,
       opacity: 1,
-      transition: { duration: 1, ease: 'easeOut' }
-    }
+      transition: { duration: 1, ease: "easeOut" },
+    },
   };
 
   const slideInLeft = {
     hidden: { x: 100, opacity: 0, scale: 0.8 },
-    visible: { 
-      x: 0, 
+    visible: {
+      x: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 1.2, ease: 'easeOut' }
-    }
+      transition: { duration: 1.2, ease: "easeOut" },
+    },
   };
 
   const fadeUp = {
     hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
-      transition: { duration: 1, ease: 'easeOut' }
-    }
+      transition: { duration: 1, ease: "easeOut" },
+    },
   };
 
   const rotateIn = {
     hidden: { rotate: -180, scale: 0, opacity: 0 },
-    visible: { 
-      rotate: 0, 
-      scale: 1, 
+    visible: {
+      rotate: 0,
+      scale: 1,
       opacity: 1,
-      transition: { duration: 2, ease: 'easeOut' }
-    }
+      transition: { duration: 2, ease: "easeOut" },
+    },
   };
 
   const fadeRight = {
     hidden: { x: -80, opacity: 0 },
-    visible: { 
-      x: 0, 
+    visible: {
+      x: 0,
       opacity: 1,
-      transition: { duration: 1.5, ease: 'easeOut' }
-    }
+      transition: { duration: 1.5, ease: "easeOut" },
+    },
   };
 
   const fadeLeft = {
     hidden: { x: 80, opacity: 0 },
-    visible: { 
-      x: 0, 
+    visible: {
+      x: 0,
       opacity: 1,
-      transition: { duration: 1.5, ease: 'easeOut' }
-    }
+      transition: { duration: 1.5, ease: "easeOut" },
+    },
   };
 
   const fadeDownLeft = {
     hidden: { x: 80, y: -80, opacity: 0 },
-    visible: { 
-      x: 0, 
-      y: 0, 
+    visible: {
+      x: 0,
+      y: 0,
       opacity: 1,
-      transition: { duration: 1.8, ease: 'easeOut' }
-    }
+      transition: { duration: 1.8, ease: "easeOut" },
+    },
   };
 
   return (
@@ -109,23 +109,24 @@ export default function Hero() {
       className="relative overflow-hidden px-4 sm:py-10 py-5"
     >
       {/* Top Right Small Patch */}
-<div
-  className="absolute md:w-[400px] md:h-[400px] w-100 h-100
-             top-[0] right-[-10px]
+      <div
+        className="absolute md:w-[400px] md:h-[400px] w-100 h-100
+             top-0 right-0
              bg-[var(--color-patch)]
              opacity-100
              rounded-full
              blur-[190px]
              pointer-events-none"
-/>
+      />
 
       {/* Left Star Decoration */}
-      <motion.div 
-        variants={fadeRight}
-        className="absolute hero-star"
-      >
+      <motion.div variants={fadeRight} className="absolute hero-star">
         <div>
-          <img src="/images/Hero/Hero_Star.png" alt="" className="w-full h-full object-contain" />
+          <img
+            src="/images/Hero/Hero_Star.png"
+            alt=""
+            className="w-full h-full object-contain"
+          />
         </div>
       </motion.div>
 
@@ -146,9 +147,9 @@ export default function Hero() {
               variants={slideInLeft}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 leading-tight"
               style={{
-                WebkitTextStroke: '1px white',
-                color: 'transparent',
-                textShadow: 'none'
+                WebkitTextStroke: "1px white",
+                color: "transparent",
+                textShadow: "none",
               }}
             >
               FOR ALL OF OUR SERVICES
@@ -159,11 +160,14 @@ export default function Hero() {
               variants={fadeUp}
               className="text-white text-xs sm:text-sm md:text-base lg:text-sm leading-relaxed tracking-wide max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
-              WE PLACE A GREAT VALUE ON THE CALIBER OF{' '}
-              <span className="text-yellow-500 font-bold">OUR GOODS</span>. NE SIGNS BLENDS QUICK TURNAROUND TIME WITH A KEEN EYE TOWARDS{' '}
-              <span className="text-yellow-500 font-bold">QUALITY</span>. FOR{' '}
-              <span className="text-yellow-500 font-bold">COMPANIES</span> OF ALL SIZES, WE ARE COMMITTED TO OFFERING{' '}
-              <span className="text-yellow-500 font-bold">PREMIUM</span> PRINTING, GRAPHIC DESIGN, AND SIGNAGE{' '}
+              WE PLACE A GREAT VALUE ON THE CALIBER OF{" "}
+              <span className="text-yellow-500 font-bold">OUR GOODS</span>. NE
+              SIGNS BLENDS QUICK TURNAROUND TIME WITH A KEEN EYE TOWARDS{" "}
+              <span className="text-yellow-500 font-bold">QUALITY</span>. FOR{" "}
+              <span className="text-yellow-500 font-bold">COMPANIES</span> OF
+              ALL SIZES, WE ARE COMMITTED TO OFFERING{" "}
+              <span className="text-yellow-500 font-bold">PREMIUM</span>{" "}
+              PRINTING, GRAPHIC DESIGN, AND SIGNAGE{" "}
               <span className="text-yellow-500 font-bold">SOLUTIONS</span>.
             </motion.p>
           </div>
@@ -185,7 +189,7 @@ export default function Hero() {
       </motion.div> */}
 
       {/* Yellow Lines */}
-      <motion.div 
+      {/* <motion.div 
         variants={fadeLeft}
         className="absolute hero-yellow-lines transition-all duration-300"
       >
@@ -196,10 +200,10 @@ export default function Hero() {
             className="w-full h-full object-contain"
           />
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Top Right Abstract White Shape */}
-      <motion.div 
+      <motion.div
         variants={fadeDownLeft}
         className="absolute hero-white-shape xl:block hidden"
       >

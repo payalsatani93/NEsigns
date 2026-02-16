@@ -9,6 +9,7 @@ export default function Footer() {
     { name: "Apparel", href: "/apparel" },
     { name: "Promotional Products", href: "/promotional_products" },
     { name: "Our Work", href: "/our_work" },
+    { name: "Know your sign", href: "/know_your_sign" },
     { name: "Contact Us", href: "/contactUs" },
   ];
 

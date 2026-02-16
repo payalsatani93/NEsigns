@@ -30,7 +30,7 @@ export default function BrandStandOut() {
        {/* Right Golden Patch */}
       <div
         className="absolute md:w-[500px] md:h-[700px] w-100 h-100
-             top-[0] right-[10px]
+             top-[0] right-[0]
              bg-[var(--color-patch)]
              opacity-100
              rounded-full

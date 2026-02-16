@@ -79,7 +79,7 @@ export default function SEOHeroSection() {
       transition
     "
   >
-    Join waitlist
+    Join Us
   </button>
 </div>
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Loader from "./components/Loader";
 import Navbar from "./components/layout/Navbar";
+import ChatWidget from "./components/ChatWidget"; // ADD THIS
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Home from "./pages/homePages/Home";
@@ -22,6 +23,7 @@ import SEO from "./pages/seoPages/SEO";
 import Printing from "./pages/printingPages/Printing";
 import ContactUs from "./pages/contactusPages/ContactUs";
 import Apparel from "./pages/apparelPages/Apparel";
+import DirectMailing from "./pages/directmailingPages/DirectMailing";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,22 +39,32 @@ export default function App() {
     if (loading) return;
 
     const lenis = new Lenis({
-      duration: 0.5,
-      easing: () => 1,
+      duration: 3.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
       smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
-    let rafId;
-    const raf = (time) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
     };
-    rafId = requestAnimationFrame(raf);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
       lenis.destroy();
+      window.removeEventListener("resize", handleResize);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [loading]);
 
@@ -70,12 +82,12 @@ export default function App() {
             <Route path="/services/web-design" element={<WebDesigning />} />
             <Route path="/services/seo" element={<SEO />} />
             <Route path="/services/printing" element={<Printing />} />
+            <Route path="/services/direct-mailing" element={<DirectMailing />} />
             <Route path="/apparel" element={<Apparel />} />
             <Route path="/our_work" element={<OurWork />} />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/blogs" element={<Blog />} />
             <Route path="/categories/:slug" element={<SignageCategories />} />
-            {/* BUILDIND-SIGNAGE PAGE AND ITS CATAGORIES */}
             <Route
               path="/categories/:slug/building-signs"
               element={<BuildingSignsCatagory />}
@@ -88,12 +100,12 @@ export default function App() {
               path="/categories/:slug/interior-sign"
               element={<InteriorSignscatagory />}
             />
-            {/* SINGLE FREESTANDING PAGE */}
             <Route
               path="/categories/:slug/freestanding-signs"
               element={<FreestandingSignsCategory />}
             />
           </Routes>
+          <ChatWidget />
           <Footer />
         </>
       )}

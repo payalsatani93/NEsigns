@@ -351,7 +351,8 @@ export default function TestimonialSlider() {
                         ease: "easeInOut"
                     }}
                 >
-                    <svg width="60" height="50" viewBox="0 0 120 100" fill="none" className="sm:w-24 sm:h-20 md:w-32 md:h-26 lg:w-[120px] lg:h-[100px]">
+                    <svg width="60" height="50" viewBox="0 0 120 100" fill="none" 
+                    className="sm:w-24 sm:h-20 md:w-32 md:h-26 lg:w-[120px] lg:h-[100px]">
                         <path d="M0 80 L0 0 L50 0 L20 80 Z" fill="#6B7280" />
                         <path d="M60 80 L60 0 L110 0 L80 80 Z" fill="#6B7280" />
                     </svg>
@@ -376,10 +377,10 @@ export default function TestimonialSlider() {
                         ease: "easeInOut"
                     }}
                 >
-                    <svg width="60" height="50" viewBox="0 0 120 100" fill="none" transform="rotate(180)" className="sm:w-24 sm:h-20 md:w-32 md:h-26 lg:w-[120px] lg:h-[100px]">
-                        <path d="M0 80 L0 0 L50 0 L20 80 Z" fill="#6B7280" />
-                        <path d="M60 80 L60 0 L110 0 L80 80 Z" fill="#6B7280" />
-                    </svg>
+                    <svg width="120" height="100" viewBox="0 0 120 100" fill="none">
+          <path d="M0 80 L0 0 L50 0 L20 80 Z" fill="#6B7355" />
+          <path d="M60 80 L60 0 L110 0 L80 80 Z" fill="#6B7355" opacity="0.9" />
+        </svg>
                 </motion.div>
             </motion.div>
 

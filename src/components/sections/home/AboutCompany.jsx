@@ -121,7 +121,7 @@ export default function AboutCompany() {
 
       {/* RIGHT CONTOUR GRAPHIC */}
       <motion.div
-        className="absolute right-0 wave-container 
+        className="absolute right-10 wave-container 
         opacity-50"
         variants={waveVariants}
         initial="hidden"
