@@ -104,12 +104,22 @@ export default function Navbar() {
 
   useEffect(() => {
     if (isMenuOpen) {
+      // Lock both body and html to prevent ALL scrolling
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
     };
   }, [isMenuOpen]);
 
@@ -136,8 +146,8 @@ export default function Navbar() {
                     className={`relative xl:text-[18px] md:text-sm tracking-wide transition-colors duration-300
                       ${
                         isActive(item.href, item)
-                          ? "text-[var(--color-gradient)]"
-                          : "text-white hover:text-[var(--color-gradient)]"
+                          ? "text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)]"
+                          : "text-white hover:text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] "
                       }
                     `}
                   >
@@ -165,7 +175,7 @@ export default function Navbar() {
                               transition-all duration-300
                               ${
                                 isActive(sub.href)
-                                  ? "bg-[var(--color-gradient)] text-black"
+                                  ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black"
                                   : "text-white/90 hover:bg-white/30 hover:text-white"
                               }
                             `}
@@ -205,7 +215,7 @@ export default function Navbar() {
                                     transition-all duration-300
                                     ${
                                       isActive(child.href)
-                                        ? "bg-[var(--color-gradient)] text-black"
+                                        ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black"
                                         : "text-white/90 hover:bg-white/30 hover:text-white"
                                     }
                                   `}
@@ -258,8 +268,10 @@ export default function Navbar() {
 
       {/* Mobile / Tablet Navigation — shows below xl */}
       {isMenuOpen && (
-        <div className="fixed top-0  inset-0 bg-black/50 h-full backdrop-blur transition-opacity duration-250 overflow-scroll opacity-100 pointer-events-auto
-         z-40 xl:hidden pt-28 px-6 overflow-y-hidden">
+        <div
+          className="fixed inset-0 z-40 xl:hidden pt-28 px-6 bg-black/50 backdrop-blur overflow-hidden"
+          onTouchMove={(e) => e.preventDefault()}
+        >
           <div className="flex flex-col space-y-6 justify-self-center text-center">
             {navItems.map((item) => (
               <Link
@@ -278,7 +290,7 @@ export default function Navbar() {
                 to="/contactUs"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex items-center justify-center gap-3 px-6 py-3 border border-[var(--color-gradient)] rounded-full text-white 
-                  hover:bg-[var(--color-gradient)] transition-all duration-300 w-50"
+                  hover:bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] transition-all duration-300 w-50"
               >
                 <span className="text-base">Get In Touch</span>
                 <ArrowRight size={18} />

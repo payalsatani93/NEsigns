@@ -168,7 +168,7 @@ export default function BlogSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative xl:mb-20 mb-5 mt-0">
+    <section ref={sectionRef} className="relative xl:mb-20 mb-5 mt-0 overflow-hidden">
       <div className="containers px-8">
         {/* Header */}
         <motion.div

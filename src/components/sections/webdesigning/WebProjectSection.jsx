@@ -106,14 +106,23 @@ export default function WebProjectSection() {
   ];
 
   return (
-    <section>
+    <section className="md:overflow-visible overflow-hidden">
+       {/* top left Small Patch */}
+        <div
+          className="absolute md:w-[400px] md:h-[500px] w-100 h-100
+             top-0 left-0
+             bg-[var(--color-patch)]
+             opacity-100
+             blur-[190px]
+             pointer-events-none"
+        />
       <section
         ref={sectionRef}
         className="relative flex items-center mt-5"
       >
         {/* RIGHT CONTOUR GRAPHIC */}
         <motion.div
-          className="absolute right-0 wave-container"
+          className="absolute right-20 wave-container"
           variants={waveVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -187,7 +196,7 @@ export default function WebProjectSection() {
 
             {/* Description */}
             <motion.p
-              className="text-[#bdbdbd] text-sm sm:text-base md:text-[16px] leading-relaxed lg:ml-10 text-center xl:text-left px-4 lg:px-0"
+              className="text-[#bdbdbd] text-xs sm:text-base md:text-[16px] leading-relaxed lg:ml-10 text-center xl:text-left px-4 lg:px-0"
               variants={textVariants}
             >
               <motion.span

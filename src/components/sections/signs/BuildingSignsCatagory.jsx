@@ -223,7 +223,7 @@ export default function BuildingSignsCatagory() {
                 className={`px-6 py-3 rounded-full flex items-center gap-2 text-sm transition
                   ${
                     activeTab === tab.key
-                      ? "text-white shadow-[0_4px_4px_#F79C29]"
+                      ? "text-white shadow-[0_4px_4px_#F2AC42]"
                       : "text-neutral-300 shadow-[0_4px_4px_#fff]"
                   }`}
               >
@@ -256,7 +256,7 @@ export default function BuildingSignsCatagory() {
                   className={`px-5 py-2.5 rounded-full text-sm
                     ${
                       channelLetterType === type.key
-                        ? "bg-gradient-to-r from-amber-500 to-orange-500 text-black"
+                        ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black"
                         : "bg-neutral-800 text-neutral-300"
                     }`}
                 >
@@ -305,7 +305,7 @@ export default function BuildingSignsCatagory() {
             >
               <Link
                 to="/contactUs"
-                className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm
+                className="px-4 py-4 rounded-full bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-sm
                 text-black flex items-center gap-3"
               >
                 Contact Us

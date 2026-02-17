@@ -94,7 +94,7 @@ export default function AboutCompany() {
   };
 
   return (
-    <section ref={sectionRef} className="relative flex items-center">
+    <section ref={sectionRef} className="relative flex items-center  md:overflow-visible overflow-hidden">
       {/* Golden Background left side  Patch */}
       <div
         className="absolute md:w-[508px] md:h-[508px] w-100 h-100

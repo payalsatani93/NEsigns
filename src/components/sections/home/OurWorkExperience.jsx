@@ -118,7 +118,7 @@ export default function OurWorkExperience() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 sm:py-16 md:py-20 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-20  md:overflow-visible overflow-hidden"
     >
       {/* Decorative Line */}
       <motion.div

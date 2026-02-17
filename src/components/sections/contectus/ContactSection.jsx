@@ -283,7 +283,7 @@ const ContactSection = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[var(--color-tertiary)] to-[var(--color-primary)] text-sm sm:text-base text-white font-medium sm:float-right transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-sm sm:text-base text-white font-medium sm:float-right transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                       Submit
                     </motion.button>

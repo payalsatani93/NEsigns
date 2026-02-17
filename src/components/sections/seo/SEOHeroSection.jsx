@@ -28,7 +28,7 @@ export default function SEOHeroSection() {
             >
               {/* Badge */}
               <div className="inline-flex  gap-2 border border-white/30 p-2 rounded-full">
-                <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-xs font-bold px-2 py-0.5 rounded">
+                <span className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black text-xs font-bold px-2 py-0.5 rounded">
                   NEW
                 </span>
                 <span className="text-sm text-gray-300">

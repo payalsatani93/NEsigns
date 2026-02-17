@@ -35,15 +35,26 @@ const cardVariants = {
 
 export default function ApparelHeroSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
-      <div className="containers">
+    <section className="relative py-12 sm:py-16 lg:py-20 px-4 sm:px-6 md:overflow-visible overflow-hidden">
+      
+      {/* Top Right Patch - only once, behind everything */}
+      <div
+        className="absolute md:w-[400px] md:h-[500px] w-[300px] h-[300px] z-0
+           top-0 right-0
+           bg-[var(--color-patch)]
+           opacity-100
+           blur-[190px]
+           pointer-events-none"
+      />
+
+      <div className="containers relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
         >
-          {products.map((product, index) => (
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </motion.div>
@@ -61,30 +72,30 @@ function ProductCard({ product }) {
       className="relative group"
     >
       <div className="relative w-full">
-        
+
         {/* Background Shape */}
         <img
           src="/images/apparelimg/White_Curvebg.png"
           alt="Card background"
-          className="w-full h-auto"
+          className="sm:w-[400px] sm:h-[400px] w-[300px] h-[300px]"
         />
 
         {/* Content */}
         <div className="absolute inset-0 p-4 sm:p-5 flex flex-col">
-          
+
           {/* Product Image */}
-          <div className="rounded-2xl overflow-hidden bg-white mb-4 aspect-[4/5]">
+          <div className="rounded-2xl overflow-hidden mb-4">
             <motion.img
               src={product.image}
               alt={product.title}
-              className="w-full h-full object-cover"
+              className="sm:w-[354px] sm:h-[301px] w-[250px] h-[210px] object-cover"
               whileHover={{ scale: 1.08 }}
               transition={{ duration: 0.4 }}
             />
           </div>
 
           {/* Title */}
-          <h3 className="text-black text-sm sm:text-base font-medium">
+          <h3 className="text-black text-[22px]">
             {product.title}
           </h3>
         </div>
@@ -98,13 +109,13 @@ function ProductCard({ product }) {
               boxShadow: "0 12px 30px rgba(244, 183, 64, 0.6)",
             }}
             whileTap={{ scale: 0.9 }}
-            className="absolute bottom-2 right-2 
-                       w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 
-                       rounded-full bg-[#f4b740] 
-                       flex items-center justify-center 
+            className="absolute -bottom-3 right-0
+                       2xl:w-[55px] 2xl:h-[55px] xl:w-[48px] xl:h-[48px] w-[43px] h-[43px]
+                       rounded-full bg-[#f4b740]
+                       flex items-center justify-center
                        shadow-lg transition-all duration-300"
           >
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <ArrowRight className="w-5 h-5 text-white" />
           </motion.div>
         </Link>
       </div>

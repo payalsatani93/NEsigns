@@ -123,7 +123,7 @@ export default function HeroSlider() {
     };
 
     return (
-        <section className="flex flex-col xl:flex-row xl:gap-20 gap-0 items-center xl:mt-15 mt-25 px-4">
+        <section className="flex flex-col xl:flex-row xl:gap-20 gap-0 items-center xl:mt-15 mt-25 px-4  md:overflow-visible overflow-hidden">
             {/* LEFT SLIDER */}
             <div className="xl:w-2/3 w-full relative">
                 <motion.div

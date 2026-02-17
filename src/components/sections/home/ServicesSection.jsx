@@ -93,7 +93,7 @@ const ServiceSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative px-6 py-16 flex flex-col items-center justify-center"
+      className="relative px-6 py-16 flex flex-col items-center justify-center md:overflow-visible overflow-hidden"
     >
       {/* Header (unchanged visually) */}
       <div className="relative z-10 container">

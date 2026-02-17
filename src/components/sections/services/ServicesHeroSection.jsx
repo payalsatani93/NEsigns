@@ -60,7 +60,7 @@ export default function ServicesHeroSection() {
 
   return (
     <motion.section
-      className="relative overflow-hidden py-5 md:py-24"
+      className="relative overflow-hidden py-5 lg:py-24"
       variants={container}
       initial="hidden"
       whileInView="show"
@@ -133,8 +133,9 @@ export default function ServicesHeroSection() {
                 whileHover={{ scale: 0.95 }}
                 className="hidden lg:block absolute 
                    rounded-3xl overflow-hidden shadow-xl
+                   2xl:w-75 2xl:h-75 2xl:-bottom-14 2xl:left-3
                    xl:w-60 xl:h-60 xl:-bottom-14 xl:left-3
-                   lg:w-43 lg:h-43 lg:bottom-0 lg:left-0"
+                   lg:w-38 lg:h-40 lg:bottom-0 lg:left-0"
               >
                 <motion.img
                   src="/images/about/Img_03.png"
@@ -149,11 +150,11 @@ export default function ServicesHeroSection() {
               {/* Get In Touch Button */}
               <motion.div
                 variants={fadeUp}
-                className="lg:absolute bottom-0 right-0 flex justify-center lg:justify-end mt-3"
+                className="lg:absolute bottom-0 2xl:right-12 right-0 flex justify-center lg:justify-end mt-3"
               >
                 <Link
                   to="/contactUs"
-                  className="group flex items-center gap-2 px-6 py-3 border border-white/20 rounded-full 
+                  className="group flex items-center gap-2 px-8 py-4 border border-white/20 rounded-full 
     hover:bg-white/5 transition-all duration-300"
                 >
                   <span className="text-[var(--color-gradient)] text-sm">

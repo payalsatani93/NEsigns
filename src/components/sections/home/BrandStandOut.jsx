@@ -25,7 +25,7 @@ export default function BrandStandOut() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-30"
+      className="relative py-30 md:overflow-visible overflow-hidden "
     >
        {/* Right Golden Patch */}
       <div
@@ -35,7 +35,6 @@ export default function BrandStandOut() {
              opacity-100
              rounded-full
              blur-[300px]
-             overflow-visible
              pointer-events-none"
       />
       {/* Left Quote Mark */}

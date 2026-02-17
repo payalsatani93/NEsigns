@@ -168,7 +168,7 @@ export default function PortfolioSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative md:py-10 sm:py-5 py-0 overflow-hidden"
+      className="relative md:py-10 sm:py-5 py-0  md:overflow-visible overflow-hidden"
     >
       {/* Header */}
       <motion.div

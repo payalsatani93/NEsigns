@@ -132,7 +132,7 @@ export default function TemporarySigns() {
                 transition-all duration-300 flex items-center gap-2
                 ${
                   activeTab === key
-                    ? "text-white shadow-[0_4px_4px_#F79C29]"
+                    ? "text-white shadow-[0_4px_4px_#F2AC42]"
                     : "text-neutral-300 shadow-[0_4px_4px_#fff]"
                 }`}
             >
@@ -180,7 +180,7 @@ export default function TemporarySigns() {
             >
               <Link
                 to="/contactUs"
-                className="px-4 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-sm text-black flex items-center gap-3"
+                className="px-4 py-4 rounded-full bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-sm text-black flex items-center gap-3"
               >
                 Contact Us
                 <ArrowRight className="w-5 h-5" />

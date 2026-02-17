@@ -24,6 +24,7 @@ import Printing from "./pages/printingPages/Printing";
 import ContactUs from "./pages/contactusPages/ContactUs";
 import Apparel from "./pages/apparelPages/Apparel";
 import DirectMailing from "./pages/directmailingPages/DirectMailing";
+import KnowYourSign from "./pages/knowyoursignPages/KnowYourSign";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,6 +86,7 @@ export default function App() {
             <Route path="/services/direct-mailing" element={<DirectMailing />} />
             <Route path="/apparel" element={<Apparel />} />
             <Route path="/our_work" element={<OurWork />} />
+            <Route path="/know_your_sign" element={<KnowYourSign />} />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/blogs" element={<Blog />} />
             <Route path="/categories/:slug" element={<SignageCategories />} />
