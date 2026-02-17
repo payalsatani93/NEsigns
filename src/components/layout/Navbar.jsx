@@ -125,11 +125,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 left-0 right-0 z-50 backdrop-blur-xs border-b border-white/20 h-25">
+      <nav className="sticky hidden xl:block top-0 left-0 right-0 z-50 backdrop-blur-xs border-b border-white/20 h-25">
         <div className="containers">
           <div className="flex xl:justify-between justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 hidden xl:block">
               <img
                 src="/images/Hero/Logo.png"
                 alt="Logo"
@@ -254,7 +254,7 @@ export default function Navbar() {
             </div>
 
             {/* Toggle button — visible on screens below xl (< 1280px) */}
-            <div className="xl:hidden">
+            <div className="hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white z-50 relative"
@@ -267,38 +267,58 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile / Tablet Navigation — shows below xl */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 xl:hidden pt-28 px-6 bg-black/50 backdrop-blur overflow-hidden"
-          onTouchMove={(e) => e.preventDefault()}
-        >
-          <div className="flex flex-col space-y-6 justify-self-center text-center">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white text-xl font-medium pb-2"
-              >
-                {item.name}
-              </Link>
-            ))}
+      <div className="sticky top-0 left-0 right-0 backdrop-blur-xl z-50 border-b border-white/20 h-25 xl:hidden">
+        <div className="flex justify-between bg-black/90 items-center h-20 px-6 xl:hidden">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <img
+              src="/images/Hero/Logo.png"
+              alt="Logo"
+              className="w-30 xl:w-40 item-center"
+            />
+          </div>
 
-            {/* Get In Touch Button — always visible in mobile menu */}
-            <div className="pt-4">
-              <Link
-                to="/contactUs"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center gap-3 px-6 py-3 border border-[var(--color-gradient)] rounded-full text-white 
-                  hover:bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] transition-all duration-300 w-50"
-              >
-                <span className="text-base">Get In Touch</span>
-                <ArrowRight size={18} />
-              </Link>
-            </div>
+          {/* Toggle button — visible on screens below xl (< 1280px) */}
+          <div className="xl:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white z-50 relative"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
-      )}
+
+        {isMenuOpen && (
+          <div className="pt-10 bg-black/80 backdrop-blur-xl h-full min-h-screen">
+            <div className="flex flex-col space-y-6 justify-self-center text-center">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-white text-xl font-medium pb-2"
+                >
+                  {item.name}
+                </Link>
+              ))}
+
+              {/* Get In Touch Button — always visible in mobile menu */}
+              <div className="pt-4">
+                <Link
+                  to="/contactUs"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-center gap-3 px-6 py-3 border border-[var(--color-gradient)] rounded-full text-white 
+                  hover:bg-[var(--color-gradient)] transition-all duration-300 w-50"
+                >
+                  <span className="text-base">Get In Touch</span>
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }

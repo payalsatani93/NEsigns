@@ -150,7 +150,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-3rem)] z-50"
+            className="sticky bottom-24 top-0 right-6 w-[380px] max-w-[calc(100vw-3rem)] z-50"
             style={{
               maxHeight: "calc(100vh - 150px)",
             }}
