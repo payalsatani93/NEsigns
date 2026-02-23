@@ -70,3 +70,12 @@ body {
   height: auto;        /* allow natural height */
 }
 
+
+/*
+for buttons text with gradient:
+bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)]
+
+text with gradient:
+text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)]
+*/
+

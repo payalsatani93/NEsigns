@@ -29,7 +29,7 @@ export default function BrandStandOut() {
     >
        {/* Right Golden Patch */}
       <div
-        className="absolute md:w-[500px] md:h-[700px] w-100 h-100
+        className="absolute md:w-[500px] md:h-[700px] w-50 h-50
              top-[0] right-[0]
              bg-[var(--color-patch)]
              opacity-100
@@ -38,7 +38,7 @@ export default function BrandStandOut() {
              pointer-events-none"
       />
       {/* Left Quote Mark */}
-      <div className="absolute top-3 left-12">
+      <div className="absolute top-3 left-12 ">
         <svg width="120" height="100" viewBox="0 0 120 100" fill="none">
           <path d="M0 80 L0 0 L50 0 L20 80 Z" fill="#8B7355" />
           <path d="M60 80 L60 0 L110 0 L80 80 Z" fill="#8B7355" opacity="0.9" />

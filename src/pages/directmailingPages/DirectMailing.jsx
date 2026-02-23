@@ -1,12 +1,16 @@
 import React from 'react'
 import DirectMailingSection from '../../components/sections/directmailing/DirectMailingSection'
-import DirectMailingServices from '../../components/sections/directmailing/DirectMailingServices'
+import ImportencofDirectMail from '../../components/sections/directmailing/ImportencofDirectMail'
+import DirectMailFAQ from '../../components/sections/directmailing/DirectMailFAQ'
+import WhyChoosesDM from '../../components/sections/directmailing/WhyChoosesDM'
 
 export default function DirectMailing() {
   return (
     <>
       <DirectMailingSection/>
-      <DirectMailingServices/>
+      <ImportencofDirectMail/>
+      <DirectMailFAQ/>
+      <WhyChoosesDM/>
     </>
   )
 }

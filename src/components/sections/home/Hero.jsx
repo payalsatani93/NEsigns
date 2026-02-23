@@ -110,7 +110,7 @@ export default function Hero() {
     >
       {/* Top Right Small Patch */}
       <div
-        className="absolute md:w-[400px] md:h-[400px] w-100 h-100
+        className="absolute md:w-[400px] md:h-[400px] w-50 h-50
              top-0 right-0
              bg-[var(--color-patch)]
              opacity-100

@@ -97,7 +97,7 @@ export default function AboutCompany() {
     <section ref={sectionRef} className="relative flex items-center  md:overflow-visible overflow-hidden">
       {/* Golden Background left side  Patch */}
       <div
-        className="absolute md:w-[508px] md:h-[508px] w-100 h-100
+        className="absolute md:w-[508px] md:h-[508px] w-10 h-10
              top-[0] left-[0]
              bg-[var(--color-patch)]
              opacity-100
@@ -131,7 +131,7 @@ export default function AboutCompany() {
         <motion.img
           src="/images/Wave.png"
           alt=""
-          className="wave-animation w-100 h-100"
+          className="wave-animation md:w-100 md:h-100 w-50 h-50"
           animate={{
             y: [0, -10, 0],
           }}
