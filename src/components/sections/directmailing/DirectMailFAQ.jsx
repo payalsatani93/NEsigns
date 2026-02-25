@@ -67,15 +67,16 @@ export default function DirectMailFAQ() {
     <div>
       
       {/* Header */}
-      <div className="container flex flex-col items-center mb-12 relative">
-        <div className="flex gap-2 mb-4 items-center">
-          <Gem className="w-4 h-4 text-amber-400" />
-          <span className="text-amber-400 text-xs font-semibold tracking-widest uppercase">
+      <div className="container flex flex-col justify-center items-center mb-12 relative">
+        <div className="flex gap-2 mb-4">
+          <Gem className="w-4 h-4 text-[var(--color-gradient)] " />
+          <span className="text-[var(--color-gradient)] text-xs font-semibold tracking-widest uppercase ">
             Common Questions
           </span>
         </div>
 
-        <h2 className="text-white font-extrabold text-3xl lg:text-5xl leading-tight max-w-3xl">
+        <h2 className="text-white font-extrabold text-3xl lg:text-5xl leading-tight
+         lg:max-w-3xl max:w-2xl sm:text-start text-center relative z-10">
           Everything You're Wondering
           <br />
           About this Services
@@ -83,7 +84,7 @@ export default function DirectMailFAQ() {
       </div>
 
       {/* FAQ Cards */}
-      <div className="container flex flex-col lg:flex-row gap-4 mb-14 relative">
+      <div className="container flex flex-col lg:flex-row gap-4 relative">
 
           {/* ── Decorative Concentric Circles top-right ── */}
       <div className="absolute -top-18 -right-10 w-40 h-40 hidden 2xl:block pointer-events-none">

@@ -53,16 +53,17 @@ export default function ImportencofDirectMail() {
 
   return (
     <section className="relative z-10 py-16">
-      {/* 🔥 EVERYTHING INSIDE CONTAINER */}
-      <div className="containers relative flex flex-col xl:flex-row items-center justify-between gap-12">
+      {/* EVERYTHING INSIDE CONTAINER */}
+      <div className="containers relative flex flex-col xl:flex-row items-center justify-center gap-30 lg:gap-40">
         {/* LEFT IMAGE COLLAGE */}
         <div
-          className={`relative w-full max-w-[606px] aspect-[606/622] flex-shrink-0 ${anim} ${
+          className={`relative w-full max-w-[590px] aspect-[590/622] flex-shrink-0 z-0 ${anim} ${
             visible ? show : hidden
           }`}
         >
           {/* Glow */}
-          <div className="absolute -top-10 -left-10 md:-top-14 md:-left-14 w-40 h-40 md:w-56 md:h-56 bg-[var(--color-gradient)]/20 rounded-full blur-2xl" />
+          <div className="absolute -top-10 -left-10 md:-top-14 md:-left-14 w-40 h-40 md:w-56 md:h-56 lg:w-[218px] lg:h-[218px] z-10
+           bg-[var(--color-gradient)]/30 rounded-full blur-2xl" />
 
           {/* Dashed Border */}
           <div className="absolute inset-0 border border-dashed border-[var(--color-primary)] rounded-3xl" />
@@ -72,7 +73,7 @@ export default function ImportencofDirectMail() {
             <img
               src="/images/directmailing/Img_01.png"
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-full lg:w-[556px] lg:h-[572px] object-cover"
             />
           </div>
 
@@ -80,13 +81,14 @@ export default function ImportencofDirectMail() {
           <img
             src="/images/directmailing/Img_02.png"
             alt=""
-            className="absolute -bottom-3 -right-3 md:-bottom-12 md:-right-12 w-23 h-23 md:w-48 md:h-48 rounded-full object-cover"
+            className="absolute -bottom-3 -right-3 md:-bottom-12 md:-right-12 md:block hidden
+            sm:w-[356px] sm:h-[356px] w-48 h-48 rounded-full object-cover"
           />
 
           {/* Accent dots (FIXED values) */}
-          <span className="absolute -top-2 -left-2 w-6 h-6 md:w-9 md:h-9 bg-[var(--color-primary)] rounded-full" />
-          <span className="absolute bottom-16 md:bottom-28 -right-3 w-6 h-6 md:w-9 md:h-9 bg-[var(--color-primary)] rounded-full" />
-          <span className="absolute -bottom-4 right-16 md:right-24 w-6 h-6 md:w-9 md:h-9 bg-[var(--color-primary)] rounded-full" />
+          <span className="absolute -top-2 -left-2 w-6 h-6 md:w-[35px] md:h-[35px] bg-[var(--color-primary)] rounded-full md:block hidden" />
+          <span className="absolute bottom-16 -right-3 md:bottom-58 md:-right-4 w-6 h-6 md:w-[35px] md:h-[35px] bg-[var(--color-primary)] rounded-full md:block hidden" />
+          <span className="absolute -bottom-4 right-16 md:right-56 w-6 h-6 md:w-[35px] md:h-[35px] bg-[var(--color-primary)] rounded-full md:block hidden" />
         </div>
 
         {/* RIGHT CONTENT */}

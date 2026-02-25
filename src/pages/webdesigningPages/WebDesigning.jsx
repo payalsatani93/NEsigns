@@ -1,14 +1,12 @@
 import React from 'react'
-import WebDesignHero from '../../components/sections/webdesigning/WebDesignHero'
-import InfiniteLogoSlider from '../../components/sections/webdesigning/InfiniteLogoSlider'
-import WebProjectSection from '../../components/sections/webdesigning/WebProjectSection'
+import WebHeroSection from '../../components/sections/webdesigning/WebHeroSection'
+import WebProjectsSection from '../../components/sections/webdesigning/WebProjectsSection'
 
 export default function WebDesigning() {
   return (
     <>
-      <WebDesignHero/>
-      <InfiniteLogoSlider/>
-      <WebProjectSection/>
+      {/* <WebHeroSection/> */}
+      <WebProjectsSection/>
     </>
   )
 }

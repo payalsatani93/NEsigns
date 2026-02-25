@@ -45,9 +45,17 @@ const cards = [
 
 export default function DirectMailingSection() {
   const [hoveredId, setHoveredId] = useState(null);
+
   return (
-    <section className="py-20 bg-[#0a0a0a]">
-      <div className="flex flex-wrap justify-center gap-6">
+    <section className="containers">
+      <div
+        className="flex flex-col items-center
+                   sm:grid sm:grid-cols-2
+                   lg:grid-cols-3
+                   xl:flex xl:flex-row xl:items-start
+                   justify-center
+                   gap-6"
+      >
         {cards.map((card) => {
           const isHovered = hoveredId === card.id;
 
@@ -56,11 +64,15 @@ export default function DirectMailingSection() {
               key={card.id}
               onMouseEnter={() => setHoveredId(card.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="relative w-[320px] h-[472px] bg-white rounded-3xl p-3 cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.77,0,0.18,1)]"
+              className="relative bg-white rounded-3xl p-3 cursor-pointer
+                         transition-all duration-500 ease-[cubic-bezier(0.77,0,0.18,1)]
+                         w-full max-w-[320px] sm:w-full sm:max-w-none
+                         xl:w-[320px] xl:h-[472px]"
+              style={{ height: "472px" }}
             >
               {/* IMAGE */}
               <div
-                className={`w-full overflow-hidden rounded-2xl transition-all duration-500`}
+                className="w-full overflow-hidden rounded-2xl transition-all duration-500"
                 style={{
                   height: isHovered ? "96px" : "344px",
                 }}
@@ -77,20 +89,21 @@ export default function DirectMailingSection() {
 
               {/* CONTENT */}
               <div
-                className="absolute left-3 right-3 bottom-3 rounded-2xl p-6 flex flex-col transition-all duration-500"
+                className="absolute left-3 right-3 bottom-3 rounded-2xl p-3 flex flex-col transition-all duration-500"
                 style={{
                   backgroundColor: card.color,
                   height: isHovered ? "344px" : "96px",
                 }}
               >
                 {/* TITLE */}
-                <h3 className="text-white font-bold text-lg leading-snug">
+                <h3 className="text-white font-bold sm:text-[18px] text-[16px] mt-2
+                 text-center items-center justify-center">
                   {card.title}
                 </h3>
 
                 {/* DESCRIPTION */}
                 <p
-                  className={`text-white/90 text-sm mt-4 transition-all duration-400 ${
+                  className={`text-white/90 text-sm mt-4 transition-all duration-[400ms] ${
                     isHovered
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-4 pointer-events-none"
@@ -101,7 +114,7 @@ export default function DirectMailingSection() {
 
                 {/* BUTTON */}
                 <button
-                  className={`mt-auto bg-black text-white text-sm font-semibold px-5 py-3 rounded-full flex items-center gap-2 transition-all duration-400 ${
+                  className={`mt-auto bg-black text-white text-sm font-semibold px-5 py-3 rounded-full flex items-center gap-2 transition-all duration-[400ms] ${
                     isHovered
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-4 pointer-events-none"
