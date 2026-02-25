@@ -5,7 +5,7 @@ import WebProjectsSection from '../../components/sections/webdesigning/WebProjec
 export default function WebDesigning() {
   return (
     <>
-      {/* <WebHeroSection/> */}
+      <WebHeroSection/>
       <WebProjectsSection/>
     </>
   )
