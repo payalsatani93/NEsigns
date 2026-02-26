@@ -1,165 +1,147 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import {Link} from "react-router-dom";
 
-const SignageMainSection = () => {
+const signageServices = [
+  {
+    title: "Exterior Sign",
+    slug: "exterior-sign",
+    image: "/images/signage/SignHero1.png",
+  },
+  {
+    title: "Interior Sign",
+    slug: "interior-sign",
+    image: "/images/signage/SignHero2.png",
+  },
+  {
+    title: "LED Digital Board",
+    slug: "led-digital-board",
+    image: "/images/signage/SignHero3.png",
+  },
+  {
+    title: "LED Neon Signs",
+    slug: "led-neon-sign",
+    image: "/images/signage/SignHero4.png",
+  },
+  {
+    title: "Window & Wall Graphics",
+    slug: "window-graphics",
+    image: "/images/signage/SignHero5.png",
+  },
+];
+
+export default function SignageMainSection() {
+  const [openCard, setOpenCard] = useState(0);
+
   return (
-    <section className="py-0 sm:py-10 md:py-20 px-4 sm:px-6 overflow-hidden ">
-      <div className="container flex gap-8 sm:gap-12 md:gap-14 lg:gap-16 xl:gap-18 items-center justify-center xl:flex-row flex-col">
-        {/* Background Patch */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
-               top-[-20px] right-[0]
-               bg-[var(--color-patch)]
-               opacity-100
-               rounded-full
-               blur-[250px]
-               overflow-visible
-               pointer-events-none"
-        />
+    <section className="relative overflow-hidden py-20">
+      {/* Background Patch */}
+      <div className="absolute top-[-20px] right-0 md:w-[400px] md:h-[600px] w-40 h-40 bg-[var(--color-patch)] rounded-full blur-[250px] pointer-events-none" />
 
-        {/* Left Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-4 sm:space-y-5 md:space-y-6 items-center"
-        >
-          {/* Line and Label */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center gap-3 sm:gap-4"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "3rem" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="sm:w-16 md:w-20 h-[1px] bg-yellow-600"
-            />
-            <span className="text-yellow-600 uppercase tracking-widest text-xs sm:text-sm">
+      {/* Outer grid — LEFT is fixed width, RIGHT fills remaining */}
+      <div className="containers grid grid-cols-2 gap-10 xl:gap-16 ">
+        {/* ── LEFT CONTENT — fixed column, never shifts ── */}
+        <div className="flex flex-col gap-5 md:gap-6">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-12 sm:w-16 md:w-20 h-px bg-[var(--color-gradient)]" />
+            <span className="text-[var(--color-gradient)] uppercase tracking-widest text-xs sm:text-sm">
               Signage
             </span>
-          </motion.div>
-          
-          {/* Heading */}
+          </div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[50px] font-semibold leading-tight"
           >
-            Get your Business Signage <br /> 
+            Get your Business Signage <br />
             <span className="text-gray-100">in Best Price.</span>
           </motion.h2>
 
-          {/* Description */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="space-y-3 sm:space-y-4 max-w-xl text-gray-400 leading-relaxed text-sm sm:text-base"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-col gap-3 sm:gap-4 text-gray-400 leading-[32px]
+             text-sm lg:text-[18px] max-w-2xl"
           >
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              Get high-quality business signage designed to attract attention and
-              build trust. We offer durable, visually striking signs at the best prices,
-              tailored to fit your brand and business needs.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-            >
+            <p>
+              Get high-quality business signage designed to attract attention
+              and build trust. We offer durable, visually striking signs at the
+              best prices, tailored to fit your brand and business needs.
+            </p>
+            <p>
               Make your business stand out with affordable, eye-catching
-              signage. From design to installation, we deliver quality signs that fit
-              your budget without compromising on style.
-            </motion.p>
+              signage. From design to installation, we deliver quality signs
+              that fit your budget without compromising on style.
+            </p>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Right Images Container */}
+        {/* ── RIGHT ACCORDION — overflows within its own column ── */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative flex justify-center lg:justify-start items-center h-[400px] sm:h-[500px] md:h-[600px]"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex gap-2.5 items-center overflow-hidden h-[520px]"
         >
-          
-          {/* Circular Badge - Top center of images */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ 
-              duration: 0.8, 
-              delay: 0.5,
-              type: "spring",
-              stiffness: 100
-            }}
-            className="absolute -top-6 sm:-top-8 md:-top-10 left-[38%] sm:left-[37%] md:left-3/8 z-30 rotate-slow"
-          >
-            <motion.img 
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              src="/images/Signage_Circuler_Ring.png"
-              alt="Design Studio Award" 
-              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32"
-            />
-          </motion.div>
+          {signageServices.map((service, index) => {
+            const isOpen = openCard === index;
 
-          {/* Left Image (alo) */}
-          <motion.div
-            initial={{ opacity: 0, x: -30, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
-            whileHover={{ scale: 1.05, x: -10 }}
-            className="relative z-10 w-[45%] sm:w-1/2 md:w-75 aspect-[2/3.5]
-            transform -translate-x-2 sm:-translate-x-4 lg:-translate-x-8 -translate-y-[10px] sm:-translate-y-[15px] md:translate-y-[-20px]"
-          >
-            <img 
-              src="/images/signage_02.png" 
-              alt="Backlit signage"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            return (
+              <div
+                key={service.slug}
+                onMouseEnter={() => setOpenCard(index)}
+                className="relative h-full rounded-[18px] overflow-hidden cursor-pointer shrink-0"
+                style={{
+                  width: isOpen ? "381px" : "100px",
+                  transition: "width 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+              >
+                {/* Background image */}
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{
+                    transition: "transform 0.6s ease",
+                    transform: isOpen ? "scale(1.05)" : "scale(1)",
+                  }}
+                />
 
-          {/* Right Image (Hello Gorgeous) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30, y: -20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            whileHover={{ scale: 1.05, x: 10 }}
-            className="relative z-20 w-[48%] sm:w-1/2 md:w-70 aspect-[3/5.5] shadow-2xl translate-y-[30px] sm:translate-y-[40px] md:translate-y-[50px]"
-          >
-            <img 
-              src="/images/Signage_01.png" 
-              alt="Neon signage"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          
-          {/* Subtle Background Glow */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-yellow-600/10 blur-[100px] rounded-full"
-          />
+                {/* Open content */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-7"
+                  style={{
+                    opacity: isOpen ? 1 : 0,
+                    transform: isOpen ? "translateY(0)" : "translateY(14px)",
+                    transition:
+                      "opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s",
+                    pointerEvents: isOpen ? "auto" : "none",
+                  }}
+                >
+                  {/* Title */}
+                  <h3 className="text-white text-xl font-bold mb-5 leading-snug whitespace-nowrap">
+                    {service.title}
+                  </h3>
+
+                  {/* Button */}
+                  <Link
+                    to ="/know_your_sign"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)]
+                    rounded-lg px-5 py-2.5 text-white text-xs font-bold tracking-widest uppercase hover:bg-white/20 hover:border-white/55 transition-colors"
+                  >
+                    Know Your Sign
+                    <ArrowRight className="arrow-bounce"/>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
         </motion.div>
-
       </div>
     </section>
   );
-};
-
-export default SignageMainSection;
+}

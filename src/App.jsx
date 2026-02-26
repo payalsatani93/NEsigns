@@ -12,7 +12,6 @@ import Services from "./pages/servicesPages/Services";
 import OurWork from "./pages/ourworkPages/OurWork";
 import Signages from "./pages/servicesPages/Signages";
 import Footer from "./components/layout/Footer";
-import SignageCategories from "./components/sections/signs/SignageCategories";
 import BuildingSignsCatagory from "./components/sections/signs/BuildingSignsCatagory";
 import FreestandingSignsCategory from "./components/sections/signs/FreestandingSignsCategory";
 import ScrollToTop from "./components/ScrollToTop";
@@ -25,6 +24,7 @@ import ContactUs from "./pages/contactusPages/ContactUs";
 import Apparel from "./pages/apparelPages/Apparel";
 import DirectMailing from "./pages/directmailingPages/DirectMailing";
 import KnowYourSign from "./pages/knowyoursignPages/KnowYourSign";
+import SignageCategoryRouter from "./components/sections/signs/SignageCategoryRouter";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,7 +89,7 @@ export default function App() {
             <Route path="/know_your_sign" element={<KnowYourSign />} />
             <Route path="/contactUs" element={<ContactUs />} />
             <Route path="/blogs" element={<Blog />} />
-            <Route path="/categories/:slug" element={<SignageCategories />} />
+            <Route path="/categories/:slug" element={<SignageCategoryRouter />} />
             <Route
               path="/categories/:slug/building-signs"
               element={<BuildingSignsCatagory />}

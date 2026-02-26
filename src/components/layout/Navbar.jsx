@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Menu,
   X,
-  ArrowRight,
   ChevronRight,
   LayoutGrid,
   Image,
@@ -98,7 +97,6 @@ export default function Navbar() {
     { name: "Apparel", href: "/apparel" },
     { name: "Promotional products", href: "/promotional_products" },
     { name: "Our work", href: "/our_work" },
-    { name: "Know your sign", href: "/know_your_sign" },
     { name: "Contact us", href: "/contactUs" },
   ];
 
@@ -231,16 +229,23 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Get In Touch Button — desktop only (xl+) */}
-            <div className="hidden xl:block">
-              <Link
-                to="/contactUs"
-                className="flex group items-center gap-3 px-6 py-2 border border-[var(--color-gradient)] rounded-full text-white 
-                  hover:bg-[var(--color-gradient)] transition-all duration-300"
+            {/* Search Button & Guarantee Logo — Desktop Only */}
+            <div className="hidden xl:flex items-center gap-8">
+              {/* Search Button */}
+              <button
+                className="flex items-center px-4 gap-4 py-2 text-[13px] border border-white/50 rounded-full
+                    hover:bg-[var(--color-gradient)]  transition-all duration-300"
               >
-                <span className="text-sm">Get In Touch</span>
-                <ArrowRight size={18} />
-              </Link>
+                Search Here
+                <Search size={18} className=" text-white/60" />
+              </button>
+
+              {/* Guarantee Logo */}
+              <img
+                src="/images/GuaranteeLogo.png"
+                alt="Guarantee Logo"
+                className="w-32 h-32 xl:w-[141px] xl:h-[101px] object-contain -mt-3"
+              />
             </div>
 
             {/* Toggle button — visible on screens below xl (< 1280px) */}
@@ -292,19 +297,6 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
-
-              {/* Get In Touch Button — always visible in mobile menu */}
-              <div className="pt-4">
-                <Link
-                  to="/contactUs"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center gap-3 px-6 py-3 border border-[var(--color-gradient)] rounded-full text-white 
-                  hover:bg-[var(--color-gradient)] transition-all duration-300 w-50"
-                >
-                  <span className="text-base">Get In Touch</span>
-                  <ArrowRight size={18} />
-                </Link>
-              </div>
             </div>
           </div>
         )}
