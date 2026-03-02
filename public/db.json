@@ -5,12 +5,37 @@
       "slug": "exterior-sign",
       "title": "Exterior Signage for Your Business",
       "description": "Durable, high-visibility signs designed to attract and guide customers.",
+      
       "subServices": [
-        { "id": 101, "title": "Building Signs", "desc": "Signs mounted directly on the buildings for branding and visibility", "image": "/images/serviceSignageCatagory/01.png", "size": "large" },
-        { "id": 102, "title": "Freestanding Signs", "desc": "Standalone signs designed for visibility form a distance or near entrances", "image": "/images/serviceSignageCatagory/02.png", "size": "wide" },
-        { "id": 103, "title": "Directional Signs", "desc": "Guiding customer, managing traffic Flow, and providing important information  ", "image": "/images/serviceSignageCatagory/03.png", "size": "small" },
-        { "id": 104, "title": "Temporary Signs", "desc": "Flexible signage for short-term use, promotions, and events", "image": "/images/serviceSignageCatagory/04.png", "size": "tall" },
-        { "id": 105, "ctaType": "knowMore"}
+        {
+          "id": 101,
+          "title": "Building Signs",
+          "desc": "Signs mounted directly on the buildings for branding and visibility",
+          "image": "/images/serviceSignageCatagory/Card01.png",
+          "size": "large"
+        },
+        {
+          "id": 102,
+          "title": "Freestanding Signs",
+          "desc": "Standalone signs designed for visibility form a distance or near entrances",
+          "image": "/images/serviceSignageCatagory/Card02.png",
+          "size": "wide"
+        },
+        {
+          "id": 103,
+          "title": "Directional Signs",
+          "desc": "Guiding customer, managing traffic Flow, and providing important information  ",
+          "image": "/images/serviceSignageCatagory/Card03.png",
+          "size": "small"
+        },
+        {
+          "id": 104,
+          "title": "Temporary Signs",
+          "desc": "Flexible signage for short-term use, promotions, and events",
+          "image": "/images/serviceSignageCatagory/Card04.png",
+          "size": "tall"
+        },
+        { "id": 105, "ctaType": "knowMore" }
       ]
     },
     {
@@ -19,11 +44,98 @@
       "title": "Interior Signage for Your Business",
       "description": "Clean, modern interior signage that enhances customer experience.",
       "subServices": [
-        { "id": 201, "title": "ADA Signage", "desc": "Professional signage for reception areas.", "image": "/images/serviceSignageCatagory/05.png", "size": "large" },
-        { "id": 202, "title": "Custom Graphics", "desc": "Custom Graphics for offices.", "image": "/images/serviceSignageCatagory/06.png", "size": "wide" },
-        { "id": 203, "title": "Corporate Branding Signs", "desc": "Brand-focused  graphics.", "image": "/images/serviceSignageCatagory/07.png", "size": "small" },
-        { "id": 204, "title": "Menu Board", "desc": "Clean labeling for Menu Board for Restaurant & Café .", "image": "/images/serviceSignageCatagory/08.png", "size": "tall" },
-        { "id": 205, "ctaType": "knowMore"}
+        {
+          "id": 201,
+          "title": "ADA Signage",
+          "desc": "Professional signage for reception areas.",
+          "image": "/images/serviceSignageCatagory/Card05.png",
+          "size": "large"
+        },
+        {
+          "id": 202,
+          "title": "Custom Graphics",
+          "desc": "Custom Graphics for offices.",
+          "image": "/images/serviceSignageCatagory/Card06.png",
+          "size": "wide"
+        },
+        {
+          "id": 203,
+          "title": "Corporate Branding Signs",
+          "desc": "Brand-focused  graphics.",
+          "image": "/images/serviceSignageCatagory/Card07.png",
+          "size": "small"
+        },
+        {
+          "id": 204,
+          "title": "Menu Board",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card08.png",
+          "size": "tall"
+        },
+        {
+          "id": 205,
+          "title": "Acrylic Signs",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card09.png",
+          "size": "tall"
+        },
+        {
+          "id": 206,
+          "title": "Dimensional Letters",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card10.png",
+          "size": "tall"
+        },
+        {
+          "id": 207,
+          "title": "Custom Canvas Prints",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card11.png",
+          "size": "tall"
+        },
+        {
+          "id": 208,
+          "title": "Banners and Posters",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card12.png",
+          "size": "tall"
+        },
+        {
+          "id": 209,
+          "title": "Step and Repeat Backdrop",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card13.png",
+          "size": "tall"
+        },
+        {
+          "id": 210,
+          "title": "Banner Stands",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card14.png",
+          "size": "tall"
+        },
+        {
+          "id": 211,
+          "title": "Wayfinding/Directional Signs",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card15.png",
+          "size": "tall"
+        },
+        {
+          "id": 212,
+          "title": "Trade Show Signage",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card16.png",
+          "size": "tall"
+        },
+        {
+          "id": 213,
+          "title": "Any custom Interior Signs",
+          "desc": "Clean labeling for Menu Board for Restaurant & Café .",
+          "image": "/images/serviceSignageCatagory/Card17.png",
+          "size": "tall"
+        },
+        { "id": 214, "ctaType": "knowMore" }
       ]
     },
     {

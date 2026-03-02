@@ -1,6 +1,12 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  AnimatePresence,
+} from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
 /* ================= OPTIMIZED PAGE ANIMATION VARIANTS ================= */
@@ -27,9 +33,9 @@ const fadeUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { 
+    transition: {
       duration: 0.5, // Reduced from 0.8
-      ease: [0.25, 0.46, 0.45, 0.94] 
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   },
 };
@@ -41,11 +47,11 @@ export default function SignageCategories() {
 
   useEffect(() => {
     // Reset scroll position smoothly
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    
+    window.scrollTo({ top: 0, behavior: "instant" });
+
     // Reset data when slug changes
     setData(null);
-    
+
     fetch("/db.json")
       .then((res) => res.json())
       .then((json) => {
@@ -73,7 +79,7 @@ export default function SignageCategories() {
         animate="visible"
         exit="exit"
         className="relative overflow-hidden"
-        style={{ willChange: 'opacity' }}
+        style={{ willChange: "opacity" }}
       >
         {/* OPTIMIZED: Reduced blur and added GPU acceleration */}
         <motion.div
@@ -86,12 +92,12 @@ export default function SignageCategories() {
                rounded-full
                blur-[150px]
                pointer-events-none"
-          style={{ 
-            transform: 'translateZ(0)',
-            willChange: 'opacity'
+          style={{
+            transform: "translateZ(0)",
+            willChange: "opacity",
           }}
         />
-        
+
         {/* Right Golden Patch - OPTIMIZED */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -103,12 +109,12 @@ export default function SignageCategories() {
                rounded-full
                blur-[150px]
                pointer-events-none"
-          style={{ 
-            transform: 'translateZ(0)',
-            willChange: 'opacity'
+          style={{
+            transform: "translateZ(0)",
+            willChange: "opacity",
           }}
         />
-        
+
         {/* OPTIMIZED CONTOUR GRAPHIC */}
         <motion.div
           className="absolute top-[70px] right-[50px]
@@ -118,11 +124,11 @@ export default function SignageCategories() {
                pointer-events-none"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 0.7, x: 0 }}
-          transition={{ 
+          transition={{
             duration: 0.8,
-            ease: "easeOut"
+            ease: "easeOut",
           }}
-          style={{ willChange: 'transform, opacity' }}
+          style={{ willChange: "transform, opacity" }}
         >
           <motion.img
             src="/images/Wave.png"
@@ -136,7 +142,7 @@ export default function SignageCategories() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            style={{ transform: 'translateZ(0)' }}
+            style={{ transform: "translateZ(0)" }}
           />
         </motion.div>
 
@@ -154,10 +160,7 @@ export default function SignageCategories() {
         </motion.header>
 
         {/* Hero Section - SIMPLIFIED */}
-        <motion.section
-          variants={fadeUp}
-          className="pb-12 relative z-20"
-        >
+        <motion.section variants={fadeUp} className="pb-12 relative z-20">
           <div className="container">
             <motion.div
               initial={{ opacity: 0 }}
@@ -220,44 +223,46 @@ export default function SignageCategories() {
 
 function ServiceCard({ item, showViewMore, slug, index }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { 
-    once: true, 
-    amount: 0.2, // Reduced from 0.3
-    margin: "0px 0px -100px 0px" // Trigger earlier
+  const [isHovered, setIsHovered] = useState(false);
+
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.2,
+    margin: "0px 0px -100px 0px",
   });
 
-  /* Optimized Parallax - only if in view */
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-20, 20]); // Reduced range
+  const y = useTransform(scrollYProgress, [0, 1], [-20, 20]);
 
-  // Memoize gradient to prevent recalculation
   const gradient = useMemo(() => {
     const gradients = [
       "linear-gradient(180deg, #852170 0%, rgba(137, 57, 96, 0.45) 100%)",
       "linear-gradient(180deg, #EDBC5A 0%, rgba(137, 57, 96, 0.45) 100%)",
       "linear-gradient(180deg, #27A3D5 0%, rgba(137, 57, 96, 0.45) 100%)",
       "linear-gradient(180deg, #ED90CF 0%, rgba(137, 57, 96, 0.45) 100%)",
+      "linear-gradient(180deg, #11998E 0%, rgba(56, 239, 125, 0.45) 100%)",
+      "linear-gradient(180deg, #1E3C72 0%, rgba(42, 82, 152, 0.45) 100%)",
+      "linear-gradient(180deg, #F12711 0%, rgba(245, 175, 25, 0.45) 100%)",
+      "linear-gradient(180deg, #000000 0%, rgba(212, 175, 55, 0.45) 100%)",
+      "linear-gradient(180deg, rgba(46, 49, 146, 0.78) 0%, rgba(27, 255, 255, 0.45) 100%)",
+      "linear-gradient(180deg, #A1C4FD 0%, rgba(194, 233, 251, 0.45) 100%)",
+      "linear-gradient(180deg, #E0C3FC 0%, rgba(142, 197, 252, 0.45) 100%)",
+      "linear-gradient(180deg, #DDEEEE 0%, rgba(113, 178, 128, 0.45) 100%)",
+      "linear-gradient(180deg, #1A2980 0%, rgba(109, 213, 250, 0.45) 100%)",
     ];
-    return gradients[index % 4];
+    return gradients[index % gradients.length];
   }, [index]);
 
   const getLink = useMemo(() => {
-    if (!item || !item.title) {
-      return `/categories/${slug}`;
-    }
-
-    if (item.title === "Freestanding Signs") {
+    if (!item || !item.title) return `/categories/${slug}`;
+    if (item.title === "Freestanding Signs")
       return `/categories/${slug}/freestanding-signs?tab=monument`;
-    }
-
-    if (item.title === "Directional Signs") {
+    if (item.title === "Directional Signs")
       return `/categories/${slug}/freestanding-signs?tab=wayfinding`;
-    }
-
     if (slug === "interior-sign") {
       const tabMap = {
         "ADA Signage": "ada",
@@ -265,34 +270,27 @@ function ServiceCard({ item, showViewMore, slug, index }) {
         "Corporate Branding Signs": "corporate",
         "Menu Board": "menu",
       };
-
-      return `/categories/${slug}/interior-sign?tab=${
-        tabMap[item.title] || "ada"
-      }`;
+      return `/categories/${slug}/interior-sign?tab=${tabMap[item.title] || "ada"}`;
     }
-
-    return `/categories/${slug}/${item.title
-      .toLowerCase()
-      .replace(/\s+/g, "-")}`;
+    return `/categories/${slug}/${item.title.toLowerCase().replace(/\s+/g, "-")}`;
   }, [item, slug]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }} // Reduced from 50
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{
-        duration: 0.5, // Reduced from 0.6
-        delay: index * 0.08, // Reduced from 0.1
+        duration: 0.5,
+        delay: index * 0.08,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className="group relative overflow-hidden border border-white/70"
-      style={{ 
-        willChange: isInView ? 'auto' : 'transform, opacity',
-        transform: 'translateZ(0)'
-      }}
+      style={{ transform: "translateZ(0)" }}
     >
-      {/* Background Image with Optimized Parallax */}
+      {/* Background Image */}
       {item?.image && (
         <motion.div
           style={{ y: isInView ? y : 0 }}
@@ -306,21 +304,16 @@ function ServiceCard({ item, showViewMore, slug, index }) {
             transition={{ duration: 0.6, delay: index * 0.08 + 0.1 }}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             loading="lazy"
-            style={{ transform: 'translateZ(0)' }}
           />
         </motion.div>
       )}
 
-      {/* Gradient Overlay - OPTIMIZED */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.4, delay: index * 0.08 + 0.2 }}
-        className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0"
-        style={{ 
+      {/* ✅ Gradient Overlay — driven purely by isHovered */}
+      <div
+        className="absolute inset-0 transition-opacity duration-500"
+        style={{
           background: gradient,
-          transform: 'translateZ(0)',
-          willChange: 'opacity'
+          opacity: isHovered ? 0 : 1,        // ← plain CSS, no Framer conflict
         }}
       />
 
@@ -336,32 +329,28 @@ function ServiceCard({ item, showViewMore, slug, index }) {
             {item?.title}
           </motion.h3>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.4, delay: index * 0.08 + 0.35 }}
-            className="text-sm text-white/90 leading-relaxed max-w-[280px] transition-opacity duration-300 group-hover:opacity-0"
+          {/* ✅ Description — driven purely by isHovered */}
+          <p
+            className="text-sm text-white/90 leading-relaxed max-w-[280px] transition-opacity duration-500"
+            style={{ opacity: isHovered ? 0 : 1 }}   // ← plain CSS, no Framer conflict
           >
             {item?.desc || ""}
-          </motion.p>
+          </p>
         </div>
 
-        {/* Bottom Glass Section - OPTIMIZED BACKDROP */}
+        {/* Bottom Glass Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: index * 0.08 + 0.4 }}
           className="w-full border-t border-white/10 bg-black/80"
           style={{
-            backdropFilter: 'blur(10px)', // Reduced from 20px
-            WebkitBackdropFilter: 'blur(10px)',
-            transform: 'translateZ(0)',
-            willChange: 'opacity, transform'
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
           }}
         >
           <div className="flex items-center justify-between p-3">
             <span className="text-xs text-white/80">View all Signs</span>
-
             {showViewMore && (
               <Link
                 to={getLink}
