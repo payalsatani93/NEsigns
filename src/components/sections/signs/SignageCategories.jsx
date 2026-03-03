@@ -147,17 +147,19 @@ export default function SignageCategories() {
         </motion.div>
 
         {/* Header - SIMPLIFIED */}
-        <motion.header
-          variants={fadeUp}
-          className="lg:px-20 py-8 relative z-20"
-        >
+
+        <div className="py-10 p-10">
           <Link
             to="/services/signage"
-            className="inline-flex items-center text-neutral-400 hover:text-white transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-all duration-300 group"
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft
+              size={20}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
+            <span className="text-sm tracking-wide">Back to Categories</span>
           </Link>
-        </motion.header>
+        </div>
 
         {/* Hero Section - SIMPLIFIED */}
         <motion.section variants={fadeUp} className="pb-12 relative z-20">
@@ -263,12 +265,22 @@ function ServiceCard({ item, showViewMore, slug, index }) {
       return `/categories/${slug}/freestanding-signs?tab=monument`;
     if (item.title === "Directional Signs")
       return `/categories/${slug}/freestanding-signs?tab=wayfinding`;
+    // ✅ INTERIOR SIGN ROUTING FIX
     if (slug === "interior-sign") {
       const tabMap = {
         "ADA Signage": "ada",
+        "Dimensional Letters": "dimensional",
+        "Directional Signs": "directional",
         "Custom Graphics": "graphics",
         "Corporate Branding Signs": "corporate",
         "Menu Board": "menu",
+        "Custom Canvas Prints": "canvas",
+        "Trade Show Signage": "tradeshow",
+        "Banners and Posters": "banners",
+        "Step and Repeat Backdrop": "backdrop",
+        "Banner Stands": "banner-stands",
+        "Acrylic Signs": "acrylic",
+        "Any custom Interior Signs": "custom",
       };
       return `/categories/${slug}/interior-sign?tab=${tabMap[item.title] || "ada"}`;
     }
@@ -313,7 +325,7 @@ function ServiceCard({ item, showViewMore, slug, index }) {
         className="absolute inset-0 transition-opacity duration-500"
         style={{
           background: gradient,
-          opacity: isHovered ? 0 : 1,        // ← plain CSS, no Framer conflict
+          opacity: isHovered ? 0 : 1, // ← plain CSS, no Framer conflict
         }}
       />
 
@@ -332,7 +344,7 @@ function ServiceCard({ item, showViewMore, slug, index }) {
           {/* ✅ Description — driven purely by isHovered */}
           <p
             className="text-sm text-white/90 leading-relaxed max-w-[280px] transition-opacity duration-500"
-            style={{ opacity: isHovered ? 0 : 1 }}   // ← plain CSS, no Framer conflict
+            style={{ opacity: isHovered ? 0 : 1 }} // ← plain CSS, no Framer conflict
           >
             {item?.desc || ""}
           </p>

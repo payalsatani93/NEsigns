@@ -33,7 +33,8 @@ const TABS = [
 const DATA = {
   monument: {
     title: "Monument Signage That Elevates Your Brand",
-    subtitle: "Custom-built monument signs designed for long-lasting visibility",
+    subtitle:
+      "Custom-built monument signs designed for long-lasting visibility",
     images: [
       "/images/FreestandingSignageCatagory/Monument_Sig_01.png",
       "/images/FreestandingSignageCatagory/Monument_Sig_02.png",
@@ -146,12 +147,12 @@ export default function FreestandingSignsCategory() {
 
   return (
     <div>
-       {/* Background Patch */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
+      {/* Background Patch */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
                      top-[-20px] right-[0]
                      bg-[var(--color-patch)]
                      opacity-100
@@ -159,21 +160,21 @@ export default function FreestandingSignsCategory() {
                      blur-[250px]
                      overflow-visible
                      pointer-events-none"
-              />
-      {/* Back */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="px-4 mt-10"
-      >
+      />
+
+      {/* ================= BACK BUTTON ================= */}
+      <div className="py-10 p-10">
         <Link
           to="/categories/exterior-sign"
-          className="inline-flex items-center text-neutral-400 hover:text-white transition"
+          className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-all duration-300 group"
         >
-          <ArrowLeft className="w-8 h-8" />
+          <ArrowLeft
+            size={20}
+            className="transition-transform duration-300 group-hover:-translate-x-1"
+          />
+          <span className="text-sm tracking-wide">Back to Categories</span>
         </Link>
-      </motion.header>
+      </div>
 
       <div className="container">
         {/* ================= TABS ================= */}
