@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   Square,
@@ -11,21 +11,13 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// --- NAVIGATION CONFIG ---
 const TABS = [
+  { label: "Channel Letters", key: "channel-letters", icon: Type },
   { label: "Box Signs", key: "box-signs", icon: Square },
   { label: "2D & 3D Signs", key: "2d-3d-signs", icon: Layers },
-  { label: "Channel Letters", key: "channel-letters", icon: Type },
   { label: "Canopy Signs", key: "canopy-signs", icon: Home },
   { label: "Blade Signs", key: "blade-signs", icon: Grid3x3 },
   { label: "Metal & Plastic", key: "metal-plastic", icon: Waves },
-];
-
-const CHANNEL_LETTER_TYPES = [
-  { label: "Front-Lit", key: "front-lit" },
-  { label: "Back-Lit", key: "back-lit" },
-  { label: "Combination-Lit", key: "combination-lit" },
-  { label: "Open-Face", key: "open-face" },
 ];
 
 const CHANNEL_DATA = {
@@ -138,142 +130,157 @@ const CHANNEL_DATA = {
 };
 
 export default function BuildingSignsCatagory() {
-  const [activeTab, setActiveTab] = useState("box-signs");
-  const [channelLetterType, setChannelLetterType] = useState("front-lit");
-  const [activeSection, setActiveSection] = useState("front-lit");
+  const [activeTab, setActiveTab] = useState("channel-letters");
 
-  const content =
-    activeTab === "channel-letters"
-      ? CHANNEL_DATA["channel-letters"][channelLetterType]
-      : CHANNEL_DATA[activeTab];
+  const content = activeTab !== "channel-letters" ? CHANNEL_DATA[activeTab] : null;
+
+  /* ── reusable nav button ── */
+  const NavItem = ({ tab, horizontal = false }) => {
+    const Icon = tab.icon;
+    const isActive = activeTab === tab.key;
+    return (
+      <button
+        onClick={() => setActiveTab(tab.key)}
+        className={`flex items-center gap-2 transition-all whitespace-nowrap
+          ${horizontal
+            ? `px-4 py-2.5 rounded-full text-sm font-medium border
+               ${isActive
+                 ? "bg-neutral-800 text-orange-400 border-white/10"
+                 : "text-neutral-400 border-transparent hover:text-neutral-200 hover:border-white/10"
+               }`
+            : `w-full px-4 py-3 rounded-xl sm:text-sm text-xs
+               ${isActive
+                 ? "bg-neutral-800 text-orange-400 border border-white/5"
+                 : "text-neutral-500 hover:text-neutral-200"
+               }`
+          }`}
+      >
+        <Icon size={15} />
+        {tab.label}
+      </button>
+    );
+  };
+
+  /* ── shared page content ── */
+  const MainContent = () => (
+    <>
+      {activeTab === "channel-letters" ? (
+        <>
+          <div className="flex justify-end mb-12">
+            <button className="px-5 py-4 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500
+              text-white text-[16px] hover:opacity-90 transition">
+              Contact Now →
+            </button>
+          </div>
+          <div className="space-y-32">
+            {Object.entries(CHANNEL_DATA["channel-letters"]).map(([key, section]) => {
+              const mainPart = section.title.replace(" Channel Letters", "");
+              return (
+                <div key={key} id={key} className="scroll-mt-28">
+                  <h2 className="sm:text-4xl text-xl font-semibold mb-4">
+                    <span className="text-yellow-400">{mainPart}</span>{" "}
+                    <span className="text-white">Channel Letters</span>
+                  </h2>
+                  <p className="text-neutral-400 mb-10">{section.subtitle}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {section.images.map((img, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4 }}
+                        className="rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 aspect-[3/4]"
+                      >
+                        <img
+                          src={img}
+                          alt=""
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        <>
+          <h1 className="text-4xl font-semibold mb-4">{content.title}</h1>
+          <p className="text-neutral-400 mb-10">{content.subtitle}</p>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            {content.images.map((img, i) => (
+              <div key={i} className="break-inside-avoid">
+                <img src={img} alt="" className="w-full rounded-xl mb-6" />
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </>
+  );
 
   return (
-    <div className="bg-[#0a0a0a] text-white">
-      <div className="flex max-w-[1600px] mx-auto min-h-screen">
-        {/* ================= SIDEBAR (UNCHANGED) ================= */}
-        <aside
-          className="hidden md:block w-64 shrink-0 sticky top-0 h-screen
-         border-r border-white/5 bg-neutral-900/20 backdrop-blur-xl p-6 overflow-y-auto"
-        >
+    <>
+      {/* =====================================================
+          DESKTOP lg+ — LEFT sidebar (original layout)
+      ===================================================== */}
+      <div className="hidden lg:flex min-h-screen">
+
+        <aside className="sm:w-64 w-52 shrink-0 sticky top-0 h-screen
+          border-r border-white/5 bg-neutral-900/20 backdrop-blur-xl p-6 overflow-y-auto">
+
           <Link
             to="/categories/exterior-sign"
-            className="flex items-center gap-2 text-neutral-400 hover:text-white mb-10"
+            className="flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors"
           >
             <ArrowLeft size={16} />
             <span className="text-xs uppercase tracking-widest">Go Back</span>
           </Link>
 
           <nav className="space-y-2">
-            {TABS.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.key;
-
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all
-                ${
-                  isActive
-                    ? "bg-neutral-800 text-orange-400 border border-white/5"
-                    : "text-neutral-500 hover:text-neutral-200"
-                }`}
-                >
-                  <Icon size={16} />
-                  {tab.label}
-                </button>
-              );
-            })}
+            {TABS.map((tab) => (
+              <NavItem key={tab.key} tab={tab} />
+            ))}
           </nav>
         </aside>
 
-        {/* ================= MAIN CONTENT ================= */}
-        <main className="flex-1 px-6 md:px-12 py-12">
-          {/* ===================================================== */}
-          {/* ========== ONLY CHANNEL LETTERS IS CUSTOM ========== */}
-          {/* ===================================================== */}
-
-          {activeTab === "channel-letters" ? (
-            <>
-             {/* ===== Top Right Contact Button ===== */}
-<div className="flex justify-end mb-12">
-  <button className="px-5 py-4 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500
-   text-white text-[16px] hover:opacity-90 transition">
-    Contact Now →
-  </button>
-</div>
-
-              {/* Scroll Sections */}
-              <div className="space-y-32">
-                {Object.entries(CHANNEL_DATA["channel-letters"]).map(
-                  ([key, section]) => {
-                    // Split title into first part and "Channel Letters"
-                    const mainPart = section.title.replace(
-                      " Channel Letters",
-                      "",
-                    );
-
-                    return (
-                      <div key={key} id={key} className="scroll-mt-28">
-                        {/* ===== Styled Title ===== */}
-                        <h2 className="text-4xl font-semibold mb-4">
-                          <span className="text-yellow-400">{mainPart}</span>{" "}
-                          <span className="text-white">Channel Letters</span>
-                        </h2>
-
-                        {/* Subtitle */}
-                        <p className="text-neutral-400 mb-10">
-                          {section.subtitle}
-                        </p>
-
-                        {/* Image Grid (UNCHANGED) */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                          {section.images.map((img, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, y: 30 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.4 }}
-                              className="rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 aspect-[3/4]"
-                            >
-                              <img
-                                src={img}
-                                alt=""
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                              />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  },
-                )}
-              </div>
-            </>
-          ) : (
-            /* ===================================================== */
-            /* ======= YOUR ORIGINAL IMAGE GRID (UNCHANGED) ======= */
-            /* ===================================================== */
-
-            <>
-              {/* KEEP YOUR EXISTING HEADING */}
-              <h1 className="text-4xl font-semibold mb-4">{content.title}</h1>
-
-              <p className="text-neutral-400 mb-10">{content.subtitle}</p>
-
-              {/* KEEP YOUR ORIGINAL MASONRY GRID EXACTLY HERE */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-                {content.images.map((img, i) => (
-                  <div key={i} className="break-inside-avoid">
-                    <img src={img} alt="" className="w-full rounded-xl mb-6" />
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+        <main className="flex-1 px-10 py-12">
+          <MainContent />
         </main>
       </div>
-    </div>
+
+      {/* =====================================================
+          TABLET & MOBILE < lg — sticky top horizontal nav
+      ===================================================== */}
+      <div className="flex lg:hidden flex-col min-h-screen">
+
+        {/* Sticky top nav */}
+        <div className="sticky top-25 z-30 border-b border-white/5
+           backdrop-blur-xl px-4 sm:px-6 py-3">
+
+          {/* Back link */}
+          <Link
+            to="/categories/exterior-sign"
+            className="flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors mb-3"
+          >
+            <ArrowLeft size={15} />
+            <span className="text-xs uppercase tracking-widest">Go Back</span>
+          </Link>
+
+          {/* All tabs — horizontally scrollable, scrollbar hidden */}
+          <nav className="flex gap-2 overflow-x-scroll no-scrollbar whitespace-nowrap scroll-smooth">
+            {TABS.map((tab) => (
+              <NavItem key={tab.key} tab={tab} horizontal />
+            ))}
+          </nav>
+        </div>
+
+        <main className="flex-1 px-4 sm:px-8 py-10">
+          <MainContent />
+        </main>
+      </div>
+    </>
   );
 }

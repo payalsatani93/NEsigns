@@ -74,181 +74,184 @@ const DATA = {
 
 export default function TemporarySigns() {
   const [activeTab, setActiveTab] = useState("sandwich_boards");
-
   const content = DATA[activeTab];
   const images = content.images;
 
-  return (
-    <section className="">
-       {/* Background Patch */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                className="absolute md:w-[400px] md:h-[600px] w-100 h-100 
-                     top-[-20px] right-[0]
-                     bg-[var(--color-patch)]
-                     opacity-100
-                     rounded-full
-                     blur-[250px]
-                     overflow-visible
-                     pointer-events-none"
-              />
-      {/* Back Arrow */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Link
-          to="/categories/exterior-sign"
-          className="inline-flex items-center text-neutral-400 hover:text-white transition px-4 mt-10"
-        >
-          <ArrowLeft size={26} />
-        </Link>
-      </motion.div>
+  /* ================= NAV BUTTON ================= */
+  const NavItem = ({ tab, horizontal = false }) => {
+    const Icon = tab.icon;
+    const isActive = activeTab === tab.key;
 
-      <div className="container">
-        {/* ================= TABS ================= */}
+    return (
+      <button
+        onClick={() => setActiveTab(tab.key)}
+        className={`flex items-center gap-2 transition-all whitespace-nowrap
+          ${
+            horizontal
+              ? `px-4 py-2.5 rounded-full text-sm font-medium border
+                 ${
+                   isActive
+                     ? "bg-neutral-800 text-orange-400 border-white/10"
+                     : "text-neutral-400 border-transparent hover:text-neutral-200 hover:border-white/10"
+                 }`
+              : `w-full px-4 py-3 rounded-xl sm:text-sm text-xs
+                 ${
+                   isActive
+                     ? "bg-neutral-800 text-orange-400 border border-white/5"
+                     : "text-neutral-500 hover:text-neutral-200"
+                 }`
+          }`}
+      >
+        <Icon size={15} />
+        {tab.label}
+      </button>
+    );
+  };
+
+  return (
+    <>
+      {/* =====================================================
+          DESKTOP (lg+) — ORIGINAL SIDEBAR
+      ===================================================== */}
+      <div className="hidden lg:flex min-h-screen">
+
+        <aside className="sm:w-64 w-44 shrink-0 sticky top-0 h-screen
+          border-r border-white/5 bg-neutral-900/20 backdrop-blur-xl sm:p-6 p-3 overflow-y-auto">
+
+          <Link
+            to="/categories/exterior-sign"
+            className="flex items-center gap-2 text-neutral-400 hover:text-white mb-10 transition-colors"
+          >
+            <ArrowLeft size={16} />
+            <span className="text-xs uppercase tracking-widest">Go Back</span>
+          </Link>
+
+          <nav className="space-y-2">
+            {TABS.map((tab) => (
+              <NavItem key={tab.key} tab={tab} />
+            ))}
+          </nav>
+        </aside>
+
+        <main className="flex-1 px-6 md:px-10 py-12 relative">
+          <MainContent content={content} images={images} activeTab={activeTab} />
+        </main>
+      </div>
+
+      {/* =====================================================
+          TABLET & MOBILE (< lg) — TOP HORIZONTAL NAV
+      ===================================================== */}
+      <div className="flex lg:hidden flex-col min-h-screen">
+
+        {/* Sticky Top Nav */}
+        <div className="sticky top-25 z-30
+          bg-neutral-900/80 backdrop-blur-xl px-4 sm:px-6 py-3 border-b border-white/5">
+
+          <Link
+            to="/categories/exterior-sign"
+            className="flex items-center gap-1.5 text-neutral-400 hover:text-white transition-colors mb-3"
+          >
+            <ArrowLeft size={15} />
+            <span className="text-xs uppercase tracking-widest">Go Back</span>
+          </Link>
+
+          <nav className="flex gap-2 overflow-x-scroll no-scrollbar whitespace-nowrap scroll-smooth">
+            {TABS.map((tab) => (
+              <NavItem key={tab.key} tab={tab} horizontal />
+            ))}
+          </nav>
+        </div>
+
+        <main className="flex-1 px-4 sm:px-8 py-10 relative">
+          <MainContent content={content} images={images} activeTab={activeTab} />
+        </main>
+      </div>
+    </>
+  );
+}
+
+/* ================= MAIN CONTENT ================= */
+function MainContent({ content, images, activeTab }) {
+  return (
+    <>
+      {/* Background Patch */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="absolute md:w-[400px] md:h-[600px] w-40 h-40
+          top-[-20px] right-0
+          bg-[var(--color-patch)]
+          rounded-full blur-[250px]
+          pointer-events-none"
+      />
+
+      {/* Heading + CTA */}
+      <AnimatePresence mode="wait">
         <motion.div
+          key={activeTab + "-header"}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-10"
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col lg:flex-row justify-between lg:items-end items-start 
+          gap-4 sm:py-10 py-5"
         >
-          {TABS.map(({ label, key, icon: Icon }, index) => (
-            <motion.button
-              key={key}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 * index }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setActiveTab(key);
-                window.history.replaceState(null, "", `?tab=${key}`);
-              }}
-              className={`group relative px-6 py-3 rounded-full text-sm font-medium
-                transition-all duration-300 flex items-center gap-2
-                ${
-                  activeTab === key
-                    ? "text-white shadow-[0_4px_4px_#F2AC42]"
-                    : "text-neutral-300 shadow-[0_4px_4px_#fff]"
-                }`}
-            >
-              <Icon size={16} />
-              <span>{label}</span>
-            </motion.button>
-          ))}
+          <div>
+            <h1 className="text-xl xl:text-4xl font-semibold mb-3">
+              {content.title}
+            </h1>
+            <p className="text-gray-400 lg:max-w-xl lg:text-md text-sm">
+              {content.subtitle}
+            </p>
+          </div>
+
+          <Link
+            to="/contactUs"
+            className="sm:px-5 px-3 sm:py-4 py-3 rounded-full
+              bg-gradient-to-r from-yellow-400 to-orange-500
+              text-white sm:text-[16px] text-xs flex items-center gap-3"
+          >
+            Contact Us
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </motion.div>
+      </AnimatePresence>
 
-        {/* ================= HERO ================= */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-col lg:flex-row justify-between lg:items-end items-center gap-4 sm:py-10 py-5"
-          >
-            <div>
-              <motion.h1
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-xl md:text-3xl xl:text-4xl font-semibold mb-3"
-              >
-                {content.title}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-gray-400 lg:max-w-xl lg:text-md text-sm"
-              >
-                {content.subtitle}
-              </motion.p>
-            </div>
+      {/* IMAGE GRID — ORIGINAL LAYOUT PRESERVED */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab + "-images"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch"
+        >
+          <div className="flex items-center">
+            <ImageCard src={images[0]} index={0} />
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                to="/contactUs"
-                className="px-4 py-4 rounded-full bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-sm text-black flex items-center gap-3"
-              >
-                Contact Us
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
+          <div className="flex flex-col gap-6">
+            <ImageCard src={images[1]} index={1} />
+            <ImageCard src={images[2]} index={2} />
+          </div>
 
-        {/* ================= IMAGE GRID ================= */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center"
-            >
-              <ImageCard src={images[0]} index={0} />
-            </motion.div>
+          <div className="flex items-start">
+            <ImageCard src={images[3]} index={3} tall />
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="flex flex-col gap-6"
-            >
-              <ImageCard src={images[1]} index={1} />
-              <ImageCard src={images[2]} index={2} />
-            </motion.div>
+          <div className="flex flex-col gap-6 justify-end">
+            <ImageCard src={images[4]} index={4} />
+            <ImageCard src={images[5]} index={5} />
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-start"
-            >
-              <ImageCard src={images[3]} index={3} tall />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
-              className="flex flex-col gap-6 justify-end"
-            >
-              <ImageCard src={images[4]} index={4} />
-              <ImageCard src={images[5]} index={5} />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex items-center"
-            >
-              <ImageCard src={images[6]} index={6} />
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </section>
+          <div className="flex items-center">
+            <ImageCard src={images[6]} index={6} />
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -258,11 +261,7 @@ function ImageCard({ src, tall = false, index = 0 }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.5,
-        delay: 0.05 * index,
-        ease: "easeOut",
-      }}
+      transition={{ duration: 0.5, delay: 0.05 * index }}
       whileHover={{ scale: 1.05, y: -5 }}
       className={`rounded-2xl overflow-hidden bg-neutral-900 w-full
         ${tall ? "h-[520px]" : "h-[250px]"}`}

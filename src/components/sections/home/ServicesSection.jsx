@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MousePointer2, Printer, Mail, Monitor, Search } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
@@ -90,11 +90,24 @@ const ServiceSection = () => {
   const navigate = useNavigate();
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
+  
+
   return (
     <section
       ref={sectionRef}
       className="relative px-6 py-16 flex flex-col items-center justify-center md:overflow-visible overflow-hidden"
     >
+      {/* left CONTOUR GRAPHIC */}
+      <motion.div
+        className="absolute left-0 top-0
+        opacity-100"
+      >
+        <motion.img
+          src="/images/home/Wave_2.png"
+          alt=""
+          className=" md:w-80 md:h-80 w-50 h-50"
+        />
+      </motion.div>
       {/* Header (unchanged visually) */}
       <div className="relative z-10 container">
         <motion.div
@@ -113,8 +126,11 @@ const ServiceSection = () => {
           <div className="flex items-center justify-center gap-6 md:ml-25 ml-0">
             <Link to="/services">
               <div className="md:w-20 w-15 md:h-20 h-15 bg-[var(--color-gradient)] rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300">
-                <img className="arrow-bounce"
-                src="/images/WhiteArrow.png" alt="Go to Services" />
+                <img
+                  className="arrow-bounce"
+                  src="/images/WhiteArrow.png"
+                  alt="Go to Services"
+                />
               </div>
             </Link>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white ">
@@ -243,6 +259,7 @@ const ServiceSection = () => {
             );
           })}
         </div>
+
         {/* Right Golden Patch */}
         <div
           className="absolute md:w-[381px] md:h-[381px] w-100 h-100
