@@ -6,28 +6,27 @@ import { Link } from "react-router-dom";
 const signageServices = [
   {
     title: "Exterior Sign",
-    slug: "exterior-sign",
     image: "/images/signage/SignHero1.png",
   },
   {
     title: "Interior Sign",
-    slug: "interior-sign",
     image: "/images/signage/SignHero2.png",
   },
   {
     title: "LED Digital Board",
-    slug: "led-digital-board",
     image: "/images/signage/SignHero3.png",
   },
   {
     title: "LED Neon Signs",
-    slug: "led-neon-sign",
     image: "/images/signage/SignHero4.png",
   },
   {
     title: "Window & Wall Graphics",
-    slug: "window-graphics",
     image: "/images/signage/SignHero5.png",
+  },
+  {
+    title: "vehicle Graphics",
+    image: "/images/signage/SignHero6.png",
   },
 ];
 
@@ -94,8 +93,7 @@ export default function SignageMainSection() {
               const isOpen = openCard === index;
 
               return (
-                <div
-                  key={service.slug}
+                <div                
                   onMouseEnter={() => setOpenCard(index)}
                   className="relative h-full rounded-[18px] overflow-hidden cursor-pointer shrink-0"
                   style={{
@@ -126,12 +124,6 @@ export default function SignageMainSection() {
                       transition: "opacity 0.3s ease",
                     }}
                   >
-                    <span
-                      className="text-white text-xs font-bold tracking-widest uppercase whitespace-nowrap"
-                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                    >
-                      {service.title}
-                    </span>
                   </div>
 
                   {/* Open content */}
@@ -166,7 +158,6 @@ export default function SignageMainSection() {
           <div className="hidden sm:flex lg:hidden gap-3 overflow-x-scroll no-scrollbar whitespace-nowrap scroll-smooth -mx-4 px-4">
             {signageServices.map((service, index) => (
               <div
-                key={service.slug}
                 className="relative shrink-0 w-52 h-72 rounded-2xl overflow-hidden snap-start cursor-pointer group"
                 onClick={() => setOpenCard(index)}
               >
@@ -195,7 +186,6 @@ export default function SignageMainSection() {
           <div className="flex sm:hidden flex-col gap-3">
             {signageServices.map((service) => (
               <div
-                key={service.slug}
                 className="relative w-full h-40 rounded-2xl overflow-hidden cursor-pointer group"
               >
                 <img

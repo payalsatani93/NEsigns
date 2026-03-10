@@ -62,6 +62,16 @@ const signageServices = [
     cardGradient: "linear-gradient(180deg, #F79C29 -6.31%, #EDBC5A 100%)",
     image: "/images/signage/Sign_05.png",
   },
+   {
+    title: "Vehicle Graphics  ",
+    slug: "vehicle-graphics  ",
+    description:
+      "High-Impact Vehicle Graphics That Promote Your Brand Everywhere.",
+    icon: LayoutGrid,
+    number: "06",
+    cardGradient: "linear-gradient(180deg, #05A5BF -6.31%, #CF414B 100%)",
+    image: "/images/signage/SignHero6.png",
+  },
 ];
 
 /* =======================

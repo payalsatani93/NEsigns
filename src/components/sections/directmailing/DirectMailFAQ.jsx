@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const tags = [
@@ -6,223 +7,348 @@ const tags = [
     color: "text-amber-500",
     border: "border-amber-400",
     style: { top: "85px", left: "25px" },
+    rotate: "-6deg",
   },
   {
     label: "Profitable",
     color: "text-neutral-800",
     border: "border-neutral-300",
     style: { top: "55px", right: "35px" },
+    rotate: "5deg",
   },
   {
     label: "Impactful ranking",
     color: "text-purple-500",
     border: "border-purple-300",
-    style: { top: "135px", left: "135px" },
+    style: { top: "145px", left: "120px" },
+    rotate: "-2deg",
   },
   {
     label: "Strategic",
     color: "text-neutral-800",
     border: "border-neutral-300",
     style: { bottom: "40px", left: "20px" },
+    rotate: "-8deg",
   },
   {
     label: "Personalized",
     color: "text-pink-500",
     border: "border-pink-400",
     style: { bottom: "40px", right: "30px" },
+    rotate: "4deg",
   },
 ];
 
+const services = [
+  {
+    label: "Email marketing",
+    subtitle: "Reach inboxes Drive real results",
+    icon: "✉️",
+    hoverBg: "#311B9280",
+    hoverText: "#fff",
+  },
+  {
+    label: "Cards and invitations",
+    subtitle: "Custom cards crafted to impress",
+    icon: "💌",
+    hoverBg: "#D81B60B2",
+    hoverText: "#fff",
+  },
+  {
+    label: "Postcards",
+    subtitle: "Small format Big impact",
+    icon: "🗂️",
+    hoverBg: "#0085FFB2",
+    hoverText: "#fff",
+  },
+  {
+    label: "ePublications",
+    subtitle: "Publish smarter Reach wider",
+    icon: "👥",
+    hoverBg: "#DA5251",
+    hoverText: "#fff",
+  },
+  {
+    label: "Promotional items",
+    subtitle: "Make your logo go further.",
+    icon: "🛍️",
+    hoverBg: "#D7A700",
+    hoverText: "#fff",
+  },
+  {
+    label: "Mobile marketing",
+    subtitle: "Marketing that moves.",
+    icon: "📱",
+    hoverBg: "#73AE43",
+    hoverText: "#fff",
+  },
+];
+
+function ServiceCard({ item, index }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      key={item.label}
+      className="flex items-center gap-2 rounded-xl p-4 w-[506px] h-[108px]
+       shadow-lg cursor-pointer transition-all duration-300"
+      style={{
+        backgroundColor: hovered ? item.hoverBg : "#ffffff",
+        color: hovered ? item.hoverText : "#000000",
+      }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.08 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span className=" w-[48px] h-[48px] flex items-center justify-center">
+        {item.icon}
+      </span>
+      <div>
+        <div className="font-semibold text-sm lg:text-[18px]">{item.label}</div>
+        <div className="text-xs lg:text-[18px] mt-0.5 opacity-60">{item.subtitle}</div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function DirectMailFAQ() {
   return (
-    <section className="relative bg-black text-white py-24">
-      <div className="container mx-auto px-6 relative">
+    <section className="relative bg-black text-white py-12 lg:py-24">
+      <div className="container mx-auto px-4 sm:px-6 relative">
 
-        {/* Vertical Line */}
+        {/* Vertical Line — desktop only */}
         <div className="hidden lg:block absolute left-1/2 top-0 -translate-x-1/2 h-full">
           <motion.div
-            className="w-[2px] h-full bg-gradient-to-b from-yellow-400 via-yellow-400/60 to-transparent"
+            className="w-[5px] h-full"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(247, 156, 41, 0) 0%, #F79C29 53%, rgba(247, 156, 41, 0) 100%)",
+            }}
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 1.2 }}
           />
         </div>
 
-        {/* ===== ROWS ===== */}
-        <div className="space-y-32">
+        <div className="space-y-16 lg:space-y-32">
+          <div className="absolute z-0 -top-8 -left-12">
+            <img src="/images/directmailing/YellowRing.png" alt="" />
+          </div>
 
-  {/* ================= ROW 1 ================= */}
-  <div className="grid lg:grid-cols-[1fr_120px_1fr] gap-10 items-center">
+          {/* ===== ROW 1 ===== */}
+          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+            {/* Image card — shown second on mobile, first on desktop */}
+            <div className="order-2 lg:order-1 bg-white rounded-2xl p-4 sm:p-6 lg:p-10 shadow-xl">
+              <img
+                src="/images/directmailing/Img_03.png"
+                className="rounded-xl w-full h-48 sm:h-64 lg:h-[369px] object-cover"
+              />
+            </div>
 
-    {/* LEFT IMAGE */}
-    <div className="bg-white rounded-2xl p-6 shadow-xl">
-      <img
-        src="/images/directmailing/WhyDM_1.png"
-        className="rounded-xl w-full h-[350px] object-cover"
-      />
-    </div>
+            {/* Center dot + arrow — desktop only */}
+            <div className="hidden lg:flex lg:order-2 justify-center relative">
+              <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
+              <img
+                src="/images/directmailing/Dash_Arrow_Left.png"
+                className="w-24 absolute left-0 -translate-y-5/6"
+              />
+            </div>
 
-    {/* CENTER */}
-    <div className="hidden lg:flex justify-center relative">
-      <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
-      <img
-        src="/images/directmailing/Dash_Arrow_Right.png"
-        className="absolute right-0 w-24"
-      />
-    </div>
+            {/* Text content — shown first on mobile, third on desktop */}
+            <div className="order-1 lg:order-3 flex flex-col justify-center gap-[9px]">
+              <h6 className="text-[14px] uppercase tracking-widest">
+                What is direct mailing
+              </h6>
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] leading-tight mb-4 lg:mb-6">
+                What is direct marketing?
+              </h2>
+              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] leading-relaxed">
+                Direct marketing delivers measurable results by targeting
+                specific customer segments. Each campaign features actionable
+                messaging and performance insights to help you track engagement
+                and return on investment.
+              </p>
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit mt-2">
+                Contact Now →
+              </button>
+            </div>
+          </div>
 
-    {/* RIGHT TEXT */}
-    <div className="flex flex-col justify-center">
-      <h2 className="text-4xl xl:text-[60px] mb-6">
-        What is direct marketing?
-      </h2>
-      <p className="text-neutral-400 text-lg mb-6 leading-relaxed">
-        Direct marketing delivers measurable results by targeting specific
-        customer segments.
-      </p>
-      <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-7 py-3 rounded-full w-fit">
-        Contact Now →
-      </button>
-    </div>
-  </div>
+          {/* ===== ROW 2 ===== */}
+          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+            {/* Text content */}
+            <div className="flex flex-col justify-center gap-[9px]">
+              <p className="text-[14px] uppercase tracking-widest">
+                Direct Mailing
+              </p>
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6 leading-tight">
+                Why choose direct marketing?
+              </h2>
+              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] leading-relaxed">
+                Direct marketing targets specific audiences with personalized
+                messaging, delivers measurable results, increases engagement,
+                improves response rates, and maximizes return on investment.
+              </p>
+            </div>
 
-  {/* ================= ROW 2 ================= */}
-  <div className="grid lg:grid-cols-[1fr_120px_1fr] gap-10 items-center">
+            {/* Center dot + arrow — desktop only */}
+            <div className="hidden lg:flex justify-center relative">
+              <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
+              <img
+                className="absolute right-5 top-1/2 -translate-y-5/6 w-20 h-20"
+                src="/images/directmailing/Dash_Arrow_Right.png"
+                alt=""
+              />
+            </div>
 
-    {/* LEFT TEXT */}
-    <div className="flex flex-col justify-center">
-      <h2 className="text-4xl xl:text-[60px] mb-6">
-        Why choose direct marketing?
-      </h2>
-      <p className="text-neutral-400 text-lg leading-relaxed">
-        Direct marketing targets specific audiences with personalized messaging
-        and measurable ROI.
-      </p>
-    </div>
+            {/* Tags card */}
+            <div className="bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-xl text-black w-full lg:max-w-md">
+              <h3 className="font-bold text-xl sm:text-2xl mb-2">Targeted Mail Pros</h3>
+              <p className="text-neutral-500 text-sm mb-5">
+                Maximize Engagement with Personalized Direct Mail Solutions
+              </p>
+              <hr className="border-neutral-200 mb-6" />
+              <div className="relative h-56">
+                {tags.map(({ label, color, border, style, rotate }, i) => (
+                  <motion.span
+                    key={label}
+                    className={`absolute px-4 py-1.5 text-xs rounded-lg font-semibold bg-[#D9D9D933] border ${color} ${border}`}
+                    style={{ ...style, rotate }}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + i * 0.12 }}
+                  >
+                    {label}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </div>
 
-    {/* CENTER */}
-    <div className="hidden lg:flex justify-center relative">
-      <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
-      <img
-        src="/images/directmailing/Dash_Arrow_Right.png"
-        className="absolute left-0 w-24 rotate-180"
-      />
-    </div>
+          {/* ===== ROW 3 ===== */}
+          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-[20px] items-center ">
+            {/* Service cards — shown second on mobile, first on desktop */}
+            <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1
+             gap-3 lg:gap-0 lg:space-y-8 w-[506px] h-[748px]">
+              {services.map((item, i) => (
+                <ServiceCard key={item.label} item={item} index={i} />
+              ))}
+            </div>
 
-    {/* RIGHT CARD */}
-    <div className="bg-white rounded-2xl p-8 shadow-xl text-black max-w-md">
-      <h3 className="font-bold text-xl mb-6">
-        Targeted Mail Pros
-      </h3>
+            {/* Center dot + arrow — desktop only */}
+            <div className="hidden lg:flex lg:order-2 justify-center relative">
+              <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
+              <img
+                src="/images/directmailing/Dash_Arrow_Left.png"
+                className="w-24 absolute left-0 -translate-y-5/6"
+              />
+            </div>
 
-      <div className="relative h-56">
-        {tags.map(({ label, color, border, style }, i) => (
-          <motion.span
-            key={label}
-            className={`absolute px-4 py-1.5 text-xs rounded-lg font-semibold bg-[#D9D9D933] ${color} ${border}`}
-            style={style}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1 }}
-          >
-            {label}
-          </motion.span>
-        ))}
-      </div>
-    </div>
-  </div>
+            {/* Text content — shown first on mobile, third on desktop */}
+            <div className="order-1 lg:order-3 flex flex-col justify-center relative">
+              <svg
+                className="absolute -top-8 right-8 w-16 h-16 opacity-60"
+                viewBox="0 0 60 40"
+                fill="none"
+              >
+                <path
+                  d="M5 20 Q15 5 25 20 Q35 35 45 20 Q55 5 58 15"
+                  stroke="#6366f1"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+              </svg>
+              <svg
+                className="absolute bottom-0 right-0 w-14 h-14 opacity-50"
+                viewBox="0 0 50 50"
+                fill="none"
+              >
+                <path
+                  d="M5 35 L10 10 L35 5 L30 35 Z"
+                  stroke="#6366f1"
+                  strokeWidth="2"
+                  fill="none"
+                />
+              </svg>
 
-  {/* ================= ROW 3 (THE MISSING ONE) ================= */}
-  <div className="grid lg:grid-cols-[1fr_120px_1fr] gap-10 items-center">
+              <div className="flex flex-col justify-center gap-[9px]">
+                <p className="text-[14px] uppercase tracking-widest">
+                  Work With Us
+                </p>
+                <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6 leading-tight">
+                  How can NE signs help me build a campaign?
+                </h2>
+                <ul className="space-y-3 text-neutral-400 mb-6">
+                  {[
+                    "Identify your ideal target market",
+                    "Build and manage a strong customer database",
+                    "Create the right message for your audience",
+                    "Print and distribute marketing materials",
+                    "Track and measure campaign performance",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-3 text-sm sm:text-base lg:text-[18px]">
+                      <span className="text-neutral-500 text-[18px]">✓</span>{" "}
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit">
+                Contact Now →
+              </button>
+            </div>
+          </div>
 
-    {/* LEFT SERVICES LIST */}
-    <div className="space-y-4">
-      {[
-        "Email marketing",
-        "Cards and invitations",
-        "Postcards",
-        "ePublications",
-        "Promotional items",
-        "Mobile marketing",
-      ].map((item) => (
-        <div
-          key={item}
-          className="bg-white text-black rounded-xl p-4 shadow-lg"
-        >
-          {item}
+          {/* ===== ROW 4 ===== */}
+          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+            {/* Text content */}
+            <div className="flex flex-col justify-center gap-[9px]">
+              <p className="text-[14px] uppercase tracking-widest">
+                Work With Us
+              </p>
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6">
+                Grow Your Business
+              </h2>
+              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] mb-6">
+                Leverage targeted marketing strategies to reach the right
+                audience, increase engagement, and drive measurable growth for
+                your business
+              </p>
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit">
+                Contact Now →
+              </button>
+            </div>
+
+            {/* Center dot + arrow — desktop only */}
+            <div className="hidden lg:flex justify-center relative">
+              <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
+              <img
+                className="absolute right-5 top-1/2 -translate-y-5/6 w-20 h-20"
+                src="/images/directmailing/Dash_Arrow_Right.png"
+                alt=""
+              />
+            </div>
+
+            {/* Dual image card */}
+            <div className="bg-white rounded-2xl p-4 lg:p-6 shadow-xl space-y-4 lg:space-y-6">
+              {/* On mobile: side-by-side; on desktop: stacked */}
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-4 lg:gap-6">
+                <img
+                  src="/images/directmailing/WhyDM_2.png"
+                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-40 sm:h-48 lg:h-[280px] object-cover"
+                />
+                <img
+                  src="/images/directmailing/WhyDM_1.png"
+                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-40 sm:h-48 lg:h-[280px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
-      ))}
-    </div>
-
-    {/* CENTER */}
-    <div className="hidden lg:flex justify-center relative">
-      <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
-      <img
-        src="/images/directmailing/Dash_Arrow_Right.png"
-        className="absolute right-0 w-24"
-      />
-    </div>
-
-    {/* RIGHT TEXT */}
-    <div className="flex flex-col justify-center">
-      <h2 className="text-4xl xl:text-[60px] mb-6">
-        How can NE signs help me build a campaign?
-      </h2>
-
-      <ul className="space-y-3 text-neutral-400 mb-6">
-        <li>✔ Identify your ideal target market</li>
-        <li>✔ Build and manage a strong customer database</li>
-        <li>✔ Create the right message for your audience</li>
-        <li>✔ Print and distribute marketing materials</li>
-        <li>✔ Track and measure campaign performance</li>
-      </ul>
-
-      <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-7 py-3 rounded-full w-fit">
-        Contact Now →
-      </button>
-    </div>
-  </div>
-
-  {/* ================= ROW 4 ================= */}
-  <div className="grid lg:grid-cols-[1fr_120px_1fr] gap-10 items-center">
-
-    {/* LEFT TEXT */}
-    <div className="flex flex-col justify-center">
-      <h2 className="text-4xl xl:text-[60px] mb-6">
-        Grow Your Business
-      </h2>
-      <p className="text-neutral-400 text-lg mb-6">
-        Leverage targeted marketing strategies to reach the right audience and
-        drive measurable growth.
-      </p>
-      <button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-7 py-3 rounded-full w-fit">
-        Contact Now →
-      </button>
-    </div>
-
-    {/* CENTER */}
-    <div className="hidden lg:flex justify-center relative">
-      <div className="w-4 h-4 bg-amber-400 rounded-full z-20" />
-      <img
-        src="/images/directmailing/Dash_Arrow_Right.png"
-        className="absolute left-0 w-24 rotate-180"
-      />
-    </div>
-
-    {/* RIGHT STACKED IMAGE CARD */}
-    <div className="bg-white rounded-2xl p-6 shadow-xl space-y-6">
-      <img
-        src="/images/directmailing/WhyDM_2.png"
-        className="rounded-xl w-full h-[280px] object-cover"
-      />
-      <img
-        src="/images/directmailing/WhyDM_1.png"
-        className="rounded-xl w-full h-[280px] object-cover"
-      />
-    </div>
-  </div>
-
-</div>
       </div>
     </section>
   );

@@ -145,12 +145,12 @@ export default function BuildingSignsCatagory() {
           ${horizontal
             ? `px-4 py-2.5 rounded-full text-sm font-medium border
                ${isActive
-                 ? "bg-neutral-800 text-orange-400 border-white/10"
+                 ? "bg-neutral-800 text-[var(--color-gradient)] border-white/10"
                  : "text-neutral-400 border-transparent hover:text-neutral-200 hover:border-white/10"
                }`
             : `w-full px-4 py-3 rounded-xl sm:text-sm text-xs
                ${isActive
-                 ? "bg-neutral-800 text-orange-400 border border-white/5"
+                 ? "bg-neutral-800 text-[var(--color-gradient)] border border-white/5"
                  : "text-neutral-500 hover:text-neutral-200"
                }`
           }`}
@@ -167,8 +167,7 @@ export default function BuildingSignsCatagory() {
       {activeTab === "channel-letters" ? (
         <>
           <div className="flex justify-end mb-12">
-            <button className="px-5 py-4 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500
-              text-white text-[16px] hover:opacity-90 transition">
+            <button className="px-5 py-4 rounded-full bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-[16px] hover:opacity-90 transition">
               Contact Now →
             </button>
           </div>
@@ -178,7 +177,7 @@ export default function BuildingSignsCatagory() {
               return (
                 <div key={key} id={key} className="scroll-mt-28">
                   <h2 className="sm:text-4xl text-xl font-semibold mb-4">
-                    <span className="text-yellow-400">{mainPart}</span>{" "}
+                    <span className="text-[var(--color-gradient)]">{mainPart}</span>{" "}
                     <span className="text-white">Channel Letters</span>
                   </h2>
                   <p className="text-neutral-400 mb-10">{section.subtitle}</p>
@@ -251,8 +250,8 @@ export default function BuildingSignsCatagory() {
         </main>
       </div>
 
-      {/* =====================================================
-          TABLET & MOBILE < lg — sticky top horizontal nav
+     {/* =====================================================
+          TABLET & MOBILE < lg — sticky top dropdown nav
       ===================================================== */}
       <div className="flex lg:hidden flex-col min-h-screen">
 
@@ -269,12 +268,68 @@ export default function BuildingSignsCatagory() {
             <span className="text-xs uppercase tracking-widest">Go Back</span>
           </Link>
 
-          {/* All tabs — horizontally scrollable, scrollbar hidden */}
-          <nav className="flex gap-2 overflow-x-scroll no-scrollbar whitespace-nowrap scroll-smooth">
-            {TABS.map((tab) => (
-              <NavItem key={tab.key} tab={tab} horizontal />
-            ))}
-          </nav>
+          {/* Dropdown */}
+          <div className="relative">
+            {(() => {
+              const [open, setOpen] = useState(false);
+              const activeTabData = TABS.find((t) => t.key === activeTab);
+              const ActiveIcon = activeTabData?.icon;
+              return (
+                <>
+                  <button
+                    onClick={() => setOpen((p) => !p)}
+                    className="w-full flex items-center justify-between gap-2
+                      px-4 py-2.5 rounded-xl border border-white/10
+                      bg-neutral-800 text-[var(--color-gradient)] text-sm font-medium"
+                  >
+                    <span className="flex items-center gap-2">
+                      {ActiveIcon && <ActiveIcon size={15} />}
+                      {activeTabData?.label}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: open ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-neutral-400"
+                    >
+                      ▾
+                    </motion.span>
+                  </button>
+
+                  {open && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-2 w-full z-50
+                        bg-neutral-900 border border-white/10 rounded-xl
+                        overflow-hidden shadow-xl shadow-black/40"
+                    >
+                      {TABS.map((tab) => {
+                        const Icon = tab.icon;
+                        const isActive = activeTab === tab.key;
+                        return (
+                          <button
+                            key={tab.key}
+                            onClick={() => { setActiveTab(tab.key); setOpen(false); }}
+                            className={`w-full flex items-center gap-2.5 px-4 py-3
+                              text-sm transition-colors text-left
+                              ${isActive
+                                ? "bg-neutral-800 text-[var(--color-gradient)]"
+                                : "text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200"
+                              }`}
+                          >
+                            <Icon size={14} />
+                            {tab.label}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </>
+              );
+            })()}
+          </div>
         </div>
 
         <main className="flex-1 px-4 sm:px-8 py-10">
