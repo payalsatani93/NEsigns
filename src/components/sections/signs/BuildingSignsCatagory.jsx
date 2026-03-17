@@ -171,7 +171,7 @@ export default function BuildingSignsCatagory() {
               Contact Now →
             </button>
           </div>
-          <div className="space-y-32">
+          <div className="space-y-10">
             {Object.entries(CHANNEL_DATA["channel-letters"]).map(([key, section]) => {
               const mainPart = section.title.replace(" Channel Letters", "");
               return (

@@ -252,7 +252,7 @@ export default function BlogSection() {
                       className="absolute left-0 right-0"
                       variants={excerptVariants}
                     >
-                      <p className="text-gray-400 text-sm mt-5 p-3">
+                      <p className="text-gray-400 text-[14px] p-3">
                         {post.excerpt}
                       </p>
                     </motion.div>
@@ -262,15 +262,17 @@ export default function BlogSection() {
                   <motion.img
                     src={post.image}
                     alt={post.title}
-                    className="absolute inset-0 w-full h-full object-cover z-10 rounded-br-lg rounded-bl-lg"
+                    className="absolute inset-0 w-full h-full object-cover z-10 
+                    rounded-br-lg rounded-bl-lg"
                     variants={imageVariants}
                   />
 
                  {/* Arrow Button */}
-<div className="flex justify-end relative">
+<div className="flex justify-end relative -top-10 px-2">
   <Link to="/blogs" className="absolute z-50">
     <motion.div
-      className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center cursor-pointer"
+      className="w-12 h-12 bg-[var(--color-gradient)] rounded-full flex items-center
+       justify-center cursor-pointer"
       variants={arrowButtonVariants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}

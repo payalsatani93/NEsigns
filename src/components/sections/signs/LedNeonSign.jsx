@@ -70,7 +70,7 @@ const glassStyle = {
   backdropFilter:"blur(18px)",
   WebkitBackdropFilter:"blur(18px)",
   borderRadius:20,
-  padding:18,
+  padding:12,
 };
 
 /* ══════════════════════════════════════════════════════════════ */
@@ -115,9 +115,6 @@ export default function LedNeonSign() {
         .board-row     { transition: border-color 0.2s, background 0.2s; }
 
         /* thin scrollbar */
-        .panel-wrap::-webkit-scrollbar { width: 3px; }
-        .panel-wrap::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
-
         .glass-panel   { animation: fadeIn 0.2s ease; }
         .color-section { animation: fadeIn 0.25s ease; }
         @keyframes fadeIn { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:none; } }
@@ -192,7 +189,7 @@ export default function LedNeonSign() {
 
           {/* ── Floating panels ── */}
           <div className="absolute top-4 right-4 z-20"
-            style={{ width:"334px", maxHeight:"calc(100% - 32px)", display:"flex", flexDirection:"column", overflow:"hidden" }}>
+            style={{ width:"340px", maxHeight:"calc(100% - 32px)", display:"flex", flexDirection:"column", overflow:"hidden" }}>
 
             {/* scrollable inner — overscrollBehavior contains scroll within this element */}
             <div className="panel-wrap flex flex-col gap-3" style={{ overflowY:"auto", overscrollBehavior:"contain", paddingRight:2 }}>
@@ -202,7 +199,7 @@ export default function LedNeonSign() {
                 <>
                   <div className="glass-panel" style={glassStyle}>
                     <PanelHeader label="Text Color" accent />
-                    <div className="grid grid-cols-4 gap-5 mt-6">
+                    <div className="grid grid-cols-4 gap-4 mt-3 p-4">
                       {SWATCH_COLORS.map(c => (
                         <button key={c.id} onClick={() => setNeonColor(c.hex)}
                           className="swatch-btn w-11 h-11 rounded-full flex items-center justify-center border-2"
@@ -218,7 +215,7 @@ export default function LedNeonSign() {
 
                   <div className="glass-panel" style={glassStyle}>
                     <PanelHeader label="Glow Color" accent />
-                    <div className="grid grid-cols-4 gap-5 mt-4">
+                    <div className="grid grid-cols-4 gap-4 mt-4 p-4">
                       {SWATCH_COLORS.map(c => (
                         <button key={c.id} onClick={() => setGlowColor(c.hex)}
                           className="swatch-btn w-11 h-11 rounded-full flex items-center justify-center border-2"
@@ -269,7 +266,7 @@ export default function LedNeonSign() {
                         const on = activeBacking === b.id;
                         return (
                           <button key={b.id} onClick={() => handleBackingSelect(b.id)}
-                            className="bk-card rounded-2xl border overflow-hidden text-left"
+                            className="bk-card rounded-2xl border overflow-hidden text-left p-1"
                             style={{
                               borderColor: on ? "#FF2D78" : "rgba(255,255,255,0.14)",
                               background:  on ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.03)",
@@ -278,7 +275,7 @@ export default function LedNeonSign() {
                             {/* full-bleed image — no margin, no rounding on top */}
                             <div style={{ width:"100%", height:120, overflow:"hidden" }}>
                               <img src={b.img} alt={b.label}
-                                style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+                                style={{ width:"100%", height:"100%", objectFit:"fit", display:"block" }} />
                             </div>
                             {/* label strip */}
                             <div className="flex items-center justify-between px-2.5 py-2">
@@ -295,34 +292,34 @@ export default function LedNeonSign() {
                     {/* Color header */}
                     <div className="flex items-center gap-2 mt-6 mb-4">
                       <span className="w-2 h-2 rounded-full bg-[#FF2D78] shrink-0" />
-                      <span className="text-white text-[12px] font-bold tracking-widest uppercase">Backboard Color</span>
+                      <span className="text-white text-[10px] font-bold tracking-widest uppercase">Backboard Color</span>
                     </div>
 
                     {/* Color options — animate in/out when backing changes */}
-                    <div key={activeBacking} className="color-section grid grid-cols-2 gap-2">
+                    <div key={activeBacking} className="color-section grid grid-col gap-2">
                       {availableColors.map(c => {
                         const on = activeBoardClr === c.id;
                         return (
                           <button key={c.id} onClick={() => setActiveBoardClr(c.id)}
-                            className="board-row flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-left"
+                            className="board-row flex items-center justify-between gap-2.5 px-3 py-2.5 rounded-xl border"
                             style={{
                               borderColor: on ? "#FF2D78" : "rgba(255,255,255,0.12)",
                               background:  on ? "rgba(255,45,120,0.1)" : "rgba(255,255,255,0.04)",
                               gridColumn:  availableColors.length === 1 ? "1 / -1" : "auto",
                               boxShadow:   on ? "0 0 0 1px #FF2D78" : "none",
                             }}>
+                               <div className="flex flex-col text-start">
+                              <p className="text-white text-[10px] leading-tight">{c.label}</p>
+                              <p className={`text-[20px] font-bold mt-0.5 ${c.price==="FREE" ? "text-white" : "text-white"}`}>
+                                {c.price}
+                              </p>
+                            </div>
                             <div style={{
                               width:32, height:32, borderRadius:"50%", flexShrink:0,
                               background: c.bg,
                               border:`2px solid ${on ? "#FF2D78" : c.border}`,
                               boxShadow: on ? `0 0 0 3px ${c.border}33` : "none",
                             }} />
-                            <div>
-                              <p className="text-gray-300 text-[9px] leading-tight">{c.label}</p>
-                              <p className={`text-[11px] font-bold mt-0.5 ${c.price==="FREE" ? "text-green-400" : "text-white"}`}>
-                                {c.price}
-                              </p>
-                            </div>
                           </button>
                         );
                       })}

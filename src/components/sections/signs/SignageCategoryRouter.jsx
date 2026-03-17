@@ -2,7 +2,7 @@
 // router/switcher for signage subcategories. 
 import { useParams } from "react-router-dom";
 import SignageCategories from "./SignageCategories";
-import LedDigitalBoard from "./LedDigitalBoard";
+import LedDigitalBoard from "./leddigitalboard/LedDigitalBoard";
 import LedNeonSign from "./LedNeonSign";
 import WindowGraphics from "./WindowGraphics";
 

@@ -6,7 +6,7 @@ import WebServicesSection from '../../components/sections/webdesigning/WebServic
 export default function WebDesigning() {
   return (
     <>
-      {/* <WebHeroSection/> */}
+      <WebHeroSection/>
       <WebProjectsSection/>
       <WebServicesSection/>
     </>
