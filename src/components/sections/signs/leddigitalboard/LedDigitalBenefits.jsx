@@ -6,11 +6,12 @@ import { ArrowRight } from "lucide-react";
 
 export default function LedDigitalBenefits() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20">
-  <div className="container grid md:grid-cols-2 gap-10 lg:gap-16 items-center justify-center">
+    <section className="py-0 sm:py-16 lg:py-20 flex justify-center">
+  <div className=" grid md:grid-cols-2 gap-8 lg:gap-10 items-center p-6">
 
     {/* LEFT CONTENT */}
     <motion.div
+      className="w-full"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -25,7 +26,7 @@ export default function LedDigitalBenefits() {
         and attract customers
       </h2>
 
-      <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 max-w-xl">
+      <p className="text-gray-400 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 max-w-lg">
         Our outdoor LED display boards are engineered to withstand extreme
         weather conditions while delivering crystal-clear messaging 24/7.
       </p>
@@ -46,7 +47,6 @@ export default function LedDigitalBenefits() {
             viewport={{ once: true }}
             className="flex items-start sm:items-center gap-3"
           >
-            {/* ICON */}
             <div className="mt-1 sm:mt-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-[#C89A2A] flex items-center justify-center flex-shrink-0">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#C89A2A] rounded-full" />
             </div>
@@ -78,16 +78,14 @@ export default function LedDigitalBenefits() {
       viewport={{ once: true }}
       className="relative flex justify-center md:justify-end"
     >
-      {/* CARD */}
-      <div className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden bg-[#111] p-2 shadow-2xl">
+      <div className="w-full max-w-[300px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-[450px] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden bg-[#111] p-2 shadow-2xl">
         <img
           src="/images/digitalboard/Img_3.png"
           alt="LED Display"
-          className="w-full h-[280px] sm:h-[360px] md:h-[500px] lg:h-[560px] object-cover rounded-[1rem] sm:rounded-[1.5rem]"
+          className="w-full h-[260px] sm:h-[340px] md:h-[460px] lg:h-[520px] object-cover rounded-[1rem] sm:rounded-[1.5rem]"
         />
       </div>
 
-      {/* GLOW */}
       <div className="absolute -inset-4 bg-[#C89A2A]/10 blur-3xl -z-10" />
     </motion.div>
   </div>

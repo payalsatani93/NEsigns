@@ -301,7 +301,167 @@
         "/images/interiorsigns/Acrylic_7.png"
       ]
     }
-  }
+  },
+
+
+
+  "products": [
+    {
+      "id": 1,
+      "name": "A Frame Signs",
+      "desc": "Durable A-frame signs perfect for promotions, menus, and daily offers.",
+      "img": "https://images.unsplash.com/photo-1635514569146-9a9607ecf303?w=400&q=80",
+      "category": "Signage & Displays"
+    },
+    {
+      "id": 2,
+      "name": "Backdrops Repeats",
+      "desc": "Make every photo opportunity a branding moment.",
+      "img": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80",
+      "category": "Banners & Large Format Printing"
+    },
+    {
+      "id": 3,
+      "name": "Banners",
+      "desc": "Durable custom banners for promotions, events, and branding.",
+      "img": "https://images.unsplash.com/photo-1551818176-60579e574b91?w=400&q=80",
+      "category": "Banners & Large Format Printing"
+    },
+    {
+      "id": 4,
+      "name": "Bookmarks",
+      "desc": "Stylish bookmarks perfect for promotions, gifts, and branding.",
+      "img": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80",
+      "category": "Marketing & Promotional Materials"
+    },
+    {
+      "id": 5,
+      "name": "Brochures",
+      "desc": "Eye-catching brochures that leave a lasting impression.",
+      "img": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80",
+      "category": "Marketing & Promotional Materials"
+    },
+    {
+      "id": 6,
+      "name": "Business Cards",
+      "desc": "Custom business cards designed to leave a lasting impression.",
+      "img": "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=400&q=80",
+      "category": "Business Essentials & Office Printing"
+    },
+    {
+      "id": 7,
+      "name": "Calendars",
+      "desc": "Promote your brand every day with custom calendars.",
+      "img": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&q=80",
+      "category": "Business Essentials & Office Printing"
+    },
+    {
+      "id": 8,
+      "name": "Canvas Prints",
+      "desc": "Premium canvas prints that bring your walls to life.",
+      "img": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&q=80",
+      "category": "Labels, Forms & Specialty Printing"
+    },
+    {
+      "id": 9,
+      "name": "Flyers",
+      "desc": "High-quality flyers designed to grab attention and drive results.",
+      "img": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&q=80",
+      "category": "Marketing & Promotional Materials"
+    },
+    {
+      "id": 10,
+      "name": "Yard Signs",
+      "desc": "Bold and weatherproof yard signs for events and campaigns.",
+      "img": "https://images.unsplash.com/photo-1592502712628-c6d38b0b6156?w=400&q=80",
+      "category": "Signage & Displays"
+    },
+    {
+      "id": 11,
+      "name": "Stickers & Labels",
+      "desc": "Custom stickers and labels for branding, packaging, and more.",
+      "img": "https://images.unsplash.com/photo-1589642380614-4a8c2d1fb2d7?w=400&q=80",
+      "category": "Labels, Forms & Specialty Printing"
+    },
+    {
+      "id": 12,
+      "name": "Table Tents",
+      "desc": "Eye-catching table tents for restaurants and hospitality businesses.",
+      "img": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80",
+      "category": "Restaurant & Hospitality Printing"
+    }
+  ],
+  "megaMenu": [
+    {
+      "title": "Signage & Displays",
+      "items": [
+        "A-Frame Signs",
+        "Signs (Foam Board, Coroplast, PVC, Acrylic)",
+        "Yard Signs",
+        "Floor Graphics",
+        "Wall Decals / Graphics",
+        "Window Clings / Decals",
+        "Car Magnets",
+        "Vehicle Wraps / Decals"
+      ]
+    },
+    {
+      "title": "Banners & Large Format Printing",
+      "items": [
+        "Banners (Vinyl, Mesh, Fabric)",
+        "Retractable / Pop-Up Banners",
+        "Backdrops / Step & Repeats",
+        "Trade Show Displays (Tension Fabric & Pop-Up Displays)",
+        "Flags (Feather, Teardrop, Pole)",
+        "Table Covers / Throws"
+      ]
+    },
+    {
+      "title": "Marketing & Promotional Materials",
+      "items": [
+        "Flyers",
+        "Brochures",
+        "Postcards",
+        "Rack Cards",
+        "Sales Sheets",
+        "Door Hangers",
+        "Bookmarks",
+        "Catalogs / Booklets"
+      ]
+    },
+    {
+      "title": "Business Essentials & Office Printing",
+      "items": [
+        "Business Cards",
+        "Letterheads",
+        "Envelopes",
+        "Notepads",
+        "Presentation Folders",
+        "Calendars"
+      ]
+    },
+    {
+      "title": "Restaurant & Hospitality Printing",
+      "items": [
+        "Carry Out Menus",
+        "Menus (Laminated / Folded / Disposable)",
+        "Table Tents"
+      ]
+    },
+    {
+      "title": "Labels, Forms & Specialty Printing",
+      "items": [
+        "Stickers / Labels",
+        "Roll Labels",
+        "Carbonless Forms",
+        "Invoices / Forms (Carbonless NCR)",
+        "Event Tickets",
+        "Canvas Prints"
+      ]
+    }
+  ]
+
+
 }
 
 

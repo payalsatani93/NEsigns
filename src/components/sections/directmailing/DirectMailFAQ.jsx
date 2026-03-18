@@ -90,7 +90,7 @@ function ServiceCard({ item, index }) {
   return (
     <motion.div
       key={item.label}
-      className="flex items-center gap-2 rounded-xl p-4 w-[506px] h-[108px]
+      className="flex items-center gap-2 rounded-xl p-3 sm:p-4 w-full min-h-[80px] sm:min-h-[90px] lg:h-[108px]
        shadow-lg cursor-pointer transition-all duration-300"
       style={{
         backgroundColor: hovered ? item.hoverBg : "#ffffff",
@@ -102,12 +102,12 @@ function ServiceCard({ item, index }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <span className=" w-[48px] h-[48px] flex items-center justify-center">
+      <span className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center text-xl sm:text-2xl">
         {item.icon}
       </span>
-      <div>
-        <div className="font-semibold text-sm lg:text-[18px]">{item.label}</div>
-        <div className="text-xs lg:text-[18px] mt-0.5 opacity-60">{item.subtitle}</div>
+      <div className="min-w-0">
+        <div className="font-semibold text-sm sm:text-base lg:text-[18px] truncate">{item.label}</div>
+        <div className="text-xs sm:text-sm lg:text-[18px] mt-0.5 opacity-60 truncate">{item.subtitle}</div>
       </div>
     </motion.div>
   );
@@ -115,7 +115,7 @@ function ServiceCard({ item, index }) {
 
 export default function DirectMailFAQ() {
   return (
-    <section className="relative bg-black text-white py-12 lg:py-24">
+    <section className="relative bg-black text-white py-10 sm:py-12 lg:py-24 overflow-x-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative">
 
         {/* Vertical Line — desktop only */}
@@ -132,15 +132,15 @@ export default function DirectMailFAQ() {
           />
         </div>
 
-        <div className="space-y-16 lg:space-y-32">
-          <div className="absolute z-0 -top-8 -left-12">
+        <div className="space-y-12 sm:space-y-16 lg:space-y-32">
+          <div className="absolute z-0 -top-8 -left-12 hidden sm:block">
             <img src="/images/directmailing/YellowRing.png" alt="" />
           </div>
 
           {/* ===== ROW 1 ===== */}
-          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
             {/* Image card — shown second on mobile, first on desktop */}
-            <div className="order-2 lg:order-1 bg-white rounded-2xl p-4 sm:p-6 lg:p-10 shadow-xl">
+            <div className="order-2 lg:order-1 bg-white rounded-2xl p-3 sm:p-6 lg:p-10 shadow-xl">
               <img
                 src="/images/directmailing/Img_03.png"
                 className="rounded-xl w-full h-48 sm:h-64 lg:h-[369px] object-cover"
@@ -157,36 +157,36 @@ export default function DirectMailFAQ() {
             </div>
 
             {/* Text content — shown first on mobile, third on desktop */}
-            <div className="order-1 lg:order-3 flex flex-col justify-center gap-[9px]">
-              <h6 className="text-[14px] uppercase tracking-widest">
+            <div className="order-1 lg:order-3 flex flex-col justify-center gap-2 sm:gap-3 lg:gap-[9px]">
+              <h6 className="text-xs sm:text-[14px] uppercase tracking-widest">
                 What is direct mailing
               </h6>
-              <h2 className="text-2xl sm:text-3xl xl:text-[48px] leading-tight mb-4 lg:mb-6">
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] leading-tight mb-3 lg:mb-6">
                 What is direct marketing?
               </h2>
-              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] leading-relaxed">
+              <p className="text-neutral-400 text-sm sm:text-base lg:text-[24px] leading-relaxed">
                 Direct marketing delivers measurable results by targeting
                 specific customer segments. Each campaign features actionable
                 messaging and performance insights to help you track engagement
                 and return on investment.
               </p>
-              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit mt-2">
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-5 sm:px-7 py-2.5 sm:py-3 rounded-full w-fit mt-2 text-sm sm:text-base">
                 Contact Now →
               </button>
             </div>
           </div>
 
           {/* ===== ROW 2 ===== */}
-          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
             {/* Text content */}
-            <div className="flex flex-col justify-center gap-[9px]">
-              <p className="text-[14px] uppercase tracking-widest">
+            <div className="flex flex-col justify-center gap-2 sm:gap-3 lg:gap-[9px]">
+              <p className="text-xs sm:text-[14px] uppercase tracking-widest">
                 Direct Mailing
               </p>
-              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-3 lg:mb-6 leading-tight">
                 Why choose direct marketing?
               </h2>
-              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] leading-relaxed">
+              <p className="text-neutral-400 text-sm sm:text-base lg:text-[24px] leading-relaxed">
                 Direct marketing targets specific audiences with personalized
                 messaging, delivers measurable results, increases engagement,
                 improves response rates, and maximizes return on investment.
@@ -204,17 +204,17 @@ export default function DirectMailFAQ() {
             </div>
 
             {/* Tags card */}
-            <div className="bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-xl text-black w-full lg:max-w-md">
-              <h3 className="font-bold text-xl sm:text-2xl mb-2">Targeted Mail Pros</h3>
-              <p className="text-neutral-500 text-sm mb-5">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl text-black w-full lg:max-w-md">
+              <h3 className="font-bold text-lg sm:text-2xl mb-2">Targeted Mail Pros</h3>
+              <p className="text-neutral-500 text-xs sm:text-sm mb-4 sm:mb-5">
                 Maximize Engagement with Personalized Direct Mail Solutions
               </p>
-              <hr className="border-neutral-200 mb-6" />
-              <div className="relative h-56">
+              <hr className="border-neutral-200 mb-4 sm:mb-6" />
+              <div className="relative h-48 sm:h-56">
                 {tags.map(({ label, color, border, style, rotate }, i) => (
                   <motion.span
                     key={label}
-                    className={`absolute px-4 py-1.5 text-xs rounded-lg font-semibold bg-[#D9D9D933] border ${color} ${border}`}
+                    className={`absolute px-3 sm:px-4 py-1 sm:py-1.5 text-xs rounded-lg font-semibold bg-[#D9D9D933] border ${color} ${border}`}
                     style={{ ...style, rotate }}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -228,10 +228,9 @@ export default function DirectMailFAQ() {
           </div>
 
           {/* ===== ROW 3 ===== */}
-          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-[20px] items-center ">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-[20px] items-center">
             {/* Service cards — shown second on mobile, first on desktop */}
-            <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1
-             gap-3 lg:gap-0 lg:space-y-8 w-[506px] h-[748px]">
+            <div className="order-2 lg:order-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-0 lg:space-y-4 w-full lg:w-[506px]">
               {services.map((item, i) => (
                 <ServiceCard key={item.label} item={item} index={i} />
               ))}
@@ -249,7 +248,7 @@ export default function DirectMailFAQ() {
             {/* Text content — shown first on mobile, third on desktop */}
             <div className="order-1 lg:order-3 flex flex-col justify-center relative">
               <svg
-                className="absolute -top-8 right-8 w-16 h-16 opacity-60"
+                className="absolute -top-8 right-4 sm:right-8 w-12 sm:w-16 h-12 sm:h-16 opacity-60"
                 viewBox="0 0 60 40"
                 fill="none"
               >
@@ -262,7 +261,7 @@ export default function DirectMailFAQ() {
                 />
               </svg>
               <svg
-                className="absolute bottom-0 right-0 w-14 h-14 opacity-50"
+                className="absolute bottom-0 right-0 w-10 sm:w-14 h-10 sm:h-14 opacity-50"
                 viewBox="0 0 50 50"
                 fill="none"
               >
@@ -274,14 +273,14 @@ export default function DirectMailFAQ() {
                 />
               </svg>
 
-              <div className="flex flex-col justify-center gap-[9px]">
-                <p className="text-[14px] uppercase tracking-widest">
+              <div className="flex flex-col justify-center gap-2 sm:gap-3 lg:gap-[9px]">
+                <p className="text-xs sm:text-[14px] uppercase tracking-widest">
                   Work With Us
                 </p>
-                <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-3 lg:mb-6 leading-tight">
                   How can NE signs help me build a campaign?
                 </h2>
-                <ul className="space-y-3 text-neutral-400 mb-6">
+                <ul className="space-y-2 sm:space-y-3 text-neutral-400 mb-4 sm:mb-6">
                   {[
                     "Identify your ideal target market",
                     "Build and manage a strong customer database",
@@ -289,35 +288,35 @@ export default function DirectMailFAQ() {
                     "Print and distribute marketing materials",
                     "Track and measure campaign performance",
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm sm:text-base lg:text-[18px]">
-                      <span className="text-neutral-500 text-[18px]">✓</span>{" "}
+                    <li key={item} className="flex items-start sm:items-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-[18px]">
+                      <span className="text-neutral-500 text-base sm:text-[18px] mt-0.5 sm:mt-0 flex-shrink-0">✓</span>
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
-              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit">
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-5 sm:px-7 py-2.5 sm:py-3 rounded-full w-fit text-sm sm:text-base">
                 Contact Now →
               </button>
             </div>
           </div>
 
           {/* ===== ROW 4 ===== */}
-          <div className="grid lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px_1fr] gap-6 lg:gap-10 items-center">
             {/* Text content */}
-            <div className="flex flex-col justify-center gap-[9px]">
-              <p className="text-[14px] uppercase tracking-widest">
+            <div className="flex flex-col justify-center gap-2 sm:gap-3 lg:gap-[9px]">
+              <p className="text-xs sm:text-[14px] uppercase tracking-widest">
                 Work With Us
               </p>
-              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-4 lg:mb-6">
+              <h2 className="text-2xl sm:text-3xl xl:text-[48px] mb-3 lg:mb-6">
                 Grow Your Business
               </h2>
-              <p className="text-neutral-400 text-base sm:text-lg lg:text-[24px] mb-6">
+              <p className="text-neutral-400 text-sm sm:text-base lg:text-[24px] mb-4 sm:mb-6">
                 Leverage targeted marketing strategies to reach the right
                 audience, increase engagement, and drive measurable growth for
                 your business
               </p>
-              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-7 py-3 rounded-full w-fit">
+              <button className="bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] px-5 sm:px-7 py-2.5 sm:py-3 rounded-full w-fit text-sm sm:text-base">
                 Contact Now →
               </button>
             </div>
@@ -333,16 +332,15 @@ export default function DirectMailFAQ() {
             </div>
 
             {/* Dual image card */}
-            <div className="bg-white rounded-2xl p-4 lg:p-6 shadow-xl space-y-4 lg:space-y-6">
-              {/* On mobile: side-by-side; on desktop: stacked */}
-              <div className="flex flex-col sm:flex-row lg:flex-col gap-4 lg:gap-6">
+            <div className="bg-white rounded-2xl p-3 sm:p-4 lg:p-6 shadow-xl space-y-3 sm:space-y-4 lg:space-y-6">
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-4 lg:gap-6">
                 <img
                   src="/images/directmailing/WhyDM_2.png"
-                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-40 sm:h-48 lg:h-[280px] object-cover"
+                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-36 sm:h-44 lg:h-[280px] object-cover"
                 />
                 <img
                   src="/images/directmailing/WhyDM_1.png"
-                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-40 sm:h-48 lg:h-[280px] object-cover"
+                  className="rounded-xl w-full sm:w-1/2 lg:w-full h-36 sm:h-44 lg:h-[280px] object-cover"
                 />
               </div>
             </div>

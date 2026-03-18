@@ -144,7 +144,7 @@ export default function LedDegitalSlider() {
   return (
     <section className="containers overflow-hidden py-20 bg-black">
       <div className="container mx-auto">
-        <div className="flex justify-center gap-10 mb-12 text-white text-lg font-medium">
+        <div className="flex justify-center gap-10 mb-12 text-white md:text-[24px] sm:text-sm text-xs font-medium">
           <button
             onClick={() => setActiveTab("outdoor")}
             className={`relative pb-2 transition-all ${
@@ -155,7 +155,7 @@ export default function LedDegitalSlider() {
             {activeTab === "outdoor" && (
               <motion.div
                 layoutId="underline"
-                className="absolute bottom-0 left-0 right-0 h-[2px] bg-white"
+                className="absolute bottom-0 left-0 right-0 h-[5px] bg-white"
               />
             )}
           </button>
@@ -169,7 +169,7 @@ export default function LedDegitalSlider() {
             {activeTab === "indoor" && (
               <motion.div
                 layoutId="underline"
-                className="absolute bottom-0 left-0 right-0 h-[2px] bg-white"
+                className="absolute bottom-0 left-0 right-0 h-[5px] bg-white"
               />
             )}
           </button>
