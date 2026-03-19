@@ -3,6 +3,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  ChevronDown,
   LayoutGrid,
   Image,
   Monitor,
@@ -18,17 +19,15 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openMobileMenus, setOpenMobileMenus] = useState({});
+  const [openMobileSubMenus, setOpenMobileSubMenus] = useState({});
 
-  // to locate current page
   const location = useLocation();
 
   const isActive = (path, item) => {
-    // Exact match for Home
     if (path === "/") {
       return location.pathname === "/";
     }
-
-    // If item has submenu, check all submenu paths
     if (item?.submenu) {
       return (
         location.pathname.startsWith(path) ||
@@ -36,14 +35,26 @@ export default function Navbar() {
           (sub) =>
             location.pathname.startsWith(sub.href) ||
             sub.submenu?.some((child) =>
-              location.pathname.startsWith(child.href),
-            ),
+              location.pathname.startsWith(child.href)
+            )
         )
       );
     }
-
-    // Normal match
     return location.pathname.startsWith(path);
+  };
+
+  const toggleMobileMenu = (name) => {
+    setOpenMobileMenus((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  };
+
+  const toggleMobileSubMenu = (name) => {
+    setOpenMobileSubMenus((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
   };
 
   const navItems = [
@@ -57,39 +68,15 @@ export default function Navbar() {
           href: "/services/signage",
           icon: LayoutGrid,
           submenu: [
-            {
-              name: "Exterior Sign",
-              href: "/categories/exterior-sign",
-              icon: Image,
-            },
-            {
-              name: "Interior Sign",
-              href: "/categories/interior-sign",
-              icon: Layers,
-            },
-            {
-              name: "LED Digital Board",
-              href: "/categories/led-digital-board",
-              icon: Monitor,
-            },
-            {
-              name: "LED Neon Sign",
-              href: "/categories/led-neon-sign",
-              icon: Zap,
-            },
-            {
-              name: "Window & Wall Graphics",
-              href: "/categories/window-graphics",
-              icon: Image,
-            },
+            { name: "Exterior Sign", href: "/categories/exterior-sign", icon: Image },
+            { name: "Interior Sign", href: "/categories/interior-sign", icon: Layers },
+            { name: "LED Digital Board", href: "/categories/led-digital-board", icon: Monitor },
+            { name: "LED Neon Sign", href: "/categories/led-neon-sign", icon: Zap },
+            { name: "Window & Wall Graphics", href: "/categories/window-graphics", icon: Image },
           ],
         },
         { name: "Printing", href: "/services/printing", icon: Printer },
-        {
-          name: "Direct Mailing",
-          href: "/services/direct-mailing",
-          icon: Mail,
-        },
+        { name: "Direct Mailing", href: "/services/direct-mailing", icon: Mail },
         { name: "Web Designing", href: "/services/web-design", icon: Globe },
         { name: "SEO", href: "/services/seo", icon: Search },
       ],
@@ -113,6 +100,7 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── Desktop Navbar (xl+) ── */}
       <nav className="sticky hidden xl:block top-0 left-0 right-0 z-50 backdrop-blur-xs border-b border-white/20 h-25">
         <div className="containers">
           <div className="flex xl:justify-between justify-between items-center h-20">
@@ -125,7 +113,7 @@ export default function Navbar() {
               />
             </div>
 
-            {/* Desktop Navigation — visible only on xl (1280px+) */}
+            {/* Desktop Nav Links */}
             <div className="hidden xl:flex items-center space-x-8">
               {navItems.map((item) => (
                 <div key={item.name} className="relative group py-6">
@@ -142,7 +130,7 @@ export default function Navbar() {
                     {item.name}
                   </Link>
 
-                  {/* First level submenu */}
+                  {/* First-level dropdown */}
                   {item.submenu && (
                     <div
                       className="absolute left-0 top-full mt-2 w-64
@@ -174,7 +162,6 @@ export default function Navbar() {
                               )}
                               {sub.name}
                             </span>
-
                             {sub.submenu && (
                               <ChevronRight
                                 size={16}
@@ -183,7 +170,7 @@ export default function Navbar() {
                             )}
                           </Link>
 
-                          {/* Second level submenu */}
+                          {/* Second-level dropdown */}
                           {sub.submenu && (
                             <div
                               className="absolute left-full top-3 ml-2 w-64
@@ -210,10 +197,7 @@ export default function Navbar() {
                                 >
                                   <span className="flex items-center gap-3">
                                     {child.icon && (
-                                      <child.icon
-                                        size={14}
-                                        className="opacity-70"
-                                      />
+                                      <child.icon size={14} className="opacity-70" />
                                     )}
                                     {child.name}
                                   </span>
@@ -229,18 +213,15 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Search Button & Guarantee Logo — Desktop Only */}
+            {/* Search + Guarantee Logo */}
             <div className="hidden xl:flex items-center gap-8">
-              {/* Search Button */}
               <button
                 className="flex items-center px-4 gap-4 py-2 text-[13px] border border-white/50 rounded-full
-                    hover:bg-[var(--color-gradient)]  transition-all duration-300"
+                    hover:bg-[var(--color-gradient)] transition-all duration-300"
               >
                 Search Here
-                <Search size={18} className=" text-white/60" />
+                <Search size={18} className="text-white/60" />
               </button>
-
-              {/* Guarantee Logo */}
               <img
                 src="/images/GuaranteeLogo.png"
                 alt="Guarantee Logo"
@@ -248,7 +229,6 @@ export default function Navbar() {
               />
             </div>
 
-            {/* Toggle button — visible on screens below xl (< 1280px) */}
             <div className="hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -261,7 +241,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile / Tablet Navigation — shows below xl */}
+      {/* ── Mobile / Tablet Navbar (below xl) ── */}
       <div className="sticky top-0 left-0 right-0 backdrop-blur-xl z-50 border-b border-white/20 h-25 xl:hidden">
         <div className="flex justify-between bg-black/90 items-center h-20 px-6 xl:hidden">
           {/* Logo */}
@@ -273,7 +253,7 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Toggle button — visible on screens below xl (< 1280px) */}
+          {/* Hamburger */}
           <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -284,18 +264,109 @@ export default function Navbar() {
           </div>
         </div>
 
+        {/* ── Mobile Dropdown Panel ── */}
         {isMenuOpen && (
-          <div className="pt-10 bg-black/80 backdrop-blur-xl h-full min-h-screen">
-            <div className="flex flex-col space-y-6 justify-self-center text-center">
+          <div className="bg-black/90 backdrop-blur-xl overflow-y-auto max-h-screen pb-10">
+            <div className="flex flex-col px-4 pt-4 space-y-1">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-white text-xl font-medium pb-2"
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  {/* Top-level item */}
+                  {item.submenu ? (
+                    /* Item WITH submenu → accordion toggle */
+                    <button
+                      onClick={() => toggleMobileMenu(item.name)}
+                      className="w-full flex justify-between items-center text-white text-xl font-medium py-3 px-2 border-b border-white/10"
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown
+                        size={20}
+                        className={`transition-transform duration-300 ${
+                          openMobileMenus[item.name] ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  ) : (
+                    /* Item WITHOUT submenu → direct link */
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center text-white text-xl font-medium py-3 px-2 border-b border-white/10"
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+
+                  {/* First-level submenu (accordion) */}
+                  {item.submenu && openMobileMenus[item.name] && (
+                    <div className="ml-4 mt-1 space-y-1">
+                      {item.submenu.map((sub) => (
+                        <div key={sub.name}>
+                          {sub.submenu ? (
+                            /* Sub-item WITH second-level → another accordion toggle */
+                            <button
+                              onClick={() => toggleMobileSubMenu(sub.name)}
+                              className="w-full flex justify-between items-center text-white/85 text-base py-2.5 px-3 rounded-xl hover:bg-white/10 transition-all duration-200"
+                            >
+                              <span className="flex items-center gap-3">
+                                {sub.icon && (
+                                  <sub.icon size={16} className="opacity-75" />
+                                )}
+                                {sub.name}
+                              </span>
+                              <ChevronDown
+                                size={16}
+                                className={`transition-transform duration-300 ${
+                                  openMobileSubMenus[sub.name] ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                          ) : (
+                            /* Sub-item WITHOUT second-level → direct link */
+                            <Link
+                              to={sub.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={`flex items-center gap-3 text-base py-2.5 px-3 rounded-xl transition-all duration-200
+                                ${
+                                  isActive(sub.href)
+                                    ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black font-semibold"
+                                    : "text-white/85 hover:bg-white/10"
+                                }`}
+                            >
+                              {sub.icon && (
+                                <sub.icon size={16} className="opacity-75" />
+                              )}
+                              {sub.name}
+                            </Link>
+                          )}
+
+                          {/* Second-level submenu (accordion) */}
+                          {sub.submenu && openMobileSubMenus[sub.name] && (
+                            <div className="ml-6 mt-1 space-y-1">
+                              {sub.submenu.map((child) => (
+                                <Link
+                                  key={child.name}
+                                  to={child.href}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className={`flex items-center gap-3 text-sm py-2 px-3 rounded-lg transition-all duration-200
+                                    ${
+                                      isActive(child.href)
+                                        ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black font-semibold"
+                                        : "text-white/70 hover:bg-white/10 hover:text-white"
+                                    }`}
+                                >
+                                  {child.icon && (
+                                    <child.icon size={14} className="opacity-70" />
+                                  )}
+                                  {child.name}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
