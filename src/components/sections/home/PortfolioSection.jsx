@@ -481,7 +481,7 @@ export default function PortfolioSection() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <motion.button
-            className="group flex items-center gap-3 px-8 py-4 border border-[var(--color-muted)] rounded-full text-[var(--color-gradient)]"
+            className="group flex items-center gap-3 px-8 py-4 border border-white/20 rounded-full text-[var(--color-gradient)]"
             variants={buttonVariants}
             initial="rest"
             whileHover="hover"

@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 
 const IMAGES = [
   "/images/Hero/1.png",
@@ -37,7 +37,10 @@ export default function Hero() {
     const id = `${Date.now()}-${Math.random()}`;
     const src = IMAGES[globalIdx % IMAGES.length];
     globalIdx++;
-    const w = 150 + Math.random() * 80;
+
+    // ✅ Responsive card size
+    const base = window.innerWidth < 640 ? 90 : window.innerWidth < 1024 ? 120 : 150;
+    const w = base + Math.random() * base * 0.5;
     const h = w * (1.1 + Math.random() * 0.4);
     const rotate = (Math.random() - 0.5) * 20;
 
@@ -61,11 +64,12 @@ export default function Hero() {
     (e) => {
       const rect = heroRef.current?.getBoundingClientRect();
       if (!rect) return;
+
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      // move custom cursor
-      if (cursorRef.current) {
+      // cursor only for desktop
+      if (window.innerWidth > 768 && cursorRef.current) {
         cursorRef.current.style.left = x + "px";
         cursorRef.current.style.top = y + "px";
         cursorRef.current.style.opacity = "1";
@@ -97,16 +101,21 @@ export default function Hero() {
   return (
     <>
       <style>{`
-
         .jg-wrap {
           width: 100%;
-          height: 100vh;
+          min-height: 100vh;
           position: relative;
           overflow: hidden;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: none;
+        }
+
+        @media (max-width: 768px) {
+          .jg-wrap {
+            cursor: auto; /* ✅ fix for mobile */
+          }
         }
 
         .jg-cursor {
@@ -132,9 +141,10 @@ export default function Hero() {
           opacity: 0;
           transform: translate(-50%, -50%) scale(0.88) rotate(var(--r));
           transition:
-            blar 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
             transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
           will-change: opacity, transform;
+          max-width: 90vw; /* ✅ prevent overflow */
         }
 
         .jg-card.alive {
@@ -150,16 +160,7 @@ export default function Hero() {
             transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .jg-center {
-          position: relative;
-          z-index: 50;
-          text-align: center;
-          pointer-events: none;
-        }
-
         
-       rcase;
-          margin-top: 18px;
         }
       `}</style>
 
@@ -169,17 +170,15 @@ export default function Hero() {
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
       >
-         {/* Right Golden Patch */}
-      
+        {/* Right Golden Patch */}
+        <div className="absolute top-0 right-0 w-[120px] sm:w-[180px] md:w-[220px] lg:w-auto">
+          <img src="/images/yellow_patch.png" alt="" className="w-full h-auto" />
+        </div>
 
-      <div className="absolute top-0 right-0 h-auto w-auto">
-        <img src="/images/yellow_patch.png" alt="" />
-      </div>
-      
-        {/* Custom cursor dot */}
-        <div ref={cursorRef} className="jg-cursor" />
+        {/* Custom cursor */}
+        <div ref={cursorRef} className="jg-cursor hidden md:block" />
 
-        {/* Spawned images */}
+        {/* Cards */}
         {cards.map((card) => (
           <img
             key={card.id}
@@ -198,12 +197,15 @@ export default function Hero() {
         ))}
 
         {/* Center text */}
-        <div className="jg-center">
-          <h1 className="text-[67px] font-extrabold">
-             <span className="text-[var(--color-gradient)]">NE Signs</span>
-             {" "}
-              Printing & Marketing</h1>
-          <p className="text-[67px]">Lowest Price Guaranteed</p>
+        <div className="text-center">
+          <h1 className="text-[28px] sm:text-[40px] md:text-[52px] lg:text-[67px] font-extrabold leading-tight">
+            <span className="text-[var(--color-gradient)]">NE Signs</span>{" "}
+            Printing & Marketing
+          </h1>
+
+          <p className="text-[24px] sm:text-[36px] md:text-[48px] lg:text-[67px] leading-tight">
+            Lowest Price Guaranteed
+          </p>
         </div>
       </div>
     </>

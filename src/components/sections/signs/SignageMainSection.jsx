@@ -172,7 +172,7 @@ export default function SignageMainSection() {
                   <Link
                     to="/know_your_sign"
                     className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)]
-                    rounded-lg px-3 py-1.5 text-white text-[10px] font-bold tracking-widest uppercase"
+                    rounded-lg px-3 py-1.5 text-white sm:text-[10px] text-[6px] font-bold tracking-widest uppercase"
                   >
                     Know Your Sign
                     <ArrowRight size={11} />

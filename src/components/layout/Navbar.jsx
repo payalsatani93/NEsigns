@@ -272,19 +272,27 @@ export default function Navbar() {
                 <div key={item.name}>
                   {/* Top-level item */}
                   {item.submenu ? (
-                    /* Item WITH submenu → accordion toggle */
-                    <button
-                      onClick={() => toggleMobileMenu(item.name)}
-                      className="w-full flex justify-between items-center text-white text-xl font-medium py-3 px-2 border-b border-white/10"
-                    >
-                      <span>{item.name}</span>
-                      <ChevronDown
-                        size={20}
-                        className={`transition-transform duration-300 ${
-                          openMobileMenus[item.name] ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
+                    /* Item WITH submenu → Link navigates, chevron toggles */
+                    <div className="flex justify-between items-center border-b border-white/10">
+                      <Link
+                        to={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="flex-1 text-white text-xl font-medium py-3 px-2"
+                      >
+                        {item.name}
+                      </Link>
+                      <button
+                        onClick={() => toggleMobileMenu(item.name)}
+                        className="p-3 text-white"
+                      >
+                        <ChevronDown
+                          size={20}
+                          className={`transition-transform duration-300 ${
+                            openMobileMenus[item.name] ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
                   ) : (
                     /* Item WITHOUT submenu → direct link */
                     <Link
@@ -302,24 +310,34 @@ export default function Navbar() {
                       {item.submenu.map((sub) => (
                         <div key={sub.name}>
                           {sub.submenu ? (
-                            /* Sub-item WITH second-level → another accordion toggle */
-                            <button
-                              onClick={() => toggleMobileSubMenu(sub.name)}
-                              className="w-full flex justify-between items-center text-white/85 text-base py-2.5 px-3 rounded-xl hover:bg-white/10 transition-all duration-200"
-                            >
-                              <span className="flex items-center gap-3">
+                            /* Sub-item WITH second-level → Link navigates, chevron toggles */
+                            <div className="flex justify-between items-center rounded-xl hover:bg-white/10 transition-all duration-200">
+                              <Link
+                                to={sub.href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className={`flex-1 flex items-center gap-3 text-base py-2.5 px-3
+                                  ${isActive(sub.href)
+                                    ? "bg-gradient-to-r from-[var(--color-gradient)] to-[var(--color-primary)] text-black font-semibold rounded-xl"
+                                    : "text-white/85"
+                                  }`}
+                              >
                                 {sub.icon && (
                                   <sub.icon size={16} className="opacity-75" />
                                 )}
                                 {sub.name}
-                              </span>
-                              <ChevronDown
-                                size={16}
-                                className={`transition-transform duration-300 ${
-                                  openMobileSubMenus[sub.name] ? "rotate-180" : ""
-                                }`}
-                              />
-                            </button>
+                              </Link>
+                              <button
+                                onClick={() => toggleMobileSubMenu(sub.name)}
+                                className="p-2.5 text-white/85"
+                              >
+                                <ChevronDown
+                                  size={16}
+                                  className={`transition-transform duration-300 ${
+                                    openMobileSubMenus[sub.name] ? "rotate-180" : ""
+                                  }`}
+                                />
+                              </button>
+                            </div>
                           ) : (
                             /* Sub-item WITHOUT second-level → direct link */
                             <Link

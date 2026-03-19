@@ -25,7 +25,7 @@ export default function BrandStandOut() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-30 md:overflow-visible overflow-hidden "
+      className="relative py-30 overflow-visible "
     >
        {/* Right Golden Patch */}
       <div
@@ -53,7 +53,7 @@ export default function BrandStandOut() {
       </div>
 
       {/* Main Content */}
-      <div className="px-8 relative z-10 top-5 text-center overflow-hidden">
+      <div className="px-8 relative z-10 top-5 text-center overflow-visible">
         <div className="flex justify-center">
           <div className={`opacity-0 ${animate ? 'text-depth-in' : ''}`}>
             <h1

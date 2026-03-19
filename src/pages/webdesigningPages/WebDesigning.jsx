@@ -7,8 +7,8 @@ export default function WebDesigning() {
   return (
     <>
       <WebHeroSection/>
-      <WebProjectsSection/>
       <WebServicesSection/>
+      <WebProjectsSection/>
     </>
   )
 }

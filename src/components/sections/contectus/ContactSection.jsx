@@ -18,14 +18,14 @@ export default function ContactSection() {
                 <span className="text-[var(--color-gradient)]">NE Signs</span>
               </h2>
 
-              <p className="text-neutral-400 mt-4 lg:mt-6 leading-relaxed text-base sm:text-[16px] lg:text-[18px]">
+              <p className="text-white/50 mt-4 lg:mt-6 leading-relaxed text-base sm:text-[16px] lg:text-[18px]">
                 Looking for reliable printing and signage services? Have
                 questions about your next project? The team at NE Signs is here
                 to help. We are committed to providing fast responses, expert
                 support, and outstanding customer service.
               </p>
 
-              <p className="text-neutral-400 mt-3 lg:mt-4 leading-relaxed text-sm sm:text-[15px] lg:text-[16px]">
+              <p className="text-white/50 mt-3 lg:mt-4 leading-relaxed text-sm sm:text-[15px] lg:text-[16px]">
                 Whether you need expert guidance, a custom quote, or more
                 details about our services, reach out to us today and our team
                 will respond quickly.
@@ -107,7 +107,7 @@ export default function ContactSection() {
                 Why Contact Us?
               </h3>
 
-              <ul className="space-y-4 lg:space-y-5 text-gray-300 text-sm sm:text-base">
+              <ul className="space-y-4 lg:space-y-5 text-white text-sm sm:text-base">
                 <li className="flex items-center gap-3">
                   <CheckCircle className="text-[var(--color-gradient)] shrink-0" size={20} />
                   Expert printing and signage solutions
@@ -132,7 +132,7 @@ export default function ContactSection() {
               <h3 className="text-white text-lg lg:text-xl font-semibold mb-2 lg:mb-3">
                 Customer Support You Can Trust
               </h3>
-              <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
+              <p className="text-white/50 leading-relaxed text-sm sm:text-base">
                 At{" "}
                 <span className="text-[var(--color-gradient)] font-medium">
                   NE Signs
@@ -149,7 +149,7 @@ export default function ContactSection() {
             <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-2">
               Send Us a Message
             </h2>
-            <p className="text-gray-400 mb-6 lg:mb-8 text-sm sm:text-base">
+            <p className="text-white/50 mb-6 lg:mb-8 text-sm sm:text-base">
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
 
@@ -157,32 +157,32 @@ export default function ContactSection() {
               {/* Name + Email */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Your Name</label>
+                  <label className="text-white text-sm mb-2 block">Your Name</label>
                   <input
                     type="text"
                     placeholder="John Doe"
-                    className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
+                    className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white/50 placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
                   />
                 </div>
                 <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Your Email</label>
+                  <label className="text-white text-sm mb-2 block">Your Email</label>
                   <input
                     type="email"
                     placeholder="john@example.com"
-                    className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
+                    className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white/50 placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
                   />
                 </div>
               </div>
 
               {/* Category */}
               <div>
-                <label className="text-gray-300 text-sm mb-2 block">
+                <label className="text-white text-sm mb-2 block">
                   Project Category
                 </label>
                 <div className="relative w-full">
                   <select
                     className="w-full bg-[#0f141b] border border-white/10 rounded-xl px-4 py-3 pr-10
-                    text-gray-300 focus:outline-none focus:border-[var(--color-gradient)] appearance-none"
+                    text-white/50 focus:outline-none focus:border-[var(--color-gradient)] appearance-none"
                   >
                     <option className="bg-[#0f141b] text-white">Signage</option>
                     <option className="bg-[#0f141b] text-white">Printing</option>
@@ -199,11 +199,11 @@ export default function ContactSection() {
 
               {/* Message */}
               <div>
-                <label className="text-gray-300 text-sm mb-2 block">Your Message</label>
+                <label className="text-white text-sm mb-2 block">Your Message</label>
                 <textarea
                   rows="5"
                   placeholder="Tell us about your project requirements..."
-                  className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
+                  className="w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-white/50 placeholder-gray-500 focus:outline-none focus:border-[var(--color-gradient)]"
                 ></textarea>
               </div>
 

@@ -109,7 +109,7 @@ const ServiceSection = () => {
         />
       </motion.div>
       {/* Header (unchanged visually) */}
-      <div className="relative z-10 container">
+      <div className="relative z-10 containers">
         <motion.div
           className="flex flex-col items-center mb-10"
           initial={{ opacity: 0, y: -30 }}
@@ -142,7 +142,7 @@ const ServiceSection = () => {
 
       {/* Services */}
       <motion.div
-        className="relative w-full container mt-0 md:mt-20 lg:mt-30"
+        className="relative w-full containers mt-0 md:mt-20 lg:mt-30"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -252,7 +252,7 @@ const ServiceSection = () => {
 
                 {/* Text */}
                 <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-[200px]">
+                <p className="text-white/50 text-xs md:text-[14px] leading-relaxed max-w-[300px]">
                   {service.description}
                 </p>
               </motion.div>

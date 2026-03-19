@@ -113,7 +113,7 @@ export default function OtherServices() {
             Your Business Goals
           </h1>
 
-          <p className="max-w-4xl text-base leading-relaxed text-gray-300 md:text-lg lg:text-xl">
+          <p className="max-w-4xl text-base leading-relaxed text-[#B0B0B0] md:text-lg lg:text-xl">
             We create customized printing solutions focused on achieving your
             business goals. From impactful designs to premium-quality materials,
             every print is thoughtfully crafted to strengthen your brand,
