@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import Loader from "./components/Loader";
 import Navbar from "./components/layout/Navbar";
-import ChatWidget from "./components/ChatWidget"; // ADD THIS
+import ChatWidget from "./components/ChatWidget"; //chat
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Home from "./pages/homePages/Home";
@@ -25,6 +25,7 @@ import Apparel from "./pages/apparelPages/Apparel";
 import DirectMailing from "./pages/directmailingPages/DirectMailing";
 import KnowYourSign from "./pages/knowyoursignPages/KnowYourSign";
 import SignageCategoryRouter from "./components/sections/signs/SignageCategoryRouter";
+import ProductDetail from "./components/sections/printing/ProductDetail";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,6 +84,7 @@ export default function App() {
             <Route path="/services/web-design" element={<WebDesigning />} />
             <Route path="/services/seo" element={<SEO />} />
             <Route path="/services/printing" element={<Printing />} />
+            <Route path="/services/printing/:productId" element={<ProductDetail />} />
             <Route path="/services/direct-mailing" element={<DirectMailing />} />
             <Route path="/apparel" element={<Apparel />} />
             <Route path="/our_work" element={<OurWork />} />

@@ -1,10 +1,10 @@
 import React from 'react'
-import PrintingSection from '../../components/sections/printing/PrintingSection'
+import PrintingShop from '../../components/sections/printing/PrintingShop'
 
 export default function Printing() {
   return (
     <>
-      <PrintingSection/>
+      <PrintingShop/>
     </>
   )
 }

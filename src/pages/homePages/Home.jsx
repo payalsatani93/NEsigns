@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero/>
-      <HeroSlider/>
+      {/* <HeroSlider/> */}
       <BrandStandOut/>
       <OurWorkExperience/>
       <AboutCompany/>

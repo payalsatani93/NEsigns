@@ -1,220 +1,211 @@
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useCallback, useEffect } from "react";
+
+const IMAGES = [
+  "/images/Hero/1.png",
+  "/images/Hero/2.png",
+  "/images/Hero/Img-2.png",
+  "/images/Hero/3.png",
+  "/images/Hero/4.png",
+  "/images/Hero/5.png",
+  "/images/Hero/Img-4.png",
+  "/images/Hero/6.png",
+  "/images/Hero/7.png",
+  "/images/Hero/Img-5.png",
+  "/images/Hero/8.png",
+  "/images/Hero/9.png",
+  "/images/Hero/10.png",
+  "/images/Hero/Img-1.png",
+  "/images/Hero/Img_7.png",
+  "/images/Hero/Img-3.png",
+  "/images/Hero/Img_6.png",
+];
+
+let globalIdx = 0;
+const DISTANCE_THRESHOLD = 80;
+const SPAWN_COOLDOWN = 70;
+const FADE_AFTER = 300;
+const REMOVE_AFTER = 1600;
 
 export default function Hero() {
-  const [animate, setAnimate] = useState(false);
-  const sectionRef = useRef(null);
+  const heroRef = useRef(null);
+  const lastPos = useRef({ x: -999, y: -999 });
+  const lastSpawn = useRef(0);
+  const [cards, setCards] = useState([]);
+  const cursorRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimate(true);
-        } else {
-          setAnimate(false);
-        }
-      },
-      { threshold: 0.4 },
-    );
+  const spawnCard = useCallback((x, y) => {
+    const id = `${Date.now()}-${Math.random()}`;
+    const src = IMAGES[globalIdx % IMAGES.length];
+    globalIdx++;
+    const w = 150 + Math.random() * 80;
+    const h = w * (1.1 + Math.random() * 0.4);
+    const rotate = (Math.random() - 0.5) * 20;
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    setCards((prev) => [
+      ...prev.slice(-14),
+      { id, src, x, y, w, h, rotate, alive: true },
+    ]);
 
-    return () => observer.disconnect();
+    setTimeout(() => {
+      setCards((prev) =>
+        prev.map((c) => (c.id === id ? { ...c, alive: false } : c)),
+      );
+    }, FADE_AFTER);
+
+    setTimeout(() => {
+      setCards((prev) => prev.filter((c) => c.id !== id));
+    }, REMOVE_AFTER);
   }, []);
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
+  const onMouseMove = useCallback(
+    (e) => {
+      const rect = heroRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-  const slideInRight = {
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1, ease: "easeOut" },
-    },
-  };
+      // move custom cursor
+      if (cursorRef.current) {
+        cursorRef.current.style.left = x + "px";
+        cursorRef.current.style.top = y + "px";
+        cursorRef.current.style.opacity = "1";
+      }
 
-  const slideInLeft = {
-    hidden: { x: 100, opacity: 0, scale: 0.8 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1.2, ease: "easeOut" },
-    },
-  };
+      const dx = x - lastPos.current.x;
+      const dy = y - lastPos.current.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const now = Date.now();
 
-  const fadeUp = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 1, ease: "easeOut" },
+      if (
+        dist >= DISTANCE_THRESHOLD &&
+        now - lastSpawn.current >= SPAWN_COOLDOWN
+      ) {
+        lastPos.current = { x, y };
+        lastSpawn.current = now;
+        spawnCard(x, y);
+      }
     },
-  };
+    [spawnCard],
+  );
 
-  const rotateIn = {
-    hidden: { rotate: -180, scale: 0, opacity: 0 },
-    visible: {
-      rotate: 0,
-      scale: 1,
-      opacity: 1,
-      transition: { duration: 2, ease: "easeOut" },
-    },
-  };
-
-  const fadeRight = {
-    hidden: { x: -80, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1.5, ease: "easeOut" },
-    },
-  };
-
-  const fadeLeft = {
-    hidden: { x: 80, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 1.5, ease: "easeOut" },
-    },
-  };
-
-  const fadeDownLeft = {
-    hidden: { x: 80, y: -80, opacity: 0 },
-    visible: {
-      x: 0,
-      y: 0,
-      opacity: 1,
-      transition: { duration: 1.8, ease: "easeOut" },
-    },
-  };
+  const onMouseLeave = useCallback(() => {
+    if (cursorRef.current) cursorRef.current.style.opacity = "0";
+    setCards((prev) => prev.map((c) => ({ ...c, alive: false })));
+    setTimeout(() => setCards([]), 700);
+  }, []);
 
   return (
-    <motion.section
-      ref={sectionRef}
-      initial="hidden"
-      animate={animate ? "visible" : "hidden"}
-      variants={containerVariants}
-      className="relative overflow-hidden px-4 sm:py-10 py-5"
-    >
-      {/* Top Right Small Patch */}
+    <>
+      <style>{`
+
+        .jg-wrap {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: none;
+        }
+
+        .jg-cursor {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #fff;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 999;
+          mix-blend-mode: difference;
+          opacity: 0;
+          transition: opacity 0.15s ease;
+        }
+
+        .jg-card {
+          position: absolute;
+          border-radius: 5px;
+          object-fit: cover;
+          pointer-events: none;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.75), 0 4px 20px rgba(0,0,0,0.5);
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.88) rotate(var(--r));
+          transition:
+            blar 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: opacity, transform;
+        }
+
+        .jg-card.alive {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1) rotate(var(--r));
+        }
+
+        .jg-card.dead {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.93) rotate(var(--r)) translateY(10px);
+          transition:
+            opacity 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .jg-center {
+          position: relative;
+          z-index: 50;
+          text-align: center;
+          pointer-events: none;
+        }
+
+        
+       rcase;
+          margin-top: 18px;
+        }
+      `}</style>
+
       <div
-        className="absolute md:w-[400px] md:h-[400px] w-50 h-50
-             top-0 right-0
-             bg-[var(--color-patch)]
-             opacity-100
-             rounded-full
-             blur-[190px]
-             pointer-events-none"
-      />
+        ref={heroRef}
+        className="jg-wrap relative"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+      >
+         {/* Right Golden Patch */}
+      
 
-      {/* Left Star Decoration */}
-      <motion.div variants={fadeRight} className="absolute hero-star">
-        <div>
+      <div className="absolute top-0 right-0 h-auto w-auto">
+        <img src="/images/yellow_patch.png" alt="" />
+      </div>
+      
+        {/* Custom cursor dot */}
+        <div ref={cursorRef} className="jg-cursor" />
+
+        {/* Spawned images */}
+        {cards.map((card) => (
           <img
-            src="/images/Hero/Hero_Star.png"
+            key={card.id}
+            src={card.src}
             alt=""
-            className="w-full h-full object-contain"
+            className={`jg-card ${card.alive ? "alive" : "dead"}`}
+            style={{
+              left: card.x,
+              top: card.y,
+              width: card.w,
+              height: card.h,
+              "--r": `${card.rotate}deg`,
+              zIndex: (Math.round(card.x + card.y) % 30) + 5,
+            }}
           />
-        </div>
-      </motion.div>
+        ))}
 
-      {/* Main Content Container */}
-      <div className="container py-10 relative z-10 mt-5 md:mt-10 lg:mt-10 mb-5 sm:mb-10 md:mb-20 lg:mb-35">
-        <div className="max-w-full xl:max-w-5xl">
-          <div>
-            {/* Heading */}
-            <motion.h1
-              variants={slideInRight}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight"
-            >
-              PRICE <span className="text-yellow-500">GUARANTEE</span>
-            </motion.h1>
-
-            {/* Outlined Text */}
-            <motion.h2
-              variants={slideInLeft}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 leading-tight"
-              style={{
-                WebkitTextStroke: "1px white",
-                color: "transparent",
-                textShadow: "none",
-              }}
-            >
-              FOR ALL OF OUR SERVICES
-            </motion.h2>
-
-            {/* Description Text */}
-            <motion.p
-              variants={fadeUp}
-              className="text-white text-xs sm:text-sm md:text-base lg:text-sm leading-relaxed tracking-wide max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
-            >
-              WE PLACE A GREAT VALUE ON THE CALIBER OF{" "}
-              <span className="text-yellow-500 font-bold">OUR GOODS</span>. NE
-              SIGNS BLENDS QUICK TURNAROUND TIME WITH A KEEN EYE TOWARDS{" "}
-              <span className="text-yellow-500 font-bold">QUALITY</span>. FOR{" "}
-              <span className="text-yellow-500 font-bold">COMPANIES</span> OF
-              ALL SIZES, WE ARE COMMITTED TO OFFERING{" "}
-              <span className="text-yellow-500 font-bold">PREMIUM</span>{" "}
-              PRINTING, GRAPHIC DESIGN, AND SIGNAGE{" "}
-              <span className="text-yellow-500 font-bold">SOLUTIONS</span>.
-            </motion.p>
-          </div>
+        {/* Center text */}
+        <div className="jg-center">
+          <h1 className="text-[67px] font-extrabold">
+             <span className="text-[var(--color-gradient)]">NE Signs</span>
+             {" "}
+              Printing & Marketing</h1>
+          <p className="text-[67px]">Lowest Price Guaranteed</p>
         </div>
       </div>
-
-      {/* Top Right Decorative Shapes */}
-      {/* <motion.div 
-        variants={rotateIn}
-        className="absolute hero-black-ring"
-      >
-        <div className="transition-all duration-900 delay-100">
-          <img
-            src="/images/Hero/Hero_BlackRing.png"
-            alt=""
-            className="w-full h-full object-contain rotate-slow"
-          />
-        </div>
-      </motion.div> */}
-
-      {/* Yellow Lines */}
-      {/* <motion.div 
-        variants={fadeLeft}
-        className="absolute hero-yellow-lines transition-all duration-300"
-      >
-        <div>
-          <img
-            src="/images/Hero/Yellow_3line.svg"
-            alt=""
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </motion.div> */}
-
-      {/* Top Right Abstract White Shape */}
-      <motion.div
-        variants={fadeDownLeft}
-        className="absolute hero-white-shape xl:block hidden"
-      >
-        <div>
-          <img
-            src="/images/Hero/White_Shap.png"
-            alt=""
-            className="w-full h-full object-contain"
-          />
-        </div>
-      </motion.div>
-    </motion.section>
+    </>
   );
 }
