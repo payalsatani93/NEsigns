@@ -171,7 +171,7 @@ export default function Hero() {
         onMouseLeave={onMouseLeave}
       >
         {/* Right Golden Patch */}
-        <div className="absolute top-0 right-0 w-[120px] sm:w-[180px] md:w-[220px] lg:w-auto">
+        <div className="absolute top-0 right-0 w-auto h-auto blur-900 opacity-80">
           <img src="/images/yellow_patch.png" alt="" className="w-full h-auto" />
         </div>
 
